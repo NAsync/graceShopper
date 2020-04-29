@@ -16,7 +16,7 @@ const CreditCard = db.define('creditCard', {
   }
 })
 
-const Merchant = db.define('merchants', {
+const Merchant = db.define('merchant', {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
