@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const CreditCard = db.define('ccs', {
+const CreditCard = db.define('creditCard', {
   id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV4,
