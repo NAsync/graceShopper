@@ -13,11 +13,6 @@ const CreditCard = db.define('creditCard', {
 })
 
 const Merchant = db.define('merchant', {
-  id: {
-    type: UUID,
-    defaultValue: UUIDV4,
-    primaryKey: true
-  },
   name: {
     type: ENUM,
     values: ['MasterCard', 'Visa', 'Discover', 'American Express']
