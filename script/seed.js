@@ -44,9 +44,7 @@ async function seed() {
   console.log(`seeded successfully`)
 }
 
-// We've separated the `seed` function from the `runSeed` function.
-// This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
+//npm run seed and ensure merchants, users, and credit cards
 async function runSeed() {
   console.log('seeding...')
   try {

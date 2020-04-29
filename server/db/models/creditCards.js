@@ -1,33 +1,29 @@
-const Sequelize = require('sequelize')
 const db = require('../db')
+const {ENUM, STRING, UUID, UUIDV4} = require('sequelize')
 
-const CreditCard = db.define('ccs', {
-  id: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
-    primaryKey: true
-  },
+const CreditCard = db.define('creditCard', {
   ccNumber: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
     validate: {
       len: [16]
-    }
+    },
+    primaryKey: true
   }
 })
 
-const Merchant = db.define('merchants', {
+const Merchant = db.define('merchant', {
   id: {
-    type: Sequelize.UUID,
-    defaultValue: Sequelize.UUIDV4,
+    type: UUID,
+    defaultValue: UUIDV4,
     primaryKey: true
   },
   name: {
-    type: Sequelize.ENUM,
+    type: ENUM,
     values: ['MasterCard', 'Visa', 'Discover', 'American Express']
   },
   imageUrl: {
-    type: Sequelize.STRING
+    type: STRING
   }
 })
 
