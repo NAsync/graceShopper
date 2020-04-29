@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, CreditCard, Merchant} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +12,35 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  const merchants = await Promise.all([
+    Merchant.create({
+      name: 'MasterCard',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg'
+    }),
+    Merchant.create({
+      name: 'Visa',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/5/53/Visa_2014_logo_detail.svg'
+    })
+  ])
+
+  const creditCards = await Promise.all([
+    CreditCard.create({
+      ccNumber: '5715121212151515',
+      userId: users[0].id,
+      merchantId: merchants[0].id
+    }),
+    CreditCard.create({
+      ccNumber: '5215818121211512',
+      userId: users[1].id,
+      merchantId: merchants[1].id
+    })
+  ])
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${merchants.length} merchants`)
+  console.log(`seeded ${creditCards.length} credit cards`)
   console.log(`seeded successfully`)
 }
 
