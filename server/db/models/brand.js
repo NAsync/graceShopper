@@ -18,3 +18,7 @@ const Brand = db.define('brand', {
 })
 
 module.exports = Brand
+
+// module.exports = {
+//   Brand
+// }
