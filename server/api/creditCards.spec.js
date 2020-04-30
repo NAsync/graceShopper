@@ -77,7 +77,7 @@ describe('merchant routes', () => {
         .delete('/api/merchants/1')
         .expect(204)
       await request(app)
-        .delete('/api/merchants/3')
+        .delete(`/api/merchants/3`)
         .expect(204)
 
       const res = await request(app).get('/api/merchants/')
