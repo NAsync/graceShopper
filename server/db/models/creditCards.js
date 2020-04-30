@@ -1,5 +1,5 @@
 const db = require('../db')
-const {ENUM, STRING, UUID, UUIDV4} = require('sequelize')
+const {ENUM, STRING} = require('sequelize')
 
 const CreditCard = db.define('creditCard', {
   ccNumber: {
