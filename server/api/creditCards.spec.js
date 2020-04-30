@@ -1,8 +1,59 @@
 const {expect} = require('chai')
 const request = require('supertest')
 const app = require('../index')
-// make sure you npm run seed first for tests to work
-describe('credit card routes', () => {
+const db = require('../db')
+const CreditCard = db.model('creditCard')
+const User = db.model('user')
+const Merchant = db.model('merchant')
+
+describe('credit card and merchant routes', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
+  beforeEach(() => {
+    return User.create({
+      email: 'codyemail@gmail.com'
+    })
+  })
+
+  beforeEach(() => {
+    return User.create({
+      email: 'janeemail@gmail.com'
+    })
+  })
+
+  beforeEach(() => {
+    return Merchant.create({
+      name: 'MasterCard',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg'
+    })
+  })
+
+  beforeEach(() => {
+    return Merchant.create({
+      name: 'Visa',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/5/53/Visa_2014_logo_detail.svg'
+    })
+  })
+
+  beforeEach(() => {
+    return CreditCard.create({
+      ccNumber: '5715121212151515',
+      userId: 1,
+      merchantId: 1
+    })
+  })
+
+  beforeEach(() => {
+    return CreditCard.create({
+      ccNumber: '5215818121211512',
+      userId: 2,
+      merchantId: 2
+    })
+  })
+
   describe('/api/creditCards/', () => {
     const cardNum = '5215818121211584'
     const userId = 1
@@ -33,18 +84,12 @@ describe('credit card routes', () => {
       await request(app)
         .delete('/api/creditCards/5215818121211512')
         .expect(204)
-      await request(app)
-        .delete(`/api/creditCards/${cardNum}`)
-        .expect(204)
 
       const res = await request(app).get('/api/creditCards/')
 
       expect(res.body.length).to.be.equal(1)
     })
   }) // end describe('/api/creditCards')
-}) // end describe('creditCard routes')
-
-describe('merchant routes', () => {
   describe('/api/merchants/', () => {
     it('GET /api/merchants', async () => {
       const res = await request(app)
@@ -76,13 +121,10 @@ describe('merchant routes', () => {
       await request(app)
         .delete('/api/merchants/1')
         .expect(204)
-      await request(app)
-        .delete(`/api/merchants/3`)
-        .expect(204)
 
       const res = await request(app).get('/api/merchants/')
 
       expect(res.body.length).to.be.equal(1)
     })
-  }) // end describe('/api/merchants')
-}) // end describe('merchants routes')
+  }) // end describe('/api/merchants') // end describe('creditCard routes')
+}) // end describe card and merchants
