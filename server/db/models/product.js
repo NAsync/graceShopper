@@ -3,11 +3,6 @@ const db = require('../db')
 const {STRING, BOOLEAN, INTEGER, FLOAT} = Sequelize
 
 const Product = db.define('product', {
-  id: {
-    type: INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
   name: {
     type: STRING,
     allowNull: false,
@@ -46,20 +41,6 @@ const Product = db.define('product', {
   },
   bestSeller: {
     type: BOOLEAN
-  },
-  departmentId: {
-    type: INTEGER,
-    allowNull: true
-    // validate: {
-    //   notEmpty: true
-    // }
-  },
-  brandId: {
-    type: INTEGER,
-    allowNull: true
-    // validate: {
-    //   notEmpty: true
-    // }
   }
 })
 
