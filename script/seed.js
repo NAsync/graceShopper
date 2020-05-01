@@ -41,6 +41,7 @@ async function seed() {
     pd12
   ] = await Promise.all([
     //pd1
+    // TODO: DRY this out. Make an array of products, then we can do a foreach on the array to create multiple products
     Product.create({
       name: 'N95 Mask',
       unit: '2 PC',
@@ -195,40 +196,22 @@ async function seed() {
   const [user1, user2, user3, user4, user5] = await Promise.all([
     User.create({
       email: 'Andres@fullstack.com',
-      password: 'ANDRES',
-      salt: '',
-      googleId: ''
+      password: 'ANDRES'
     }),
     User.create({
       email: 'Josh@fullstack.com',
-      password: 'JOSH',
-      salt: '',
-      googleId: ''
+      password: 'JOSH'
     }),
     User.create({
       email: 'Robert@fullstack.com',
-      password: 'ROBERT',
-      salt: '',
-      googleId: ''
+      password: 'ROBERT'
     }),
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
-  const [
-    rw1,
-    rw2,
-    rw3,
-    rw4,
-    rw5,
-    rw6,
-    rw7,
-    rw8,
-    rw9,
-    rw10,
-    rw11,
-    rw12
-  ] = await Promise.all([
+  const reviews = await Promise.all([
     //rw1
+    // TODO: DRY this out. Make an array of reviews, then we can do a foreach on the array to create multiple reviews.
     Review.create({
       rating: 5,
       description: 'Awesome! I can still see.',
