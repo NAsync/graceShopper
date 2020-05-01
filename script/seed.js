@@ -16,9 +16,9 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const [fourM, HoleFoods, BahamaRepublic] = await Promise.all([
+  const [fourM, wholeFoods, bahamaRepublic] = await Promise.all([
     Brand.create({name: '4M'}),
-    Brand.create({name: 'HoleFoods'}),
+    Brand.create({name: 'Whole Foods'}),
     Brand.create({name: 'BahamaRepublic'})
   ])
   const [health, grocery, attire] = await Promise.all([
@@ -64,7 +64,7 @@ async function seed() {
       inventoryQTY: 200,
       bestSeller: false,
       departmentId: grocery.id,
-      brandId: HoleFoods.id
+      brandId: wholeFoods.id
     }),
     //pd3
     Product.create({
@@ -76,7 +76,7 @@ async function seed() {
       inventoryQTY: 50,
       bestSeller: false,
       departmentId: attire.id,
-      brandId: BahamaRepublic.id
+      brandId: bahamaRepublic.id
     }),
     //pd4
     Product.create({
@@ -101,7 +101,7 @@ async function seed() {
       inventoryQTY: 80,
       bestSeller: true,
       departmentId: grocery.id,
-      brandId: HoleFoods.id
+      brandId: wholeFoods.id
     }),
     //pd6
     Product.create({
@@ -113,7 +113,7 @@ async function seed() {
       inventoryQTY: 25,
       bestSeller: false,
       departmentId: attire.id,
-      brandId: BahamaRepublic.id
+      brandId: bahamaRepublic.id
     }),
     //pd7
     Product.create({
@@ -139,7 +139,7 @@ async function seed() {
       inventoryQTY: 120,
       bestSeller: false,
       departmentId: grocery.id,
-      brandId: HoleFoods.id
+      brandId: wholeFoods.id
     }),
     //pd9
     Product.create({
@@ -151,7 +151,7 @@ async function seed() {
       inventoryQTY: 50,
       bestSeller: false,
       departmentId: attire.id,
-      brandId: BahamaRepublic.id
+      brandId: bahamaRepublic.id
     }),
     //pd10
     Product.create({
@@ -176,7 +176,7 @@ async function seed() {
       inventoryQTY: 40,
       bestSeller: false,
       departmentId: grocery.id,
-      brandId: HoleFoods.id
+      brandId: wholeFoods.id
     }),
     //pd12
     Product.create({
@@ -189,7 +189,7 @@ async function seed() {
       inventoryQTY: 30,
       bestSeller: false,
       departmentId: attire.id,
-      brandId: BahamaRepublic.id
+      brandId: bahamaRepublic.id
     })
   ])
   const [user1, user2, user3, user4, user5] = await Promise.all([
@@ -314,11 +314,6 @@ async function seed() {
     })
   ])
 
-  // const users = await Promise.all([
-  //   User.create({email: 'cody@email.com', password: '123'}),
-  //   User.create({email: 'murphy@email.com', password: '123'})
-  // ])
-
   const merchants = await Promise.all([
     Merchant.create({
       name: 'MasterCard',
@@ -335,17 +330,17 @@ async function seed() {
   const creditCards = await Promise.all([
     CreditCard.create({
       ccNumber: '5715121212151515',
-      userId: users[0].id,
+      userId: user1.id,
       merchantId: merchants[0].id
     }),
     CreditCard.create({
       ccNumber: '5215818121211512',
-      userId: users[1].id,
+      userId: user2.id,
       merchantId: merchants[1].id
     })
   ])
 
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded users`)
   console.log(`seeded ${merchants.length} merchants`)
   console.log(`seeded ${creditCards.length} credit cards`)
   console.log(`seeded successfully`)
