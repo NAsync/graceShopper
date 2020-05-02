@@ -213,7 +213,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
       expect(res.body[0].name).to.be.equal('Whole Foods')
       expect(res.body.length).to.be.equal(1)
     })
-  }) // end describe('/api/brands/)
+  }) // end describe('/api/brands/')
 
   describe('/api/reviews/', () => {
     it('GET /api/reviews', async () => {
