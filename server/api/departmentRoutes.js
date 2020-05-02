@@ -1,10 +1,26 @@
 const router = require('express').Router()
-const {Department} = require('../db/models')
+const {Department, Product} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
     const department = await Department.findAll()
+    res.status(200).send(department)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  const id = Number(req.params.id)
+  try {
+    const department = await Department.findByPk(id, {
+      include: [
+        {
+          model: Product
+        }
+      ]
+    })
     res.status(200).send(department)
   } catch (err) {
     next(err)
