@@ -165,7 +165,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
       expect(res.body.length).to.be.equal(1)
     })
   })
-  // end describe('/api/departments)
+  // end describe('/api/departments')
 
   describe('/api/brands/', () => {
     it('GET /api/brands', async () => {
