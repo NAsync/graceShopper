@@ -266,5 +266,5 @@ describe('Department, Products, Reviews, and Brand routes', () => {
       expect(res.body[0].description).to.be.equal('Nice! I can still breath.')
       expect(res.body.length).to.be.equal(1)
     })
-  }) // end describe('/api/brands/)
+  }) // end describe('/api/brands/')
 }) // end describe('routes')
