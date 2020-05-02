@@ -3,6 +3,7 @@ body {
 }
 
 a {
+  text-align: center;
   text-decoration: none;
 }
 
@@ -10,9 +11,22 @@ label {
   display: block;
 }
 
+nav {
+  background-color: dodgerblue;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+
+nav a:hover {
+  background-color: blue;
+}
+
 nav a {
+  color: white;
   display: inline-block;
   margin: 1em;
+  padding: 1rem;
 }
 
 form div {
