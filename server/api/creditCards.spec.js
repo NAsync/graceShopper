@@ -7,58 +7,43 @@ const User = db.model('user')
 const Merchant = db.model('merchant')
 
 describe('credit card and merchant routes', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
-  })
-  beforeEach(() => {
-    return User.create({
+  let user1
+  let user2
+  let merchant1
+  let merchant2
+  let creditCard1
+  let creditCard2
+
+  beforeEach(async () => {
+    await db.sync({force: true})
+    user1 = await User.create({
       email: 'codyemail@gmail.com'
     })
-  })
-
-  beforeEach(() => {
-    return User.create({
+    user2 = await User.create({
       email: 'janeemail@gmail.com'
     })
-  })
-
-  beforeEach(() => {
-    return Merchant.create({
+    merchant1 = await Merchant.create({
       name: 'MasterCard',
       imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg'
     })
-  })
-
-  beforeEach(() => {
-    return Merchant.create({
+    merchant2 = await Merchant.create({
       name: 'Visa',
       imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/5/53/Visa_2014_logo_detail.svg'
     })
-  })
-
-  beforeEach(() => {
-    return CreditCard.create({
+    creditCard1 = await CreditCard.create({
       ccNumber: '5715121212151515',
-      userId: 1,
-      merchantId: 1
+      userId: user1.id,
+      merchantId: merchant1.id
     })
-  })
-
-  beforeEach(() => {
-    return CreditCard.create({
+    creditCard2 = await CreditCard.create({
       ccNumber: '5215818121211512',
-      userId: 2,
-      merchantId: 2
+      userId: user2.id,
+      merchantId: merchant2.id
     })
   })
-
   describe('/api/creditCards/', () => {
-    const cardNum = '5215818121211584'
-    const userId = 1
-    const merchantId = 1
-
     it('GET /api/creditCards', async () => {
       const res = await request(app)
         .get('/api/creditCards/')
@@ -69,20 +54,25 @@ describe('credit card and merchant routes', () => {
     })
 
     it('POST /api/creditCards/', async () => {
+      const creditCard3 = {
+        ccNumber: '5215818121211584',
+        userId: user1.id,
+        merchantId: merchant2.id
+      }
       const res = await request(app)
         .post('/api/creditCards/')
-        .send({ccNumber: cardNum, userId, merchantId})
+        .send(creditCard3)
         .expect(201)
 
       expect(res.body).to.be.an('object')
-      expect(res.body.ccNumber).to.be.equal(cardNum)
-      expect(res.body.userId).to.be.equal(userId)
-      expect(res.body.merchantId).to.be.equal(merchantId)
+      expect(res.body.ccNumber).to.be.equal(creditCard3.ccNumber)
+      expect(res.body.userId).to.be.equal(creditCard3.userId)
+      expect(res.body.merchantId).to.be.equal(creditCard3.merchantId)
     })
 
     it('DELETE /api/creditCards/', async () => {
       await request(app)
-        .delete('/api/creditCards/5215818121211512')
+        .delete(`/api/creditCards/${creditCard1.ccNumber}/`)
         .expect(204)
 
       const res = await request(app).get('/api/creditCards/')
@@ -101,30 +91,29 @@ describe('credit card and merchant routes', () => {
     })
 
     it('POST /api/merchants/', async () => {
+      const merchant3 = {
+        name: 'Discover',
+        imageUrl:
+          'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
+      }
       const res = await request(app)
         .post('/api/merchants/')
-        .send({
-          name: 'Discover',
-          imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
-        })
+        .send(merchant3)
         .expect(201)
 
       expect(res.body).to.be.an('object')
-      expect(res.body.name).to.be.equal('Discover')
-      expect(res.body.imageUrl).to.be.equal(
-        'https://upload.wikimedia.org/wikipedia/commons/5/57/Discover_Card_logo.svg'
-      )
+      expect(res.body.name).to.be.equal(merchant3.name)
+      expect(res.body.imageUrl).to.be.equal(merchant3.imageUrl)
     })
 
     it('DELETE /api/merchants/', async () => {
       await request(app)
-        .delete('/api/merchants/1')
+        .delete(`/api/merchants/${merchant1.id}`)
         .expect(204)
 
       const res = await request(app).get('/api/merchants/')
 
       expect(res.body.length).to.be.equal(1)
     })
-  }) // end describe('/api/merchants') // end describe('creditCard routes')
+  }) // end describe('/api/merchants')
 }) // end describe card and merchants
