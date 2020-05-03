@@ -1,10 +1,10 @@
-const {expect} = require('chai')
-const request = require('supertest')
-const app = require('../index')
-const db = require('../db')
+const app = require('../../index')
+const db = require('../../db')
 const CreditCard = db.model('creditCard')
-const User = db.model('user')
+const {expect} = require('chai')
 const Merchant = db.model('merchant')
+const request = require('supertest')
+const User = db.model('user')
 
 describe('credit card and merchant routes', () => {
   let user1
@@ -104,6 +104,19 @@ describe('credit card and merchant routes', () => {
       expect(res.body).to.be.an('object')
       expect(res.body.name).to.be.equal(merchant3.name)
       expect(res.body.imageUrl).to.be.equal(merchant3.imageUrl)
+    })
+
+    it('UPDATES /api/merchants/:id', async () => {
+      const merchantUpdate = {
+        name: 'American Express'
+      }
+      const res = await request(app)
+        .put(`/api/merchants/${merchant1.id}`)
+        .send(merchantUpdate)
+        .expect(200)
+
+      expect(res.body).to.be.an('object')
+      expect(res.body.name).to.be.equal(merchantUpdate.name)
     })
 
     it('DELETE /api/merchants/', async () => {

@@ -1,11 +1,13 @@
 const router = require('express').Router()
-const {Department, Product} = require('../db/models')
+const {Review, User} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const department = await Department.findAll()
-    res.status(200).send(department)
+    const users = await User.findAll({
+      attributes: ['id', 'email']
+    })
+    res.status(200).send(users)
   } catch (err) {
     next(err)
   }
@@ -14,14 +16,15 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
-    const department = await Department.findByPk(id, {
+    const users = await User.findByPk(id, {
       include: [
         {
-          model: Product
+          model: Review
         }
-      ]
+      ],
+      attributes: ['id', 'email']
     })
-    res.status(200).send(department)
+    res.status(200).send(users)
   } catch (err) {
     next(err)
   }
@@ -29,8 +32,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const department = await Department.create(req.body)
-    res.status(201).send(department)
+    const user = await User.create(req.body)
+    res.status(201).send(user)
   } catch (err) {
     next(err)
   }
@@ -39,9 +42,9 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
-    const department = await Department.findByPk(id)
-    department.update(req.body)
-    res.status(200).send(department)
+    const user = await User.findByPk(id)
+    user.update(req.body)
+    res.status(200).send(user)
   } catch (err) {
     next(err)
   }
@@ -50,8 +53,8 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
-    const department = await Department.findByPk(id)
-    department.destroy()
+    const user = await User.findByPk(id)
+    user.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)
