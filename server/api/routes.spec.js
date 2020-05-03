@@ -82,7 +82,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
 
     it('GET /api/products/:id', async () => {
       const res = await request(app)
-        .get('/api/products/1')
+        .get(`/api/products/${product1.id}`)
         .expect(200)
 
       expect(res.body).to.be.an('object')
@@ -119,7 +119,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
         inventoryQTY: 5
       }
       const res = await request(app)
-        .put('/api/products/1')
+        .put(`/api/products/${product1.id}`)
         .send(myUpdate)
         .expect(200)
 
@@ -131,7 +131,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
 
     it('DELETES /api/products/:id', async () => {
       await request(app)
-        .delete('/api/products/1')
+        .delete(`/api/products/${product1.id}`)
         .expect(204)
       const res = await request(app)
         .get('/api/products/')
@@ -158,7 +158,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
 
     it('GET /api/departments/:id', async () => {
       const res = await request(app)
-        .get('/api/departments/1')
+        .get(`/api/departments/${department1.id}`)
         .expect(200)
 
       expect(res.body).to.be.an('object')
@@ -183,7 +183,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
         name: 'new-health'
       }
       const res = await request(app)
-        .put('/api/departments/1')
+        .put(`/api/departments/${department1.id}`)
         .send(departmentUpdate)
         .expect(200)
 
@@ -193,7 +193,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
 
     it('DELETES /api/departments/:id', async () => {
       await request(app)
-        .delete('/api/departments/1')
+        .delete(`/api/departments/${department1.id}`)
         .expect(204)
       const res = await request(app)
         .get('/api/departments/')
@@ -218,7 +218,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
     })
     it('GET /api/brands/:id', async () => {
       const res = await request(app)
-        .get('/api/brands/1')
+        .get(`/api/brands/${brand1.id}`)
         .expect(200)
 
       expect(res.body).to.be.an('object')
@@ -243,7 +243,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
         name: '40M'
       }
       const res = await request(app)
-        .put('/api/brands/1')
+        .put(`/api/brands/${brand1.id}`)
         .send(brandUpdate)
         .expect(200)
 
@@ -253,7 +253,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
 
     it('DELETES /api/brands/:id', async () => {
       await request(app)
-        .delete('/api/brands/1')
+        .delete(`/api/brands/${brand1.id}`)
         .expect(204)
       const res = await request(app)
         .get('/api/brands/')
@@ -298,7 +298,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
         description: 'Not as good as I thought'
       }
       const res = await request(app)
-        .put('/api/reviews/1')
+        .put(`/api/reviews/${review1.id}`)
         .send(reviewUpdate)
         .expect(200)
 
@@ -308,7 +308,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
 
     it('DELETES /api/reviews/:id', async () => {
       await request(app)
-        .delete('/api/reviews/1')
+        .delete(`/api/reviews/${review1.id}`)
         .expect(204)
       const res = await request(app)
         .get('/api/reviews/')
@@ -330,7 +330,7 @@ describe('Department, Products, Reviews, and Brand routes', () => {
     })
     it('GET /api/users/:id', async () => {
       const res = await request(app)
-        .get('/api/users/1')
+        .get(`/api/users/${user1.id}`)
         .expect(200)
 
       expect(res.body).to.be.an('object')
