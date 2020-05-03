@@ -19,3 +19,19 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.bestSeller {
+  height: 2.5rem;
+  width: 12rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.bestSellerShow {
+  color: white;
+  background-color: orange;
+}
+
+.bestSellerNotShow {
+  background-color: none;
+}
