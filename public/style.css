@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -16,15 +22,43 @@ nav a {
 }
 
 form div {
-  margin: 1em;
   display: inline-block;
 }
 
+/* below are for component products */
+
+#productsContainer {
+  margin: 1rem auto;
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  /* border: 2px solid red; */
+}
+
+/* below are for component productCard */
+
+.productCardContainer {
+  width: calc(100% / 3 - 2em);
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  /* border: 1px solid orange; */
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+/* 0 4px 8px 0 rgba(0, 0, 0, 0.2), */
 .bestSeller {
   height: 2.5rem;
-  width: 12rem;
+  width: 40%;
   font-size: 2rem;
   text-align: center;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .bestSellerShow {
@@ -34,4 +68,38 @@ form div {
 
 .bestSellerNotShow {
   background-color: none;
+}
+
+.imgContainer {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+img {
+  margin: 0px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.cardItem {
+  height: 2rem;
+  font-size: 2rem;
+  /* border: 1px black solid; */
+  margin: 0.5rem auto;
+}
+
+.productBrand {
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.addToCartBtn {
+  width: 60%;
+  height: 3rem;
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  border-radius: 0.5rem;
 }

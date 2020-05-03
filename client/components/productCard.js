@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-//import {CardDeck, Card, Image, Row, Col, Container, Button} from 'react-bootstrap'
 
 const ProductCard = () => {
   const product = {
@@ -28,23 +27,25 @@ const ProductCard = () => {
 
   return (
     <div className="productCardContainer">
-      <div
-        className={
-          product.bestSeller
-            ? 'bestSeller bestSellerShow'
-            : 'bestSeller bestSellerNotShow'
-        }
-      >
-        Best Seller
+      <div className="imgContainer">
+        <div
+          className={
+            product.bestSeller
+              ? 'bestSeller bestSellerShow'
+              : 'bestSeller bestSellerNotShow'
+          }
+        >
+          Best Seller
+        </div>
+        <img src="https://picsum.photos/600" alt={product.name} />
       </div>
-      <img src="https://picsum.photos/250" alt={product.name} />
-      <Link to={'/products/' + product.id} className="productName">
-        {product.name}
+      <Link to={'/products/' + product.id} className="cardItem productNameUnit">
+        {product.name} {product.unit}
       </Link>
-      <div className="producUnit">{product.unit}</div>
-      <div className="producBrand">by {brand.name}</div>
-      <div className="productPrice">${product.price}</div>
-      <button>Add to Cart</button>
+      {/* <div className="cardItem producUnit">{product.unit}</div> */}
+      <div className="cardItem productBrand">by {brand.name}</div>
+      <div className="cardItem productPrice">${product.price}</div>
+      <button className="addToCartBtn">Add to Cart</button>
     </div>
   )
 }
