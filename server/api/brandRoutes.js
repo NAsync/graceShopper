@@ -1,10 +1,26 @@
+const {Brand, Product} = require('../db/models')
 const router = require('express').Router()
-const {Brand} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
     const brand = await Brand.findAll()
+    res.status(200).send(brand)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const brand = await Brand.findByPk(id, {
+      include: [
+        {
+          model: Product
+        }
+      ]
+    })
     res.status(200).send(brand)
   } catch (err) {
     next(err)
@@ -21,7 +37,7 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const brand = await Brand.findByPk(id)
     brand.update(req.body)
@@ -32,7 +48,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 router.delete('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const brand = await Brand.findByPk(id)
     brand.destroy()
