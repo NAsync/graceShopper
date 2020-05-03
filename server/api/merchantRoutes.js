@@ -20,8 +20,19 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const merchant = await Merchant.findByPk(id)
+    merchant.update(req.body)
+    res.status(200).send(merchant)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.delete('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const merchant = await Merchant.findByPk(id)
     merchant.destroy()

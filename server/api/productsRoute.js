@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const product = await Product.findByPk(id, {
       include: [
@@ -37,7 +37,7 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const product = await Product.findByPk(id)
     product.update(req.body)
@@ -48,7 +48,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 router.delete('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const product = await Product.findByPk(id)
     product.destroy()
