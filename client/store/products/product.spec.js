@@ -1,33 +1,26 @@
-import {expect} from 'chai'
-import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunkMiddleware from 'redux-thunk'
-import store from '..'
-import {READ_PRODUCTS} from './action_types'
-// import { request } from 'express'
-
+import {READ_PRODUCT, READ_PRODUCTS} from './action_types'
+const axios = require('axios')
+const {expect} = require('chai')
 const request = require('supertest')
 const app = require('../../../server/index')
 const db = require('../../../server/db')
 const Product = db.model('product')
-const {
-  createProduct,
-  deleteProduct,
-  readProduct,
-  readProducts,
-  updateProduct
-} = require('./actions')
+const {readProduct, readProducts} = require('./actions')
 
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
 describe('product thunk creators', () => {
-  const initialState = {}
+  let store
+  let mockAxios
+  const initialState = {product: {}}
   let product
   beforeEach(async () => {
     await db.sync({force: true})
-    product = await Product.create({
+    product = (await Product.create({
       name: 'An item',
       unit: '1 PC',
       description: 'A good description',
@@ -35,20 +28,23 @@ describe('product thunk creators', () => {
       imageURL: 'https://picsum.photos/250',
       inventoryQTY: 25,
       bestSeller: false
-    })
-    // mockAxios = new MockAdapter(axios)
-    // store = mockStore(initialState)
+    })).dataValues
+    mockAxios = new MockAdapter(axios)
+    store = mockStore(initialState)
+  })
+  afterEach(() => {
+    mockAxios.restore()
+    store.clearActions()
   })
 
-  describe('', () => {
+  describe('GET product', () => {
     it('dispatches get product', async () => {
-      expect(true).to.be.equal(true)
-      // const res = await request(app)
-      //     .get(`/api/products/${product.id}`)
-      //     .expect(200)
-      // mockAxios.onGet(`/api/products/${product.id}`).reply(200, product)
-      // await store.dispatch(readProduct())
-      // const actions = store.getActions()
+      mockAxios.onGet(`/api/products/${product.id}`).replyOnce(200, product)
+      await store.dispatch(readProduct(product))
+      const actions = store.getActions()
+      expect(actions[0].type).to.be.equal(READ_PRODUCT)
+      expect(actions[0].product.name).to.be.equal(product.name)
+      expect(actions[0].product.id).to.be.equal(product.id)
     })
   })
 })
@@ -87,16 +83,14 @@ describe('products thunk creators', () => {
     store.clearActions()
   })
 
-  describe('GET products', async () => {
+  describe('GET products', () => {
     it('dispatches get products', async () => {
-      const res = await request(app)
-        .get('/api/products')
-        .expect(200)
+      // mockAxios.onGet('/api/products').reply(200, [product1, product2])
+      // await store.dispatch(readProducts())
+      // const actions = store.getActions()
+      // console.log('actions here', actions)
+      // expect(actions[0].type).to.be.equal(READ_PRODUCTS)
+      // expect(actions[0].products).to.be.equal(res.body)
     })
-    mockAxios.onGet('/api/products').replyOnce(200, [product1, product2])
-    await store.dispatch(readProducts())
-    const actions = store.getActions()
-    expect(actions[0].type).to.be.equal(READ_PRODUCTS)
-    expect(actions[0].products).to.be.equal([product1, product2])
   })
 })
