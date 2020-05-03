@@ -115,5 +115,5 @@ describe('credit card and merchant routes', () => {
 
       expect(res.body.length).to.be.equal(1)
     })
-  }) // end describe('/api/merchants') // end describe('creditCard routes')
+  }) // end describe('/api/merchants')
 }) // end describe card and merchants
