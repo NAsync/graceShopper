@@ -4,8 +4,6 @@ import thunkMiddleware from 'redux-thunk'
 import {READ_PRODUCT, READ_PRODUCTS} from './action_types'
 const axios = require('axios')
 const {expect} = require('chai')
-const request = require('supertest')
-const app = require('../../../server/index')
 const db = require('../../../server/db')
 const Product = db.model('product')
 const {readProduct, readProducts} = require('./actions')
