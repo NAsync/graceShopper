@@ -19,7 +19,7 @@ const ProductCard = ({product}) => {
         >
           Best Seller
         </div>
-        <img src="https://picsum.photos/600" alt={product.name} />
+        <img src={product.imageURL} alt={product.name} />
       </div>
       <Link to={'/products/' + product.id} className="cardItem productNameUnit">
         {product.name} {product.unit}
