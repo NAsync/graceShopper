@@ -3,31 +3,32 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ProductCard from './productCard'
 
-const Products = ({processed}) => {
-  console.log('here', processed)
+const Products = ({products}) => {
+  console.log('here', products)
 
   return (
     <div id="productsContainer">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {products.map(product => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   )
 }
 
-const mapStateToProps = ({products, reviews}) => {
-  console.log('hihi', products)
+const mapStateToProps = ({products}) => {
+  console.log('products', products)
   if (!products) {
     return {}
   }
-  const processed = products.map(product => {
-    return {
-      ...product,
-      reviews: reviews.filter(review => review.productId === product.id)
-    }
-  })
+  // const processed = products.map(product => {
+  //   return {
+  //     ...product,
+  //     reviews: reviews.filter(review => review.productId === product.id)
+  //   }
+  // })
   return {
-    processed
+    //processed
+    products
   }
 }
 

@@ -81,7 +81,7 @@ form div {
 }
 
 .bestSellerNotShow {
-  background-color: none;
+  visibility: hidden;
 }
 
 .imgContainer {
@@ -100,7 +100,6 @@ img {
 .cardItem {
   height: 2rem;
   font-size: 2rem;
-  /* border: 1px black solid; */
   margin: 0.5rem auto;
 }
 

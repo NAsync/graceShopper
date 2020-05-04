@@ -1,25 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-const ProductCard = () => {
-  const product = {
-    id: 1,
-    name: 'N95 Mask',
-    unit: '2 PC',
-    description:
-      'Medical Grade; Comfortable and Excellent Against Harmful Air Particle.',
-    price: 15,
-    //imageURL: 'https://picsum.photos/250',
-    //imageURL: '../../public/assets/n95_1.jpg',
-    imageURL: 'assets/n95_1.jpg',
-    inventoryQTY: 100,
-    bestSeller: true,
-    createdAt: '2020-05-02T21:38:39.869Z',
-    updatedAt: '2020-05-02T21:38:39.869Z',
-    departmentId: 2,
-    brandId: 1
-  }
-
+const ProductCard = ({product}) => {
   const brand = {
     id: 1,
     name: '4M'
@@ -42,7 +24,6 @@ const ProductCard = () => {
       <Link to={'/products/' + product.id} className="cardItem productNameUnit">
         {product.name} {product.unit}
       </Link>
-      {/* <div className="cardItem producUnit">{product.unit}</div> */}
       <div className="cardItem productBrand">by {brand.name}</div>
       <div className="cardItem productPrice">${product.price}</div>
       <button className="addToCartBtn">Add to Cart</button>

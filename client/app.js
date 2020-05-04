@@ -13,6 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log('hello', this.props)
     this.props.load()
   }
 
@@ -30,7 +31,7 @@ const mapDispatchToProps = dispatch => {
   return {
     load: () => {
       dispatch(readProducts())
-      dispatch(readProduct())
+      //dispatch(readProduct())
     }
   }
 }
