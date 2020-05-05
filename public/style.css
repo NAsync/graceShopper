@@ -62,7 +62,7 @@ form div {
   align-items: center;
   padding-bottom: 1rem;
 }
-/* 0 4px 8px 0 rgba(0, 0, 0, 0.2), */
+
 .bestSeller {
   height: 2.5rem;
   width: 40%;
@@ -99,12 +99,18 @@ img {
 .cardItem {
   height: 2rem;
   font-size: 1.8rem;
-  margin: 0.5rem auto;
+  margin: 0.2rem auto;
+  border: dotted yellowgreen 1px;
 }
 
 .productBrand {
   font-size: 1.5rem;
   color: gray;
+}
+
+.productReview {
+  font-size: 1.5rem;
+  color: blue;
 }
 
 .addToCartBtn {
@@ -115,7 +121,10 @@ img {
   color: white;
   border-radius: 0.5rem;
   cursor: pointer;
+  margin-top: 0.5rem;
 }
+
+/* below are for component Departments_slide */
 
 .carousel {
   margin: 1rem auto;

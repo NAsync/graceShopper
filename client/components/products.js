@@ -4,8 +4,6 @@ import {connect} from 'react-redux'
 import ProductCard from './productCard'
 
 const Products = ({products}) => {
-  console.log('here', products)
-
   return (
     <div id="productsContainer">
       {products.map(product => (
@@ -20,18 +18,9 @@ const mapStateToProps = ({products}) => {
   if (!products) {
     return {}
   }
-  // const processed = products.map(product => {
-  //   return {
-  //     ...product,
-  //     reviews: reviews.filter(review => review.productId === product.id)
-  //   }
-  // })
   return {
-    //processed
     products
   }
 }
 
 export default connect(mapStateToProps)(Products)
-
-//export default Products

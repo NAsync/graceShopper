@@ -3,9 +3,7 @@ import {Navbar} from './components'
 import Routes from './routes'
 //import { connect } from 'http2';
 import {connect} from 'react-redux'
-import {readProduct, readProducts} from './store/products/actions'
-
-//const App = () => {
+import {readProducts} from './store/products/actions'
 
 class App extends Component {
   constructor() {
@@ -13,7 +11,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    //console.log('hello', this.props)
     this.props.load()
   }
 
@@ -31,7 +28,6 @@ const mapDispatchToProps = dispatch => {
   return {
     load: () => {
       dispatch(readProducts())
-      //dispatch(readProduct())
     }
   }
 }
