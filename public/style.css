@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -30,6 +36,97 @@ nav a {
 }
 
 form div {
-  margin: 1em;
   display: inline-block;
+}
+
+/* below are for component products */
+
+#productsContainer {
+  margin: 1rem auto;
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  /* border: 2px solid red; */
+}
+
+/* below are for component productCard */
+
+.productCardContainer {
+  width: calc(100% / 3 - 2em);
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.bestSeller {
+  height: 2.5rem;
+  width: 40%;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.bestSellerShow {
+  color: white;
+  background-color: orange;
+}
+
+.bestSellerNotShow {
+  visibility: hidden;
+}
+
+.imgContainer {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+img {
+  margin: 0px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.cardItem {
+  height: 2rem;
+  font-size: 1.8rem;
+  margin: 0.2rem auto;
+}
+
+.productBrand {
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.productReview {
+  font-size: 1.5rem;
+  color: blue;
+}
+
+.addToCartBtn {
+  width: 60%;
+  height: 3rem;
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+/* below are for component Departments_slide */
+
+.carousel {
+  margin: 1rem auto;
+  width: 100%;
+  background-color: aqua;
 }

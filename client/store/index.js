@@ -6,8 +6,8 @@ import {productReducer, productsReducer} from './products/reducers'
 import user from './user'
 
 const reducer = combineReducers({
-  productReducer,
-  productsReducer,
+  product: productReducer,
+  products: productsReducer,
   user
 })
 const middleware = composeWithDevTools(
