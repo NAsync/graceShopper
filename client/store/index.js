@@ -7,10 +7,13 @@ import user from './user'
 import brands from './brands'
 import departments from './departments'
 import reviews from './departments'
+import {reviewReducer, reviewsReducer} from './reviews'
 
 const reducer = combineReducers({
   product: productReducer,
   products: productsReducer,
+  review: reviewReducer,
+  reviews: reviewsReducer,
   user
 })
 const middleware = composeWithDevTools(

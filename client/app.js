@@ -4,6 +4,7 @@ import Routes from './routes'
 //import { connect } from 'http2';
 import {connect} from 'react-redux'
 import {readProducts} from './store/products/actions'
+import {readReviews} from './store/reviews'
 
 class App extends Component {
   constructor() {
@@ -28,10 +29,9 @@ const mapDispatchToProps = dispatch => {
   return {
     load: () => {
       dispatch(readProducts())
+      dispatch(readReviews())
     }
   }
 }
 
 export default connect(null, mapDispatchToProps)(App)
-
-//export default App
