@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('hello', this.props)
+    //console.log('hello', this.props)
     this.props.load()
   }
 

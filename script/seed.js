@@ -146,7 +146,7 @@ async function seed() {
     //pd9
     Product.create({
       name: 'Hand Sanitizer',
-      unit: '8 fl oz',
+      unit: '2 fl oz',
       description: 'Kills 99.99 percent of most common illness-causing germs',
       price: 5,
       imageURL: 'assets/hand_sanitizer_2_use.jpg',
