@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const ProductCard = ({product}) => {
   let review = ''
   if (!product.reviewAvg) {
-    review = 'Be the first one to review'
+    review = 'First To Review'
   } else {
     review = parseFloat(product.reviewAvg).toFixed(1)
   }
