@@ -116,3 +116,9 @@ img {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
+.carousel {
+  margin: 1rem auto;
+  width: 100%;
+  background-color: aqua;
+}

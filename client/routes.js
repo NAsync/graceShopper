@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import {Cart, Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Products from './components/products'
-//import DepartmentsAD from './components/departmentsAD';
+
+//import Departments_slide from './components/departments_slide'
 
 /**
  * COMPONENT
@@ -21,9 +22,11 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        {/* <Route path="/" component={Departments_slide} /> */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
