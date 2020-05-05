@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Department, Product} = require('../db/models')
+const {Brand, Department, Product, Review} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -17,7 +17,16 @@ router.get('/:id', async (req, res, next) => {
     const department = await Department.findByPk(id, {
       include: [
         {
-          model: Product
+          model: Product,
+          include: [
+            {
+              model: Review
+            },
+            {
+              model: Brand,
+              attributes: ['name']
+            }
+          ]
         }
       ]
     })
