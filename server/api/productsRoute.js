@@ -1,10 +1,26 @@
 const router = require('express').Router()
-const {Product, Review} = require('../db/models')
+const Sequelize = require('sequelize')
+const {Product, Review, Brand} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const product = await Product.findAll()
+    const product = await Product.findAll({
+      attributes: {
+        include: [[Sequelize.fn('AVG', Sequelize.col('rating')), 'reviewAvg']]
+      },
+      include: [
+        {
+          model: Review,
+          attributes: []
+        },
+        {
+          model: Brand,
+          attributes: ['name']
+        }
+      ],
+      group: ['product.id', 'brand.id']
+    })
     res.status(200).send(product)
   } catch (err) {
     next(err)
@@ -18,6 +34,10 @@ router.get('/:id', async (req, res, next) => {
       include: [
         {
           model: Review
+        },
+        {
+          model: Brand,
+          attributes: ['name']
         }
       ]
     })
