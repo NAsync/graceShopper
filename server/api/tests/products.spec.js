@@ -59,7 +59,7 @@ describe('Products Routes', () => {
       rating: 5,
       description: 'Awesome! I can still see.',
       userId: user1.id,
-      productId: product2.id
+      productId: product1.id
     })
     review2 = await Review.create({
       rating: 4,
@@ -78,6 +78,9 @@ describe('Products Routes', () => {
       expect(res.body).to.be.an('array')
       expect(res.body[0].name).to.be.equal(product1.name)
       expect(res.body[1].price).to.be.equal(product2.price)
+      expect(Number(res.body[0].reviewAvg)).to.be.equal(
+        (review1.rating + review2.rating) / 2
+      )
     })
 
     it('GET /api/products/:id', async () => {
@@ -88,7 +91,7 @@ describe('Products Routes', () => {
       expect(res.body).to.be.an('object')
       expect(res.body.name).to.be.equal(product1.name)
       expect(res.body.price).to.be.equal(product1.price)
-      expect(res.body.reviews[0].rating).to.be.equal(review2.rating)
+      expect(res.body.reviews[0].rating).to.be.equal(review1.rating)
     })
     it('POST /api/products', async () => {
       const product3 = {

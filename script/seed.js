@@ -48,7 +48,7 @@ async function seed() {
       description:
         'Medical Grade; Comfortable and Excellent Against Harmful Air Particle.',
       price: 15,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/n95_1_use.jpg',
       inventoryQTY: 100,
       bestSeller: true,
       departmentId: health.id,
@@ -61,7 +61,7 @@ async function seed() {
       description:
         "Quality Guaranteed; It's nutritious, low in calories, available year-round and hearty.",
       price: 3,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/broccoli_use.jpg',
       inventoryQTY: 200,
       bestSeller: false,
       departmentId: grocery.id,
@@ -69,15 +69,16 @@ async function seed() {
     }),
     //pd3
     Product.create({
-      name: 'Fisherman Hat',
-      unit: '1 PC',
-      description: 'Removable Protective Hat for Men and Women',
-      price: 25,
-      imageURL: 'https://picsum.photos/250',
+      name: 'Toilet Paper',
+      unit: '5 Rolls',
+      description:
+        'Premium 3-Ply Toilet Paper, Soft, Strong and Highly Absorbent',
+      price: 8,
+      imageURL: 'assets/toiletpaper_1_use.jpg',
       inventoryQTY: 50,
-      bestSeller: false,
-      departmentId: attire.id,
-      brandId: bahamaRepublic.id
+      bestSeller: true,
+      departmentId: grocery.id,
+      brandId: wholeFoods.id
     }),
     //pd4
     Product.create({
@@ -85,9 +86,9 @@ async function seed() {
       unit: '50 PC',
       description: 'Medical Grade, Disposable',
       price: 25,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/facemask_3_use.jpg',
       inventoryQTY: 150,
-      bestSeller: false,
+      bestSeller: true,
       departmentId: health.id,
       brandId: fourM.id
     }),
@@ -98,7 +99,7 @@ async function seed() {
       description:
         'Our milk comes from cows not given growth hormones or antibiotics, raised on farms that follow sustainable organic practices.',
       price: 6,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/milk_use.jpg',
       inventoryQTY: 80,
       bestSeller: true,
       departmentId: grocery.id,
@@ -110,7 +111,7 @@ async function seed() {
       unit: '1 PC',
       description: '100% Cotton; Face Mask for Dust & Sun Protection',
       price: 15,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/scarf_use.jpg',
       inventoryQTY: 25,
       bestSeller: false,
       departmentId: attire.id,
@@ -123,7 +124,7 @@ async function seed() {
       description:
         'Reusable, Washable, Protection from Dust, Pollen, Pet Dander and other Airborne Irritants',
       price: 30,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/cloth_facemask_use.jpg',
       inventoryQTY: 80,
       bestSeller: false,
       departmentId: health.id,
@@ -136,7 +137,7 @@ async function seed() {
       description:
         "These perfectly tender fillets are deboned and trimmed by hand so they're ready to cook however you like them.",
       price: 13,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/chickbreast_use.jpg',
       inventoryQTY: 120,
       bestSeller: false,
       departmentId: grocery.id,
@@ -144,25 +145,26 @@ async function seed() {
     }),
     //pd9
     Product.create({
-      name: 'Tee Shirt',
-      unit: '1 PC',
-      description: 'COVID-19 Tops; Home is Where The Heart is',
-      price: 20,
-      imageURL: 'https://picsum.photos/250',
+      name: 'Hand Sanitizer',
+      unit: '2 fl oz',
+      description: 'Kills 99.99 percent of most common illness-causing germs',
+      price: 5,
+      imageURL: 'assets/hand_sanitizer_2_use.jpg',
       inventoryQTY: 50,
-      bestSeller: false,
-      departmentId: attire.id,
-      brandId: bahamaRepublic.id
+      bestSeller: true,
+      departmentId: health.id,
+      brandId: fourM.id
     }),
     //pd10
     Product.create({
-      name: 'Digital Forehead Thermometer',
+      name: 'Rapid Read Thermometer',
       unit: '1 PC',
-      description: 'Non-Contact; For Baby Kids Child and Adults',
-      price: 50,
-      imageURL: 'https://picsum.photos/250',
-      inventoryQTY: 5,
-      bestSeller: true,
+      description:
+        'Accurate reading in 8 seconds; 3 modes of use: oral, rectal, or underarm',
+      price: 10,
+      imageURL: 'assets/thermo_use.jpg',
+      inventoryQTY: 30,
+      bestSeller: false,
       departmentId: health.id,
       brandId: fourM.id
     }),
@@ -173,7 +175,7 @@ async function seed() {
       description:
         'Fresh Guaranteed; The beautiful orange-red color is closer to wild salmon than other farmed fish.',
       price: 30,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/salmon_use.jpg',
       inventoryQTY: 40,
       bestSeller: false,
       departmentId: grocery.id,
@@ -181,12 +183,12 @@ async function seed() {
     }),
     //pd12
     Product.create({
-      name: 'Safety Eyewear',
-      unit: '2 PC',
+      name: 'Coveralls Suit',
+      unit: '1 PC',
       description:
-        'KEEP YOUR EYES PERFECTLY PROTECTED; REMAIN COMFORTABLE AND STYLISH AT ALL TIMES',
+        'Washable Isolation Gown with Hood, Waterproof Anti-Static Protective Overalls Yellow',
       price: 20,
-      imageURL: 'https://picsum.photos/250',
+      imageURL: 'assets/protect_cloth_use.jpg',
       inventoryQTY: 30,
       bestSeller: false,
       departmentId: attire.id,
@@ -217,7 +219,7 @@ async function seed() {
     // TODO: DRY this out. Make an array of reviews, then we can do a foreach on the array to create multiple reviews.
     Review.create({
       rating: 5,
-      description: 'Awesome! I can still see.',
+      description: 'I feel so good.',
       userId: user1.id,
       productId: pd3.id
     }),
@@ -272,15 +274,15 @@ async function seed() {
     }),
     //rw9
     Review.create({
-      rating: 3,
-      description: 'Low Quality!!',
+      rating: 4,
+      description: 'Kill them all!!',
       userId: user3.id,
       productId: pd9.id
     }),
     //rw10
     Review.create({
       rating: 4,
-      description: 'Too Expensive!',
+      description: 'Does the job',
       userId: user1.id,
       productId: pd10.id
     }),
@@ -293,8 +295,8 @@ async function seed() {
     }),
     //rw12
     Review.create({
-      rating: 4,
-      description: 'Cool!',
+      rating: 5,
+      description: 'Worry free now!',
       userId: user2.id,
       productId: pd12.id
     })
