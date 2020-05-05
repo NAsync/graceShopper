@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isAdmin, isLoggedIn}) => (
   <div>
     <nav>
       {isLoggedIn ? (
@@ -15,7 +15,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Logout
           </a>
           <Link to="/cart">My cart</Link>
-          <Link to="/admin">Admin</Link>
+          {isAdmin ? <Link to="/admin">Admin</Link> : ''}
         </div>
       ) : (
         <div>
@@ -56,5 +56,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }

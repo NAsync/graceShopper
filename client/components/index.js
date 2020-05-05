@@ -3,6 +3,7 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+export {default as Admin} from './admin'
 export {default as Cart} from './cart'
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
