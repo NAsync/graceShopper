@@ -1,12 +1,9 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {readProducts} from '../store/products/actions'
 
-const Admin = ({load, location}) => {
+const Admin = ({location}) => {
   const {pathname} = location
-  console.log(location)
-  load()
   return (
     <div>
       <p>
@@ -28,12 +25,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    load: () => {
-      dispatch(readProducts())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Admin)
+export default connect(mapStateToProps)(Admin)
