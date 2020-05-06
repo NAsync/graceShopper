@@ -2,12 +2,12 @@ import React from 'react'
 import {AdminProductSingle} from './adminProductSingle'
 import {connect} from 'react-redux'
 
-const AdminProducts = () => {
-  const {products} = this.props
+const AdminProducts = ({products}) => {
   return (
     <ul>
       {products.map(product => (
-        <AdminProductSingle key={product.id} product={product} />
+        // <AdminProductSingle key={product.id} product={product} />
+        <li>{product.name}</li>
       ))}
     </ul>
   )

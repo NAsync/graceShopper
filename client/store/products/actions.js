@@ -56,9 +56,9 @@ const deleteProduct = product => {
   }
 }
 
-const readProduct = product => {
+const readProduct = id => {
   return async dispatch => {
-    const _product = (await axios.get(`/api/products/${product.id}`)).data
+    const _product = (await axios.get(`/api/products/${id}`)).data
     dispatch(_readProduct(_product))
   }
 }
