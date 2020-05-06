@@ -7,9 +7,19 @@ class AdminProductSingle extends Component {
     this.state = {}
   }
   render() {
-    const product = this.props
-    console.log('in single', product)
-    return <div>single view howdy</div>
+    const {product} = this.props
+    const entries = Object.entries(product)
+    return (
+      <ul>
+        {entries.map((entry, idx) => {
+          return (
+            <li key={idx}>
+              {`${entry[0]}`}: {`${entry[1]}`}
+            </li>
+          )
+        })}
+      </ul>
+    )
   }
 }
 

@@ -1,13 +1,15 @@
 import React from 'react'
-import {AdminProductSingle} from './adminProductSingle'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
-const AdminProducts = ({products}) => {
+const AdminProducts = ({location, products}) => {
+  const {pathname} = location
   return (
     <ul>
       {products.map(product => (
-        // <AdminProductSingle key={product.id} product={product} />
-        <li>{product.name}</li>
+        <li key={product.id}>
+          <Link to={`${pathname}/${product.id}`}>{product.name}</Link>
+        </li>
       ))}
     </ul>
   )
