@@ -1,3 +1,4 @@
+import {brandReducer, brandsReducer} from './brands/reducers'
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
@@ -6,6 +7,8 @@ import {productReducer, productsReducer} from './products/reducers'
 import user from './user'
 
 const reducer = combineReducers({
+  brand: brandReducer,
+  brands: brandsReducer,
   product: productReducer,
   products: productsReducer,
   user

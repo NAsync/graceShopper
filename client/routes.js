@@ -6,6 +6,8 @@ import {Cart, Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Products from './components/products'
 import Departments_slide from './components/departments_slide'
+import Brand from './components/brand'
+import {readBrand} from '../client/store/brands/actions'
 
 /**
  * COMPONENT
@@ -26,6 +28,13 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
         <Route path="/products" component={Products} />
+        <Route
+          path="/brand/:id"
+          render={({match}) => {
+            this.props.loadBrand(match.params.id)
+            return <Brand />
+          }}
+        />
 
         {isLoggedIn && (
           <Switch>
@@ -55,6 +64,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+    },
+    loadBrand: id => {
+      dispatch(readBrand(id))
     }
   }
 }
