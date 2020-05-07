@@ -4,9 +4,6 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {productReducer, productsReducer} from './products/reducers'
 import user from './user'
-import brands from './brands'
-import departments from './departments'
-import reviews from './departments'
 import {reviewReducer, reviewsReducer} from './reviews'
 
 const reducer = combineReducers({
