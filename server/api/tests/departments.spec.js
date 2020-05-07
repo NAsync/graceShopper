@@ -59,7 +59,7 @@ describe('Department Routes', () => {
       rating: 5,
       description: 'Awesome! I can still see.',
       userId: user1.id,
-      productId: product2.id
+      productId: product1.id
     })
     review2 = await Review.create({
       rating: 4,
@@ -88,6 +88,9 @@ describe('Department Routes', () => {
       expect(res.body).to.be.an('object')
       expect(res.body.name).to.be.equal(department1.name)
       expect(res.body.products[0].name).to.be.equal(product1.name)
+      expect(Number(res.body.products[0].reviewAvg)).to.be.equal(
+        (review1.rating + review2.rating) / 2
+      )
     })
     it('POST /api/departments', async () => {
       const department3 = {
