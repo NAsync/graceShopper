@@ -81,7 +81,6 @@ const mapDispatch = dispatch => {
       dispatch(me())
     },
     loadProduct: id => {
-      console.log('loading')
       dispatch(readProduct(id))
     }
   }
