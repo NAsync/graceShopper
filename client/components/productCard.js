@@ -21,7 +21,11 @@ const ProductCard = ({product}) => {
         >
           Best Seller
         </div>
-        <img src={product.imageURL} alt={product.name} />
+        <img
+          src={product.imageURL}
+          alt={product.name}
+          className="productCardImg"
+        />
       </div>
       <Link to={'/products/' + product.id} className="cardItem productNameUnit">
         {product.name} {product.unit}

@@ -14,6 +14,7 @@ import {
 import {me} from './store'
 import Products from './components/products'
 import Departments_slide from './components/departments_slide'
+import ProductDetail from './components/productDetail'
 import Brand from './components/brand'
 import Department from './components/department'
 import {readBrand} from '../client/store/brands/actions'
@@ -37,6 +38,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
+        <Route exact path="/products" component={Products} />
+        <Route path="/products/:id" component={ProductDetail} />
         <Route path="/products" component={Products} />
         <Route
           exact
