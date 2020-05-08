@@ -48,21 +48,7 @@ async function seed() {
       description:
         'Medical Grade; Comfortable and Excellent Against Harmful Air Particle.',
       price: 15,
-      // imageURLs: {"gallery": [
-      //   {
-      //   "url": “/pickbazar/banana.jpg"
-      //   },
-      //   {
-      //   "url": “/pickbazar/banana.jpg"
-      //   },
-      //   {
-      //   "url": “/pickbazar/banana.jpg"
-      //   },
-      //   {
-      //   "url": “/pickbazar/banana.jpg"
-      //   },
-      //   ] },
-      imageURL: 'assets/n95_1_use.jpg',
+      imageURL: '/assets/n95_1_use.jpg',
       inventoryQTY: 100,
       bestSeller: true,
       departmentId: health.id,
@@ -75,7 +61,7 @@ async function seed() {
       description:
         "Quality Guaranteed; It's nutritious, low in calories, available year-round and hearty.",
       price: 3,
-      imageURL: 'assets/broccoli_use.jpg',
+      imageURL: '/assets/broccoli_use.jpg',
       inventoryQTY: 200,
       bestSeller: false,
       departmentId: grocery.id,
@@ -88,7 +74,7 @@ async function seed() {
       description:
         'Premium 3-Ply Toilet Paper, Soft, Strong and Highly Absorbent',
       price: 8,
-      imageURL: 'assets/toiletpaper_1_use.jpg',
+      imageURL: '/assets/toiletpaper_1_use.jpg',
       inventoryQTY: 50,
       bestSeller: true,
       departmentId: grocery.id,
@@ -100,7 +86,7 @@ async function seed() {
       unit: '50 PC',
       description: 'Medical Grade, Disposable',
       price: 25,
-      imageURL: 'assets/facemask_3_use.jpg',
+      imageURL: '/assets/facemask_3_use.jpg',
       inventoryQTY: 150,
       bestSeller: true,
       departmentId: health.id,
@@ -113,7 +99,7 @@ async function seed() {
       description:
         'Our milk comes from cows not given growth hormones or antibiotics, raised on farms that follow sustainable organic practices.',
       price: 6,
-      imageURL: 'assets/milk_use.jpg',
+      imageURL: '/assets/milk_use.jpg',
       inventoryQTY: 80,
       bestSeller: true,
       departmentId: grocery.id,
@@ -125,7 +111,7 @@ async function seed() {
       unit: '1 PC',
       description: '100% Cotton; Face Mask for Dust & Sun Protection',
       price: 15,
-      imageURL: 'assets/scarf_use.jpg',
+      imageURL: '/assets/scarf_use.jpg',
       inventoryQTY: 25,
       bestSeller: false,
       departmentId: attire.id,
@@ -138,7 +124,7 @@ async function seed() {
       description:
         'Reusable, Washable, Protection from Dust, Pollen, Pet Dander and other Airborne Irritants',
       price: 30,
-      imageURL: 'assets/cloth_facemask_use.jpg',
+      imageURL: '/assets/cloth_facemask_use.jpg',
       inventoryQTY: 80,
       bestSeller: false,
       departmentId: health.id,
@@ -151,7 +137,7 @@ async function seed() {
       description:
         "These perfectly tender fillets are deboned and trimmed by hand so they're ready to cook however you like them.",
       price: 13,
-      imageURL: 'assets/chickbreast_use.jpg',
+      imageURL: '/assets/chickbreast_use.jpg',
       inventoryQTY: 120,
       bestSeller: false,
       departmentId: grocery.id,
@@ -163,7 +149,7 @@ async function seed() {
       unit: '2 fl oz',
       description: 'Kills 99.99 percent of most common illness-causing germs',
       price: 5,
-      imageURL: 'assets/hand_sanitizer_2_use.jpg',
+      imageURL: '/assets/hand_sanitizer_2_use.jpg',
       inventoryQTY: 50,
       bestSeller: true,
       departmentId: health.id,
@@ -176,7 +162,7 @@ async function seed() {
       description:
         'Accurate reading in 8 seconds; 3 modes of use: oral, rectal, or underarm',
       price: 10,
-      imageURL: 'assets/thermo_use.jpg',
+      imageURL: '/assets/thermo_use.jpg',
       inventoryQTY: 30,
       bestSeller: false,
       departmentId: health.id,
@@ -189,7 +175,7 @@ async function seed() {
       description:
         'Fresh Guaranteed; The beautiful orange-red color is closer to wild salmon than other farmed fish.',
       price: 30,
-      imageURL: 'assets/salmon_use.jpg',
+      imageURL: '/assets/salmon_use.jpg',
       inventoryQTY: 40,
       bestSeller: false,
       departmentId: grocery.id,
@@ -202,7 +188,7 @@ async function seed() {
       description:
         'Washable Isolation Gown with Hood, Waterproof Anti-Static Protective Overalls Yellow',
       price: 20,
-      imageURL: 'assets/protect_cloth_use.jpg',
+      imageURL: '/assets/protect_cloth_use.jpg',
       inventoryQTY: 30,
       bestSeller: false,
       departmentId: attire.id,

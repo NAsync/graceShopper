@@ -201,7 +201,7 @@ form div {
   height: 2.5rem;
   font-size: 1.8rem;
   margin: 0.2rem auto;
-  border: 1px dotted red;
+  /* border: 1px dotted red; */
 }
 
 .detailTop {
@@ -273,7 +273,15 @@ form div {
   height: 25vh;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.reviewBoxTitle {
+  /* border: 1px solid gray; */
+  list-style: none;
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .reviewList {
@@ -281,17 +289,29 @@ form div {
   flex-direction: column;
   width: 60%;
   height: 25vh;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin: 0 auto;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  text-align: center;
 }
 
 .listRow {
   list-style: none;
-  height: 2rem;
-  width: 60%;
+  height: 5rem;
+  width: 80%;
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  font-size: 1.5rem;
+}
+
+.reviewRow1 {
+  color: purple;
+  font-size: 1.2rem;
+  /* border: 1px solid yellow; */
+}
+
+.reviewRow2 {
+  padding-left: 20px;
 }

@@ -2,6 +2,13 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {readProduct} from '../store/products/actions'
+//toDo list:
+//1. other images
+//2. bring users to get user name on review
+//3. review stars
+//4. scroll down review box
+//5. add to card function
+//6. change description in seed; make description list
 
 class ProductDetail extends Component {
   constructor() {
@@ -41,7 +48,7 @@ class ProductDetail extends Component {
           <div className="productDetailContainer">
             <div className="leftSection">
               <div className="imgListContainer">
-                <img src="https://picsum.photos/160" />
+                <img src={product.imageURL} alt={product.name} />
                 <img src="https://picsum.photos/160" />
                 <img src="https://picsum.photos/160" />
                 <img src="https://picsum.photos/160" />
@@ -49,7 +56,8 @@ class ProductDetail extends Component {
               <div className="bigImgContainer">
                 <img
                   className="prodDetailBigImg"
-                  src="https://picsum.photos/640"
+                  src={product.imageURL}
+                  alt={product.name}
                 />
                 <div
                   className={
@@ -71,7 +79,7 @@ class ProductDetail extends Component {
                   <div className="detailBrand">by {product.brand.name}</div>
                 ) : null}
               </div>
-              <div className="detailItem detailReview">{reviewAvg}</div>
+              <div className="detailItem detailReview">Reviews {reviewAvg}</div>
               <div className="detailItem detailPrice">${product.price}</div>
               <div className="detailItem detailDescrip">
                 {product.description}
@@ -86,10 +94,15 @@ class ProductDetail extends Component {
           </div>
           <div className="reviewContainer">
             <ul className="reviewList">
+              <li className="reviewBoxTitle">Customer Reviews</li>
               {product.reviews.map(review => (
                 <li className="listRow">
-                  <span className="listItem">{review.rating}</span>
-                  <span className="listItem">{review.description}</span>
+                  <span className="listItem reviewRow1">
+                    Customer {review.userId}'s Review: {review.rating}
+                  </span>
+                  <span className="listItem reviewRow2">
+                    {review.description}
+                  </span>
                 </li>
               ))}
             </ul>
