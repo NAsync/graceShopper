@@ -48,6 +48,20 @@ async function seed() {
       description:
         'Medical Grade; Comfortable and Excellent Against Harmful Air Particle.',
       price: 15,
+      // imageURLs: {"gallery": [
+      //   {
+      //   "url": “/pickbazar/banana.jpg"
+      //   },
+      //   {
+      //   "url": “/pickbazar/banana.jpg"
+      //   },
+      //   {
+      //   "url": “/pickbazar/banana.jpg"
+      //   },
+      //   {
+      //   "url": “/pickbazar/banana.jpg"
+      //   },
+      //   ] },
       imageURL: 'assets/n95_1_use.jpg',
       inventoryQTY: 100,
       bestSeller: true,

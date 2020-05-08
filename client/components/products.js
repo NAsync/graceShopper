@@ -14,8 +14,8 @@ const Products = ({products}) => {
 }
 
 const mapStateToProps = ({products, reviews}) => {
-  console.log('products', products)
-  console.log('reviews', reviews)
+  //console.log('products', products)
+  //console.log('reviews', reviews)
   if (!products) {
     return {}
   }

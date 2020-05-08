@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {STRING, BOOLEAN, INTEGER, FLOAT} = Sequelize
+const {STRING, BOOLEAN, INTEGER, FLOAT, JSON} = Sequelize
 
 const Product = db.define('product', {
   name: {
@@ -31,6 +31,15 @@ const Product = db.define('product', {
       notEmpty: true
     }
   },
+  // gallery: {
+  //   type: STRING,
+  //   get: function() {
+  //     return JSON.parse(this.getDataValue('gallery'))
+  //   },
+  //   set: function(val) {
+  //     return this.setDataValue('gallery', JSON.stringify(val))
+  //   }
+  // },
   imageURL: {
     type: STRING,
     allowNull: false,
