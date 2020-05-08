@@ -13,13 +13,15 @@ const Products = ({products}) => {
   )
 }
 
-const mapStateToProps = ({products}) => {
-  console.log('products', products)
+const mapStateToProps = ({products, reviews}) => {
+  //console.log('products', products)
+  //console.log('reviews', reviews)
   if (!products) {
     return {}
   }
   return {
-    products
+    products,
+    reviews
   }
 }
 
