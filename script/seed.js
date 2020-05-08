@@ -207,7 +207,13 @@ async function seed() {
       ),
       productId: pd1.id
     }),
-    Image.create({name: 'pic2', picture: '/assets/n95_1_use.jpg'})
+    Image.create({
+      name: 'pic2',
+      picture: fs.readFileSync(
+        path.resolve(__dirname, '../public/assets/gloves_1.jpg')
+      ),
+      productId: pd1.id
+    })
   ])
 
   const [user1, user2, user3, user4, user5] = await Promise.all([

@@ -1,4 +1,4 @@
-const {Brand, Product, Review} = require('../db/models')
+const {Brand, Product, Review, Image} = require('../db/models')
 const router = require('express').Router()
 const Sequelize = require('sequelize')
 
@@ -33,11 +33,20 @@ router.get('/:id', async (req, res, next) => {
             {
               model: Brand,
               attributes: ['name']
+            },
+            {
+              model: Image,
+              attributes: ['id']
             }
           ]
         }
       ],
-      group: ['brand.id', 'products.id', 'products->brand.id']
+      group: [
+        'brand.id',
+        'products.id',
+        'products->brand.id',
+        'products->images.id'
+      ]
     })
     res.status(200).send(brand)
   } catch (err) {

@@ -25,53 +25,22 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-// router.get('/:id', async (req, res, next) => {
-//   const id = req.params.id
-//   try {
-//     const product = await Product.findByPk(id, {
-//       include: [
-//         {
-//           model: Review
-//         },
-//         {
-//           model: Brand,
-//           attributes: ['name']
-//         }
-//       ]
-//     })
-//     res.status(200).send(product)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.post('/', async (req, res, next) => {
+  try {
+    const image = await Image.create(req.body) //use fs.readFileSync on front end for picture
+    res.status(201).send(image)
+  } catch (err) {
+    next(err)
+  }
+})
 
-// router.post('/', async (req, res, next) => {
-//   try {
-//     const product = await Product.create(req.body)
-//     res.status(201).send(product)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// router.put('/:id', async (req, res, next) => {
-//   const id = req.params.id
-//   try {
-//     const product = await Product.findByPk(id)
-//     product.update(req.body)
-//     res.status(200).send(product)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// router.delete('/:id', async (req, res, next) => {
-//   const id = req.params.id
-//   try {
-//     const product = await Product.findByPk(id)
-//     product.destroy()
-//     res.sendStatus(204)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.delete('/:id', async (req, res, next) => {
+  const id = req.params.id
+  try {
+    const image = await Image.findByPk(id)
+    image.destroy()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})

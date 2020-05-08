@@ -23,7 +23,7 @@ router.get('/', async (req, res, next) => {
           attributes: ['id']
         }
       ],
-      group: ['product.id', 'images.id', 'brand.id']
+      group: ['product.id', 'brand.id', 'images.id']
     })
     res.status(200).send(product)
   } catch (err) {
@@ -42,6 +42,10 @@ router.get('/:id', async (req, res, next) => {
         {
           model: Brand,
           attributes: ['name']
+        },
+        {
+          model: Image,
+          attributes: ['id']
         }
       ]
     })
