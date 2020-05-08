@@ -155,6 +155,13 @@ form div {
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/* below are for component productDetail -- images box on the left half of the page */
+
+.bigImgContainer {
+  width: 80%;
+  position: relative;
+}
+
 .imgListContainer {
   display: flex;
   flex-wrap: wrap;
@@ -169,69 +176,12 @@ form div {
   cursor: pointer;
 }
 
-.bigImgContainer {
-  width: 80%;
-  position: relative;
-}
-
 .prodDetailBigImg {
   max-width: 100%;
   width: 630px;
 }
 
-.bestSellerInDetail {
-  height: 2.5rem;
-  width: 40%;
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-.detailItem {
-  height: 2.5rem;
-  font-size: 1.8rem;
-  margin: 0.2rem auto;
-}
-
-.detailTop {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-}
-
-.detailNameUnit {
-  font-weight: 600;
-  margin-right: 0.5rem;
-}
-
-.detailBrand {
-  margin-left: 0.5rem;
-  font-size: 1.3rem;
-  color: gray;
-  line-height: 3rem;
-}
-
-.detailDescrip {
-  width: 80%;
-  color: black;
-  height: 350px;
-}
-
-.detailReview {
-  font-size: 1.5rem;
-  color: purple;
-}
-
-.detailButtom {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-  justify-content: space-around;
-}
+/* below are for component productDetail -- details box on the right half of the page */
 
 .addToCartBtnDetail {
   width: 40%;
@@ -253,10 +203,75 @@ form div {
   cursor: pointer;
 }
 
+.bestSellerInDetail {
+  height: 2.5rem;
+  width: 40%;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
 .btnInLink {
   background-color: orange;
   color: white;
   border: none;
+}
+
+.detailBrand {
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  color: gray;
+  line-height: 3rem;
+}
+
+.detailButtom {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  justify-content: space-around;
+}
+
+.detailItem {
+  height: 2.5rem;
+  font-size: 1.8rem;
+  margin: 0.2rem auto;
+}
+
+.detailDescrip {
+  width: 80%;
+  color: black;
+  height: 350px;
+}
+
+.detailNameUnit {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.detailReview {
+  font-size: 1.5rem;
+  color: purple;
+}
+
+.detailTop {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+/* below are for component productDetail -- reveiws box at the bottom of the page*/
+
+.listRow {
+  list-style: none;
+  height: 5rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
 }
 
 .reviewContainer {
@@ -283,15 +298,6 @@ form div {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
-}
-
-.listRow {
-  list-style: none;
-  height: 5rem;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  font-size: 1.5rem;
 }
 
 .reviewRow1 {

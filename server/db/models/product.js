@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {STRING, BOOLEAN, INTEGER, FLOAT, JSON} = Sequelize
+const {STRING, BOOLEAN, INTEGER, FLOAT} = Sequelize
 
 const Product = db.define('product', {
   name: {
