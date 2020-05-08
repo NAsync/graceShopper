@@ -33,12 +33,10 @@ class ProductDetail extends Component {
 
   render() {
     const {averageReview} = this
-    console.log('prop', this.props)
     if (Object.keys(this.props.product).length === 0) {
       return <h1>loading...</h1>
     } else {
       let product = this.props.product
-      console.log('prod', product)
       const reviewAvg = averageReview(product.reviews)
         ? averageReview(product.reviews).toFixed(1)
         : 'First to Review'
@@ -49,6 +47,7 @@ class ProductDetail extends Component {
             <div className="leftSection">
               <div className="imgListContainer">
                 <img src={product.imageURL} alt={product.name} />
+                {/* These hardcoded image links are temporary while we add more images to products on the backend */}
                 <img src="https://picsum.photos/160" />
                 <img src="https://picsum.photos/160" />
                 <img src="https://picsum.photos/160" />
@@ -100,6 +99,7 @@ class ProductDetail extends Component {
                   <span className="listItem reviewRow1">
                     Customer {review.userId}'s Review: {review.rating}
                   </span>
+                  {/* TODO: need to update user model before we use names */}
                   <span className="listItem reviewRow2">
                     {review.description}
                   </span>
