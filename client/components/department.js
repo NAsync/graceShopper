@@ -3,13 +3,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import ProductCard from './productCard'
 
-const Brand = ({brand}) => {
+const Department = ({department}) => {
   return (
     <div>
-      <h1>{brand.name}</h1>
+      <h1>{department.name}</h1>
       <div id="productsContainer">
-        {brand.products &&
-          brand.products.map(product => (
+        {department.products &&
+          department.products.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
       </div>
@@ -17,10 +17,10 @@ const Brand = ({brand}) => {
   )
 }
 
-const mapStateToProps = ({brand}) => {
+const mapStateToProps = ({department}) => {
   return {
-    brand
+    department
   }
 }
 
-export default connect(mapStateToProps)(Brand)
+export default connect(mapStateToProps)(Department)

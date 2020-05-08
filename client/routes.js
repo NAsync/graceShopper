@@ -7,7 +7,9 @@ import {me} from './store'
 import Products from './components/products'
 import Departments_slide from './components/departments_slide'
 import Brand from './components/brand'
+import Department from './components/department'
 import {readBrand} from '../client/store/brands/actions'
+import {readDepartment} from '../client/store/departments/actions'
 
 /**
  * COMPONENT
@@ -29,10 +31,19 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route path="/products" component={Products} />
         <Route
+          exact
           path="/brand/:id"
           render={({match}) => {
             this.props.loadBrand(match.params.id)
             return <Brand />
+          }}
+        />
+        <Route
+          exact
+          path="/department/:id"
+          render={({match}) => {
+            this.props.loadDepartment(match.params.id)
+            return <Department />
           }}
         />
 
@@ -67,6 +78,9 @@ const mapDispatch = dispatch => {
     },
     loadBrand: id => {
       dispatch(readBrand(id))
+    },
+    loadDepartment: id => {
+      dispatch(readDepartment(id))
     }
   }
 }
