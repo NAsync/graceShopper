@@ -4,6 +4,7 @@ const Department = require('./department')
 const Product = require('./product')
 const Review = require('./review')
 const User = require('./user')
+const Image = require('./product-images')
 
 CreditCard.belongsTo(User)
 CreditCard.belongsTo(Merchant)
@@ -15,6 +16,8 @@ Review.belongsTo(User)
 User.hasMany(Review)
 Review.belongsTo(Product)
 Product.hasMany(Review)
+Product.hasMany(Image)
+Image.belongsTo(Product)
 
 module.exports = {
   User,
@@ -23,5 +26,6 @@ module.exports = {
   Department,
   Brand,
   CreditCard,
-  Merchant
+  Merchant,
+  Image
 }

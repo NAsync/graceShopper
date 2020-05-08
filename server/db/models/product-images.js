@@ -1,11 +1,15 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {STRING} = Sequelize
+const {STRING, BLOB, VIRTUAL} = Sequelize
 
 const Image = db.define('image', {
-  imageURL: {
+  name: {
     type: STRING,
     allowNull: false
+  },
+  picture: {
+    type: BLOB,
+    allowNull: true
   }
 })
 

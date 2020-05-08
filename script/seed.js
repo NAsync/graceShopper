@@ -1,6 +1,8 @@
 'use strict'
 
 const db = require('../server/db')
+const fs = require('fs')
+const path = require('path')
 
 const {
   User,
@@ -9,7 +11,8 @@ const {
   Product,
   Review,
   CreditCard,
-  Merchant
+  Merchant,
+  Image
 } = require('../server/db/models')
 
 async function seed() {
@@ -195,6 +198,18 @@ async function seed() {
       brandId: bahamaRepublic.id
     })
   ])
+
+  const [img1, img2] = await Promise.all([
+    Image.create({
+      name: 'pic1',
+      picture: fs.readFileSync(
+        path.resolve(__dirname, '../public/assets/facemask_1.jpg')
+      ),
+      productId: pd1.id
+    }),
+    Image.create({name: 'pic2', picture: '/assets/n95_1_use.jpg'})
+  ])
+
   const [user1, user2, user3, user4, user5] = await Promise.all([
     User.create({
       email: 'Andres@fullstack.com',
