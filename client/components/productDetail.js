@@ -6,6 +6,7 @@ import {readProduct} from '../store/products/actions'
 class ProductDetail extends Component {
   constructor() {
     super()
+    this.averageReview = this.averageReview.bind()
   }
 
   componentDidMount() {
@@ -13,56 +14,85 @@ class ProductDetail extends Component {
     this.props.readProduct(id)
   }
 
+  averageReview(reviews) {
+    if (reviews.length === 1) {
+      return reviews[0].rating
+    } else {
+      return (
+        reviews.reduce((accum, cur) => accum + cur.rating, 0) / reviews.length
+      )
+    }
+  }
+
   render() {
-    console.log('down here', this.props)
-    if (!this.props.product) {
-      return <h1>loading</h1>
+    const {averageReview} = this
+    console.log('prop', this.props)
+    if (Object.keys(this.props.product).length === 0) {
+      return <h1>loading...</h1>
     } else {
       let product = this.props.product
+      console.log('prod', product)
+      const reviewAvg = averageReview(product.reviews)
+        ? averageReview(product.reviews).toFixed(1)
+        : 'First to Review'
+
       return (
-        <div className="productDetailContainer">
-          <div className="leftSection">
-            <div className="imgListContainer">
-              <img src="https://picsum.photos/160" />
-              <img src="https://picsum.photos/160" />
-              <img src="https://picsum.photos/160" />
-              <img src="https://picsum.photos/160" />
+        <div className="pageContainer">
+          <div className="productDetailContainer">
+            <div className="leftSection">
+              <div className="imgListContainer">
+                <img src="https://picsum.photos/160" />
+                <img src="https://picsum.photos/160" />
+                <img src="https://picsum.photos/160" />
+                <img src="https://picsum.photos/160" />
+              </div>
+              <div className="bigImgContainer">
+                <img
+                  className="prodDetailBigImg"
+                  src="https://picsum.photos/640"
+                />
+                <div
+                  className={
+                    product.bestSeller
+                      ? 'bestSellerInDetail bestSellerShow'
+                      : 'bestSellerInDetail bestSellerNotShow'
+                  }
+                >
+                  Best Seller
+                </div>
+              </div>
             </div>
-            <div className="bigImgContainer">
-              <img
-                className="prodDetailBigImg"
-                src="https://picsum.photos/640"
-              />
-              <div
-                className={
-                  product.bestSeller
-                    ? 'bestSellerInDetail bestSellerShow'
-                    : 'bestSellerInDetail bestSellerNotShow'
-                }
-              >
-                Best Seller
+            <div className="rightSection">
+              <div className="detailItem detailTop">
+                <div className="detailNameUnit">
+                  {product.name} {product.unit}
+                </div>
+                {product.brand ? (
+                  <div className="detailBrand">by {product.brand.name}</div>
+                ) : null}
+              </div>
+              <div className="detailItem detailReview">{reviewAvg}</div>
+              <div className="detailItem detailPrice">${product.price}</div>
+              <div className="detailItem detailDescrip">
+                {product.description}
+              </div>
+              <div className="detailButtom">
+                <button className="addToCartBtnDetail">Add to Cart</button>
+                <Link to="/products" className="backToShopBtn">
+                  <button className="btnInLink">Back to Shop</button>
+                </Link>
               </div>
             </div>
           </div>
-          <div className="rightSection">
-            <div className="detailItem detailTop">
-              <div className="detailNameUnit">
-                {product.name} {product.unit}
-              </div>
-              {/* <div className="detailBrand">by {product.brand.name}</div> */}
-            </div>
-            {/* <div className="detailItem detailReview">{review}</div> */}
-
-            <div className="detailItem detailPrice">${product.price}</div>
-            <div className="detailItem detailDescrip">
-              {product.description}
-            </div>
-            <button className="addToCartBtnDetail detailBtn">
-              Add to Cart
-            </button>
-            <button className="backToShopBtn detailBtn">
-              <Link to="/products">Back to Shop</Link>
-            </button>
+          <div className="reviewContainer">
+            <ul className="reviewList">
+              {product.reviews.map(review => (
+                <li className="listRow">
+                  <span className="listItem">{review.rating}</span>
+                  <span className="listItem">{review.description}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       )
@@ -81,30 +111,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail)
-
-// const product = {
-//   id: 1,
-//   name: 'N95 Mask',
-//   unit: '2 PC',
-//   description:
-//     'Medical Grade; Comfortable and Excellent Against Harmful Air Particle.',
-//   price: 15,
-//   imageURL: 'assets/n95_1_use.jpg',
-//   inventoryQTY: 100,
-//   bestSeller: true,
-//   createdAt: '2020-05-05T19:41:25.559Z',
-//   updatedAt: '2020-05-05T19:41:25.559Z',
-//   departmentId: 1,
-//   brandId: 1,
-//   reviewAvg: '3.5000000000000000',
-//   brand: {
-//     name: '4M'
-//   }
-// }
-
-// let review = ''
-// if (!product.reviewAvg) {
-//   review = 'First To Review'
-// } else {
-//   review = parseFloat(product.reviewAvg).toFixed(1)
-// }

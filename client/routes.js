@@ -2,11 +2,20 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Cart, Login, Signup, UserHome} from './components'
+import {
+  Admin,
+  AdminProducts,
+  AdminProductSingle,
+  Cart,
+  Login,
+  Signup,
+  UserHome
+} from './components'
 import {me} from './store'
 import Products from './components/products'
 import Departments_slide from './components/departments_slide'
 import ProductDetail from './components/productDetail'
+import {readProduct} from './store/products/actions'
 
 /**
  * COMPONENT
@@ -17,8 +26,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
-
+    const {isAdmin, isLoggedIn} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -32,6 +40,21 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            {isAdmin && (
+              <Switch>
+                <Route exact path="/admin" component={Admin} />
+                <Route exact path="/admin/products" component={AdminProducts} />
+                <Route
+                  exact
+                  path="/admin/products/:id"
+                  render={({match}) => {
+                    const id = match.params.id
+                    this.props.loadProduct(id)
+                    return <AdminProductSingle />
+                  }}
+                />
+              </Switch>
+            )}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -48,6 +71,7 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
+    isAdmin: state.user.isAdmin,
     isLoggedIn: !!state.user.id
   }
 }
@@ -56,6 +80,9 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+    },
+    loadProduct: id => {
+      dispatch(readProduct(id))
     }
   }
 }
