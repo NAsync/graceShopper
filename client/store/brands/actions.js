@@ -51,7 +51,7 @@ const createBrand = brand => {
 
 const deleteBrand = id => {
   return async dispatch => {
-    await axios.delete(`/api/Brands/${id}`)
+    await axios.delete(`/api/brands/${id}`)
     dispatch(_deleteBrand(id))
   }
 }
@@ -70,9 +70,10 @@ const readBrands = () => {
   }
 }
 
-const updateBrand = (brand, id) => {
+const updateBrand = brand => {
   return async dispatch => {
-    const updatedBrand = (await axios.put(`/api/brands/${id}`, brand)).data
+    const updatedBrand = (await axios.put(`/api/brands/${brand.id}`, brand))
+      .data
     dispatch(_updateBrand(updatedBrand))
   }
 }

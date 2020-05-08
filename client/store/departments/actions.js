@@ -71,10 +71,10 @@ const readDepartments = () => {
   }
 }
 
-const updateDepartment = (department, id) => {
+const updateDepartment = department => {
   return async dispatch => {
     const updatedDepartment = (await axios.put(
-      `/api/departments/${id}`,
+      `/api/departments/${department.id}`,
       department
     )).data
     dispatch(_updateDepartment(updatedDepartment))
