@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {STRING, BLOB, VIRTUAL} = Sequelize
+const {STRING, BLOB} = Sequelize
 
 const Image = db.define('image', {
   name: {
