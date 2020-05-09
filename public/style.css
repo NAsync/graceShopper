@@ -61,6 +61,13 @@ form div {
   align-items: center;
   padding-bottom: 1rem;
 }
+.bar {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
 
 .bestSeller {
   height: 2.5rem;
@@ -99,6 +106,18 @@ form div {
   height: 2rem;
   font-size: 1.8rem;
   margin: 0.2rem auto;
+}
+
+#dropdown {
+  background-color: cadetblue;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.dropdown-toggle::after {
+  border-top: 0;
+  content: none;
 }
 
 .productBrand {
@@ -307,4 +326,8 @@ form div {
 
 .reviewRow2 {
   padding-left: 20px;
+}
+
+#side-nav-container > ul {
+  list-style-type: none;
 }
