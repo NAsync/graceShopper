@@ -38,7 +38,7 @@ describe('product thunk creators', () => {
   describe('GET product', () => {
     it('dispatches get product', async () => {
       mockAxios.onGet(`/api/products/${product.id}`).replyOnce(200, product)
-      await store.dispatch(readProduct(product))
+      await store.dispatch(readProduct(product.id))
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal(READ_PRODUCT)
       expect(actions[0].product.name).to.be.equal(product.name)
