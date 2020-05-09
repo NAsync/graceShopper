@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Admin,
+  AdminProductCreate,
   AdminProducts,
   AdminProductSingle,
   Cart,
@@ -65,6 +66,11 @@ class Routes extends Component {
             {isAdmin && (
               <Switch>
                 <Route exact path="/admin" component={Admin} />
+                <Route
+                  exact
+                  path="/admin/products/create"
+                  component={AdminProductCreate}
+                />
                 <Route exact path="/admin/products" component={AdminProducts} />
                 <Route
                   exact

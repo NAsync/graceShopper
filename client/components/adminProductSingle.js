@@ -15,8 +15,10 @@ class AdminProductSingle extends Component {
     entries.forEach(entry => {
       let [k, v] = entry
       if (k === 'brand') {
-        displayEntries.push([k, v.name])
-        } else if (k === 'reviews' || k === 'brandId') {
+        if (v) {
+          displayEntries.push([k, v.name])
+        }
+      } else if (k === 'reviews' || k === 'brandId') {
       } else {
         displayEntries.push([k, v])
       }
