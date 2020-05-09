@@ -149,6 +149,18 @@ form div {
   background-color: aqua;
 }
 
+/* below are for admin page styling */
+.admin-non-edit {
+  font-style: italic;
+  background-color: lightgray;
+}
+
+.admin-table {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* below are for component productDetail */
 
 .productDetailContainer {

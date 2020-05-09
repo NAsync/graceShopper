@@ -5,6 +5,7 @@
  */
 export {default as Admin} from './admin'
 export {default as AdminProducts} from './adminProducts'
+export {default as AdminProductCreate} from './adminProductCreate'
 export {default as AdminProductSingle} from './adminProductSingle'
 export {default as Cart} from './cart'
 export {default as Navbar} from './navbar'
