@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "An e-commerce fullstack webapp created by Josh Avon, Andres Callanaupa, and Robert Peng!",
   "engines": {
-    "node": "~12.11.1"
+    "node": "~12.13.1"
   },
   "main": "index.js",
   "scripts": {
