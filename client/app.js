@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Navbar} from './components'
 import SideNavbar from './components/sideNav'
 import Routes from './routes'
-//import { connect } from 'http2';
 import {connect} from 'react-redux'
 import {readProducts} from './store/products/actions'
 import {readBrands} from './store/brands/actions'
@@ -32,10 +31,10 @@ class App extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
-      dispatch(readProducts())
-      dispatch(readReviews())
       dispatch(readBrands())
       dispatch(readDepartments())
+      dispatch(readProducts())
+      dispatch(readReviews())
     }
   }
 }
