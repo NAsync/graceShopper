@@ -57,19 +57,6 @@ class AdminProductSingle extends Component {
   }
 }
 
-{
-  /* <select onChange={ ev => update(id, ev.target.value)} >
-    <option key='null' value='null'>-- Add Student --</option>
-    {notSchoolStudents.map( student => {
-        return (
-            <option key={student.id} value={student.id}>
-                {student.firstName} {student.lastName}
-            </option>
-        )
-    })}
-</select> */
-}
-
 const mapStateToProps = ({product}) => {
   return {
     product
