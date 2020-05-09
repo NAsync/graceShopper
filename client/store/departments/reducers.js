@@ -8,19 +8,8 @@ import {
 
 export const departmentReducer = (state = {}, action) => {
   switch (action.type) {
-    case CREATE_DEPARTMENT:
-      return [...state, action.department]
-    case DELETE_DEPARTMENT:
-      return state.filter(department => department.id !== action.department.id)
     case READ_DEPARTMENT:
       return action.department
-    case UPDATE_DEPARTMENT:
-      return state.map(
-        department =>
-          department.id === action.department.id
-            ? action.department
-            : department
-      )
     default:
       return state
   }
@@ -28,8 +17,19 @@ export const departmentReducer = (state = {}, action) => {
 
 export const departmentsReducer = (state = [], action) => {
   switch (action.type) {
+    case CREATE_DEPARTMENT:
+      return [...state, action.department]
     case READ_DEPARTMENTS:
       return action.departments
+    case UPDATE_DEPARTMENT:
+      return state.map(
+        department =>
+          department.id === action.department.id
+            ? action.department
+            : department
+      )
+    case DELETE_DEPARTMENT:
+      return state.filter(department => department.id !== action.department.id)
     default:
       return state
   }
