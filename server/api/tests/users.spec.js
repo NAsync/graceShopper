@@ -119,17 +119,12 @@ describe('Users routes', () => {
     })
 
     it('DELETES /api/users/:id', async () => {
-      let res = await request(app)
-        .get('/api/users')
-        .expect(200)
-      console.log('before', res.body)
       await request(app)
         .delete(`/api/users/${user1.id}`)
         .expect(204)
-      res = await request(app)
+      const res = await request(app)
         .get('/api/users')
         .expect(200)
-      console.log('after', res.body)
       expect(res.body).to.be.an('array')
       expect(res.body[0].email).to.be.equal(user2.email)
       expect(res.body.length).to.be.equal(1)
