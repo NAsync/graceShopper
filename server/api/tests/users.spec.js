@@ -123,7 +123,7 @@ describe('Users routes', () => {
         .delete(`/api/users/${user1.id}`)
         .expect(204)
       const res = await request(app)
-        .get('/api/users/')
+        .get('/api/users')
         .expect(200)
 
       expect(res.body).to.be.an('array')
