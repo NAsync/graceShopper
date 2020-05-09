@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {readProduct} from '../store/products/actions'
+import ReviewStars from './reviewStars'
 //toDo list:
 //1. other images
 //2. bring users to get user name on review
@@ -78,10 +79,17 @@ class ProductDetail extends Component {
                   <div className="detailBrand">by {product.brand.name}</div>
                 ) : null}
               </div>
-              <div className="detailItem detailReview">Reviews {reviewAvg}</div>
+              <div className="detailItem reviewStarBox">
+                <ReviewStars rating={reviewAvg} />
+                <div className="detailReview">{reviewAvg} out of 5</div>
+              </div>
               <div className="detailItem detailPrice">${product.price}</div>
               <div className="detailItem detailDescrip">
-                {product.description}
+                <ul>
+                  {product.description
+                    .split(';')
+                    .map((item, id) => <li key={id}>{item}</li>)}
+                </ul>
               </div>
               <div className="detailButtom">
                 <button className="addToCartBtnDetail">Add to Cart</button>
@@ -94,8 +102,8 @@ class ProductDetail extends Component {
           <div className="reviewContainer">
             <ul className="reviewList">
               <li className="reviewBoxTitle">Customer Reviews</li>
-              {product.reviews.map(review => (
-                <li className="listRow">
+              {product.reviews.map((review, id) => (
+                <li className="listRow" key={id}>
                   <span className="listItem reviewRow1">
                     Customer {review.userId}'s Review: {review.rating}
                   </span>

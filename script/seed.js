@@ -46,7 +46,7 @@ async function seed() {
       name: 'N95 Mask',
       unit: '2 PC',
       description:
-        'Medical Grade; Comfortable and Excellent Against Harmful Air Particle.',
+        'Particulate Respirators;Medical Grade;Comfortable and Excellent Against Harmful Air Particle;Disposable',
       price: 15,
       imageURL: '/assets/n95_1_use.jpg',
       inventoryQTY: 100,
@@ -59,7 +59,7 @@ async function seed() {
       name: 'Organic Broccoli',
       unit: '1 LB',
       description:
-        "Quality Guaranteed; It's nutritious, low in calories, available year-round and hearty.",
+        "Quality Guaranteed;It's nutritious, low in calories;Available year-round and hearty.",
       price: 3,
       imageURL: '/assets/broccoli_use.jpg',
       inventoryQTY: 200,
@@ -72,7 +72,7 @@ async function seed() {
       name: 'Toilet Paper',
       unit: '5 Rolls',
       description:
-        'Premium 3-Ply Toilet Paper, Soft, Strong and Highly Absorbent',
+        'Premium 3-Ply Toilet Paper;Soft, Strong and Highly Absorbent',
       price: 8,
       imageURL: '/assets/toiletpaper_1_use.jpg',
       inventoryQTY: 50,
@@ -84,7 +84,7 @@ async function seed() {
     Product.create({
       name: 'Surgical Face Mask',
       unit: '50 PC',
-      description: 'Medical Grade, Disposable',
+      description: 'Medical Grade;Disposable',
       price: 25,
       imageURL: '/assets/facemask_3_use.jpg',
       inventoryQTY: 150,
@@ -97,7 +97,7 @@ async function seed() {
       name: 'Organic Milk',
       unit: '1/2 Gallon',
       description:
-        'Our milk comes from cows not given growth hormones or antibiotics, raised on farms that follow sustainable organic practices.',
+        'Our milk comes from cows not given growth hormones or antibiotics;Raised on farms that follow sustainable organic practices.',
       price: 6,
       imageURL: '/assets/milk_use.jpg',
       inventoryQTY: 80,
@@ -109,7 +109,7 @@ async function seed() {
     Product.create({
       name: 'Nose Cover Scarf',
       unit: '1 PC',
-      description: '100% Cotton; Face Mask for Dust & Sun Protection',
+      description: '100% Cotton;Face Cover for Dust & Sun Protection',
       price: 15,
       imageURL: '/assets/scarf_use.jpg',
       inventoryQTY: 25,
@@ -122,7 +122,7 @@ async function seed() {
       name: 'Cotton Face Mask',
       unit: '3 PC',
       description:
-        'Reusable, Washable, Protection from Dust, Pollen, Pet Dander and other Airborne Irritants',
+        'Protection from Dust, Pollen, Pet Dander and other Airborne Irritants;Reusable;Washable',
       price: 30,
       imageURL: '/assets/cloth_facemask_use.jpg',
       inventoryQTY: 80,
@@ -135,7 +135,7 @@ async function seed() {
       name: 'Organic Chicken Breasts',
       unit: '1 LB',
       description:
-        "These perfectly tender fillets are deboned and trimmed by hand so they're ready to cook however you like them.",
+        'These perfectly tender fillets are deboned and trimmed by hand;Ready to cook however you like them',
       price: 13,
       imageURL: '/assets/chickbreast_use.jpg',
       inventoryQTY: 120,
@@ -160,7 +160,7 @@ async function seed() {
       name: 'Rapid Read Thermometer',
       unit: '1 PC',
       description:
-        'Accurate reading in 8 seconds; 3 modes of use: oral, rectal, or underarm',
+        'Accurate reading in 8 seconds;3 modes of use: oral, rectal, or underarm',
       price: 10,
       imageURL: '/assets/thermo_use.jpg',
       inventoryQTY: 30,
@@ -173,7 +173,7 @@ async function seed() {
       name: 'Organic Salmon Fillet',
       unit: '2 LB',
       description:
-        'Fresh Guaranteed; The beautiful orange-red color is closer to wild salmon than other farmed fish.',
+        'Fresh Guaranteed;The beautiful orange-red color;Closer to wild salmon than other farmed fish.',
       price: 30,
       imageURL: '/assets/salmon_use.jpg',
       inventoryQTY: 40,
@@ -186,7 +186,7 @@ async function seed() {
       name: 'Coveralls Suit',
       unit: '1 PC',
       description:
-        'Washable Isolation Gown with Hood, Waterproof Anti-Static Protective Overalls Yellow',
+        'Washable Isolation Gown;With Hood;Waterproof;Protective Overalls;Yellow',
       price: 20,
       imageURL: '/assets/protect_cloth_use.jpg',
       inventoryQTY: 30,
