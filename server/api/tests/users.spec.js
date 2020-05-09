@@ -119,10 +119,17 @@ describe('Users routes', () => {
     })
 
     it('DELETES /api/users/:id', async () => {
+      // TODO: This is a strange bug that we're still trying to fix. If we remove the first
+      // get request, the test fails. Although the data from the first get request isn't being
+      // used, it is still necessary for this test to pass on Travis. There is something going
+      // on under the hood that is causing the test to pass locally, but fail on Travis.
+      let res = await request(app)
+        .get('/api/users')
+        .expect(200)
       await request(app)
         .delete(`/api/users/${user1.id}`)
         .expect(204)
-      const res = await request(app)
+      res = await request(app)
         .get('/api/users')
         .expect(200)
       expect(res.body).to.be.an('array')
