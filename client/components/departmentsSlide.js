@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {Carousel} from 'react-bootstrap'
 import {connect} from 'react-redux'
 
-const Departments_slide = ({departments}) => {
+const DepartmentsSlide = ({departments}) => {
   if (departments.length === 0) {
     return <h1>loading</h1>
   }
@@ -60,4 +60,4 @@ const mapState = ({departments}) => {
   }
 }
 
-export default connect(mapState)(Departments_slide)
+export default connect(mapState)(DepartmentsSlide)
