@@ -31,7 +31,29 @@ When logged in as an admin user, an Admin link appears in the nav bar on the top
 
 ## For Developers
 
-Instead of viewing the site through our beautiful user interface, one can also access certain parts of the site through our API
+Instead of viewing the site through our beautiful user interface, one can also access certain parts of the site through our API.<br />
+For reference, we currently allow GET requests through our API endpoints for brands, credit cards, departments, images, merchants, products, reviews, and users.
+
+```javascript
+// View all brands
+;`/api/brands`// View a single brand, including its products
+`/api/brands/:id`// View all credit cards
+`api/creditCards`// View all departments
+`/api/departments`// View a single department, including its products
+`/api/departments/:id`// View all images
+`/api/images`// View all merchants
+`/api/merchants`// View all products
+`/api/products`// View a single product, and its reviews
+`/api/products/:id`// View all reviews
+`/api/reviews`// View all users
+`/api/users`
+```
+
+For example, provided is a sample of `/api/products`:
 ![productsAPI](./readme_images/productsAPI.png)
+
+## External Resources
+
+favicon from https://favicon.io/emoji-favicons/shopping-cart/
 
 _More to come_
