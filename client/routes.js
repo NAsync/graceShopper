@@ -14,7 +14,7 @@ import {
 } from './components'
 import {me} from './store'
 import Products from './components/products'
-import Departments_slide from './components/departments_slide'
+import DepartmentsSlide from './components/departmentsSlide'
 import ProductDetail from './components/productDetail'
 import Brand from './components/brand'
 import Department from './components/department'
@@ -35,7 +35,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={Departments_slide} />
+        <Route exact path="/" component={DepartmentsSlide} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
