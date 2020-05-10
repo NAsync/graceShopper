@@ -104,9 +104,10 @@ class ProductDetail extends Component {
               <li className="reviewBoxTitle">Customer Reviews</li>
               {product.reviews.map((review, id) => (
                 <li className="listRow" key={id}>
-                  <span className="listItem reviewRow1">
-                    Customer {review.userId}'s Review: {review.rating}
-                  </span>
+                  <div className="listItem reviewRow1">
+                    <span>Customer {review.userId}'s Review: &nbsp;</span>
+                    <ReviewStars rating={review.rating} />
+                  </div>
                   {/* TODO: need to update user model before we use names */}
                   <span className="listItem reviewRow2">
                     {review.description}

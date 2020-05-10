@@ -1,6 +1,8 @@
 'use strict'
 
 const db = require('../server/db')
+const fs = require('fs')
+const path = require('path')
 
 const {
   User,
@@ -9,7 +11,8 @@ const {
   Product,
   Review,
   CreditCard,
-  Merchant
+  Merchant,
+  Image
 } = require('../server/db/models')
 
 async function seed() {
@@ -195,6 +198,24 @@ async function seed() {
       brandId: bahamaRepublic.id
     })
   ])
+
+  const [img1, img2] = await Promise.all([
+    Image.create({
+      name: 'pic1',
+      picture: fs.readFileSync(
+        path.resolve(__dirname, '../public/assets/facemask_1.jpg')
+      ),
+      productId: pd1.id
+    }),
+    Image.create({
+      name: 'pic2',
+      picture: fs.readFileSync(
+        path.resolve(__dirname, '../public/assets/gloves_1.jpg')
+      ),
+      productId: pd1.id
+    })
+  ])
+
   const [user1, user2, user3, user4, user5] = await Promise.all([
     User.create({
       email: 'Andres@fullstack.com',
@@ -225,7 +246,7 @@ async function seed() {
     }),
     //rw2
     Review.create({
-      rating: 4,
+      rating: 5,
       description: 'Nice! I can still breath.',
       userId: user2.id,
       productId: pd1.id
@@ -299,6 +320,20 @@ async function seed() {
       description: 'Worry free now!',
       userId: user2.id,
       productId: pd12.id
+    }),
+    //rw13
+    Review.create({
+      rating: 4,
+      description: 'Does the job.',
+      userId: user1.id,
+      productId: pd1.id
+    }),
+    //rw14
+    Review.create({
+      rating: 5,
+      description: 'Save my life!!',
+      userId: user4.id,
+      productId: pd1.id
     })
   ])
 
