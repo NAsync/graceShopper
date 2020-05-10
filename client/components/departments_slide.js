@@ -14,7 +14,7 @@ const Departments_slide = () => {
           />
           <Carousel.Caption>
             <h1>Shop for Safe</h1>
-            <Link to="/departments/1" className="slideLink">
+            <Link to="/department/2" className="slideLink">
               <h3>Visit our health department</h3>
             </Link>
             <Link to="/products" className="slideLink">
@@ -30,7 +30,7 @@ const Departments_slide = () => {
           />
           <Carousel.Caption>
             <h1>Shop for Life</h1>
-            <Link to="/departments/2" className="slideLink">
+            <Link to="/department/1" className="slideLink">
               <h3>Visit our grocery department</h3>
             </Link>
             <Link to="/products" className="slideLink">
