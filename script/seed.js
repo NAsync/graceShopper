@@ -12,7 +12,9 @@ const {
   Review,
   CreditCard,
   Merchant,
-  Image
+  Image,
+  UserOrder,
+  OrderProduct
 } = require('../server/db/models')
 
 async function seed() {
@@ -346,6 +348,27 @@ async function seed() {
       ccNumber: '5215818121211512',
       userId: user2.id,
       merchantId: merchants[1].id
+    })
+  ])
+
+  const userOrders = await Promise.all([
+    UserOrder.create({
+      userId: user4.id
+    }),
+    UserOrder.create({
+      userId: user4.id,
+      isCheckedOut: true
+    })
+  ])
+
+  const currentOrder = await Promise.all([
+    OrderProduct.create({
+      productId: pd3.id,
+      userOrderId: userOrders[0].id
+    }),
+    OrderProduct.create({
+      productId: pd4.id,
+      userOrderId: userOrders[0].id
     })
   ])
 

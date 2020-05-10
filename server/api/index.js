@@ -8,6 +8,8 @@ router.use('/merchants', require('./merchantRoutes'))
 router.use('/products', require('./productsRoute'))
 router.use('/reviews', require('./reviewRoutes'))
 router.use('/users', require('./usersRoutes'))
+router.use('/userOrders', require('./userOrderRoutes'))
+router.use('/orderProducts', require('./orderProductRoutes'))
 router.use('/images', require('./imageRoute'))
 
 router.use((req, res, next) => {
