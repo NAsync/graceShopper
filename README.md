@@ -36,16 +36,36 @@ For reference, we currently allow GET requests through our API endpoints for bra
 
 ```javascript
 // View all brands
-;`/api/brands`// View a single brand, including its products
-`/api/brands/:id`// View all credit cards
-`api/creditCards`// View all departments
-`/api/departments`// View a single department, including its products
-`/api/departments/:id`// View all images
-`/api/images`// View all merchants
-`/api/merchants`// View all products
-`/api/products`// View a single product, and its reviews
-`/api/products/:id`// View all reviews
-`/api/reviews`// View all users
+`/api/brands`
+
+// View a single brand, including its products
+`/api/brands/:id`
+
+// View all credit cards
+`api/creditCards`
+
+// View all departments
+`/api/departments`
+
+// View a single department, including its products
+`/api/departments/:id`
+
+// View all images
+`/api/images`
+
+// View all merchants
+`/api/merchants`
+
+// View all products
+`/api/products`
+
+// View a single product, and its reviews
+`/api/products/:id`
+
+// View all reviews
+`/api/reviews`
+
+// View all users
 `/api/users`
 ```
 
