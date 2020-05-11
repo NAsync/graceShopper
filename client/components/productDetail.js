@@ -38,6 +38,7 @@ class ProductDetail extends Component {
       return <h1>loading...</h1>
     } else {
       let product = this.props.product
+      console.log(product.reviews)
       const reviewAvg = averageReview(product.reviews)
         ? averageReview(product.reviews).toFixed(1)
         : 'First to Review'
