@@ -9,7 +9,7 @@ const Departments_slide = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="assets/health_dept.jpg"
+            src="https://gs-jar.s3.us-east-2.amazonaws.com/health_dept.jpg"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -25,7 +25,7 @@ const Departments_slide = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="assets/grocery_dept.jpg"
+            src="https://gs-jar.s3.us-east-2.amazonaws.com/grocery_dept.jpg"
             alt="Second slide"
           />
           <Carousel.Caption>
