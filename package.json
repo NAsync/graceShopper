@@ -1,9 +1,9 @@
 {
-  "name": "boilermaker",
+  "name": "gs",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "An e-commerce fullstack webapp created by Josh Avon, Andres Callanaupa, and Robert Peng!",
   "engines": {
-    "node": "~12.11.1"
+    "node": "~12.13.1"
   },
   "main": "index.js",
   "scripts": {
@@ -44,7 +44,7 @@
     "axios": "^0.19.0",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-session": "^1.15.1",
     "history": "^4.9.0",
     "morgan": "^1.9.1",
@@ -54,13 +54,14 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^5.3.1",
+    "sequelize": "^5.15.1",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
@@ -103,5 +104,14 @@
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0",
     "yaml": "^1.6.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NAsync/graceShopper.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/NAsync/graceShopper/issues"
+  },
+  "homepage": "https://gs-jar.herokuapp.com/"
 }

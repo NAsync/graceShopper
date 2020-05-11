@@ -1,15 +1,42 @@
-import React from 'react'
-
+import React, {Component} from 'react'
 import {Navbar} from './components'
+import SideNavbar from './components/sideNav'
 import Routes from './routes'
+import {connect} from 'react-redux'
+import {readProducts} from './store/products/actions'
+import {readBrands} from './store/brands/actions'
+import {readDepartments} from './store/departments/actions'
+import {readReviews} from './store/reviews'
 
-const App = () => {
-  return (
-    <div>
-      <Navbar />
-      <Routes />
-    </div>
-  )
+class App extends Component {
+  constructor() {
+    super()
+  }
+
+  componentDidMount() {
+    this.props.load()
+  }
+
+  render() {
+    return (
+      <div>
+        <SideNavbar />
+        <Navbar />
+        <Routes />
+      </div>
+    )
+  }
 }
 
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => {
+      dispatch(readBrands())
+      dispatch(readDepartments())
+      dispatch(readProducts())
+      dispatch(readReviews())
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)

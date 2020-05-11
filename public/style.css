@@ -1,8 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
 }
 
 a {
+  text-align: center;
   text-decoration: none;
 }
 
@@ -10,12 +17,374 @@ label {
   display: block;
 }
 
+nav {
+  background-color: dodgerblue;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+
+nav a:hover {
+  background-color: blue;
+}
+
 nav a {
+  color: white;
   display: inline-block;
   margin: 1em;
+  padding: 1rem;
 }
 
 form div {
-  margin: 1em;
   display: inline-block;
+}
+
+/* below are for component products */
+
+#productsContainer {
+  margin: 1rem auto;
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+/* below are for component productCard */
+
+.productCardContainer {
+  width: calc(100% / 3 - 2em);
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.bar {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.bestSeller {
+  height: 2.5rem;
+  width: 40%;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.bestSellerShow {
+  color: white;
+  background-color: orange;
+}
+
+.bestSellerNotShow {
+  visibility: hidden;
+}
+
+.imgContainer {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.productCardImg {
+  margin: 0px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.cardItem {
+  height: 2rem;
+  font-size: 1.8rem;
+  margin: 0.2rem auto;
+}
+
+#dropdown {
+  background-color: cadetblue;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.dropdown-toggle::after {
+  border-top: 0;
+  content: none;
+}
+
+.productBrand {
+  font-size: 1.5rem;
+  color: gray;
+}
+
+.productReview {
+  font-size: 1.2rem;
+  color: blue;
+  margin: 0 auto;
+  height: 1.7rem;
+}
+
+.addToCartBtn {
+  width: 60%;
+  height: 3rem;
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+/* below are for component DepartmentsSlide */
+
+.carousel {
+  margin: 1rem auto;
+  width: 100%;
+  background-color: aqua;
+}
+
+/* below are for admin page styling */
+.admin-non-edit {
+  font-style: italic;
+  background-color: lightgray;
+}
+
+.admin-table {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* below are for component productDetail */
+
+.productDetailContainer {
+  margin: 2rem auto;
+  width: 80%;
+  height: 55vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.leftSection {
+  display: flex;
+  width: 48%;
+}
+
+.rightSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 52%;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* below are for component productDetail -- images box on the left half of the page */
+
+.bigImgContainer {
+  width: 80%;
+  position: relative;
+}
+
+.imgListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 20%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.imgListContainer img {
+  width: 150px;
+  cursor: pointer;
+}
+
+.prodDetailBigImg {
+  max-width: 100%;
+  width: 630px;
+}
+
+/* below are for component productDetail -- details box on the right half of the page */
+
+.addToCartBtnDetail {
+  width: 40%;
+  height: 3rem;
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.backToShopBtn {
+  width: 40%;
+  height: 3rem;
+  font-size: 2rem;
+  background-color: orange;
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.bestSellerInDetail {
+  height: 2.5rem;
+  width: 40%;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.btnInLink {
+  background-color: orange;
+  color: white;
+  border: none;
+}
+
+.detailBrand {
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  color: gray;
+  line-height: 3rem;
+}
+
+.detailButtom {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  justify-content: space-around;
+}
+
+.detailItem {
+  height: 2.5rem;
+  font-size: 1.8rem;
+  margin: 0.2rem auto;
+}
+
+.detailDescrip {
+  width: 80%;
+  color: black;
+  height: 350px;
+}
+
+.detailNameUnit {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.detailReview {
+  font-size: 1.5rem;
+  color: purple;
+  margin-left: 0.5rem;
+}
+
+.detailTop {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+/* below are for component productDetail -- reveiws box at the bottom of the page*/
+
+.listRow {
+  list-style: none;
+  height: 5rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.reviewContainer {
+  margin: 2rem auto;
+  width: 80%;
+  height: 25vh;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: scroll;
+}
+
+.reviewBoxTitle {
+  list-style: none;
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin: 0.3rem auto;
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.reviewRow1 {
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: center;
+}
+
+.reviewRow2 {
+  padding-left: 20px;
+}
+
+/* below are for side-nav-container */
+
+#side-nav-container > ul {
+  list-style-type: none;
+}
+
+/* below are for rating stars */
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: '★★★★★';
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: '★★★★★';
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+.reviewStarBox {
+  display: flex;
+  align-items: center;
+}
+
+.test {
+  color: red;
+  width: 50%;
 }
