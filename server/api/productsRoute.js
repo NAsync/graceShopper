@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
         },
         {
           model: Image,
-          attributes: ['id']
+          attributes: ['url']
         }
       ],
       group: ['product.id', 'brand.id', 'images.id']
@@ -45,7 +45,7 @@ router.get('/:id', async (req, res, next) => {
         },
         {
           model: Image,
-          attributes: ['id']
+          attributes: ['url']
         }
       ]
     })
