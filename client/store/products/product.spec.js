@@ -23,7 +23,6 @@ describe('product thunk creators', () => {
       unit: '1 PC',
       description: 'A good description',
       price: 15,
-      imageURL: 'https://picsum.photos/250',
       inventoryQTY: 25,
       bestSeller: false
     })).dataValues
@@ -60,7 +59,6 @@ describe('products thunk creators', () => {
       unit: '1 PC',
       description: '100% Cotton; Face Mask for Dust & Sun Protection',
       price: 15,
-      imageURL: 'https://picsum.photos/250',
       inventoryQTY: 25,
       bestSeller: false
     })
@@ -69,7 +67,6 @@ describe('products thunk creators', () => {
       unit: '1 PC',
       description: 'Item description',
       price: 4,
-      imageURL: 'https://picsum.photos/250',
       inventoryQTY: 3,
       bestSeller: true
     })

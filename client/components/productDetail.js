@@ -59,7 +59,7 @@ class ProductDetail extends Component {
               <div className="bigImgContainer">
                 <img
                   className="prodDetailBigImg"
-                  src={product.imageURL}
+                  src={product.images[0].url}
                   alt={product.name}
                 />
                 <div

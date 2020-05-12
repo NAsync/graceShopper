@@ -31,11 +31,6 @@ const Product = db.define('product', {
       notEmpty: true
     }
   },
-  imageURL: {
-    type: STRING,
-    allowNull: false,
-    defaultValue: 'https://picsum.photos/250'
-  },
   inventoryQTY: {
     type: INTEGER
   },
