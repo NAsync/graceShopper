@@ -126,8 +126,10 @@ form div {
 }
 
 .productReview {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: blue;
+  margin: 0 auto;
+  height: 1.7rem;
 }
 
 .addToCartBtn {
@@ -141,7 +143,7 @@ form div {
   margin-top: 0.5rem;
 }
 
-/* below are for component Departments_slide */
+/* below are for component DepartmentsSlide */
 
 .carousel {
   margin: 1rem auto;
@@ -149,7 +151,19 @@ form div {
   background-color: aqua;
 }
 
-/* below are for component productDetail */
+/* below are for admin page styling */
+.admin-non-edit {
+  font-style: italic;
+  background-color: lightgray;
+}
+
+.admin-table {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* below are for component ProductDetail */
 
 .productDetailContainer {
   margin: 2rem auto;
@@ -274,6 +288,7 @@ form div {
 .detailReview {
   font-size: 1.5rem;
   color: purple;
+  margin-left: 0.5rem;
 }
 
 .detailTop {
@@ -300,19 +315,20 @@ form div {
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: scroll;
 }
 
 .reviewBoxTitle {
   list-style: none;
   font-size: 1.7rem;
   font-weight: 600;
+  margin: 0.3rem auto;
 }
 
 .reviewList {
   display: flex;
   flex-direction: column;
   width: 60%;
-  height: 25vh;
   margin: 0 auto;
   justify-content: space-evenly;
   align-items: center;
@@ -320,14 +336,55 @@ form div {
 }
 
 .reviewRow1 {
-  color: purple;
+  display: flex;
   font-size: 1.2rem;
+  justify-content: center;
 }
 
 .reviewRow2 {
   padding-left: 20px;
 }
 
+/* below are for side-nav-container */
+
 #side-nav-container > ul {
   list-style-type: none;
+}
+
+/* below are for rating stars */
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: '★★★★★';
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: '★★★★★';
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+.reviewStarBox {
+  display: flex;
+  align-items: center;
+}
+
+.test {
+  color: red;
+  width: 50%;
 }

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addItem} from '../store/cart/actions'
+import ReviewStars from './reviewStars'
 
 const ProductCard = ({product, addToCart, cart}) => {
   let review = ''
@@ -33,7 +34,11 @@ const ProductCard = ({product, addToCart, cart}) => {
         {product.name} {product.unit}
       </Link>
       <div className="cardItem productBrand">by {product.brand.name}</div>
-      <div className="cardItem productReview">{review}</div>
+      {review === 'First To Review' ? (
+        <div className="cardItem productReview">{review}</div>
+      ) : (
+        <ReviewStars rating={review} />
+      )}
       <div className="cardItem productPrice">${product.price}</div>
       <button
         className="addToCartBtn"

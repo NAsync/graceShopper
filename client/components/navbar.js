@@ -23,7 +23,7 @@ const Navbar = ({handleClick, isAdmin, isLoggedIn, cart}) => {
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
-            <Link to="/home">[name of shop]</Link>
+            <Link to="/home">JAR</Link>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/cart">
@@ -36,6 +36,7 @@ const Navbar = ({handleClick, isAdmin, isLoggedIn, cart}) => {
     </div>
   )
 }
+
 /**
  * CONTAINER
  */

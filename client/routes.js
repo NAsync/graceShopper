@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Admin,
+  AdminProductCreate,
   AdminProducts,
   AdminProductSingle,
   Cart,
@@ -13,13 +14,14 @@ import {
 } from './components'
 import {me} from './store'
 import Products from './components/products'
-import Departments_slide from './components/departments_slide'
+import DepartmentsSlide from './components/departmentsSlide'
 import ProductDetail from './components/productDetail'
 import Brand from './components/brand'
 import Department from './components/department'
 import {readBrand} from '../client/store/brands/actions'
 import {readDepartment} from '../client/store/departments/actions'
 import {readProduct} from './store/products/actions'
+import Checkout from './components/checkout'
 
 /**
  * COMPONENT
@@ -34,13 +36,14 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={Departments_slide} />
+        <Route exact path="/" component={DepartmentsSlide} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={Products} />
         <Route path="/products/:id" component={ProductDetail} />
         <Route path="/products" component={Products} />
+        <Route path="/checkout" component={Checkout} />
         <Route
           exact
           path="/brand/:id"
@@ -65,6 +68,11 @@ class Routes extends Component {
             {isAdmin && (
               <Switch>
                 <Route exact path="/admin" component={Admin} />
+                <Route
+                  exact
+                  path="/admin/products/create"
+                  component={AdminProductCreate}
+                />
                 <Route exact path="/admin/products" component={AdminProducts} />
                 <Route
                   exact
