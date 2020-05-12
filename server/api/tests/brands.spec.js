@@ -36,7 +36,6 @@ describe('Brand Routes', () => {
       unit: '1 PC',
       description: '100% Cotton; Face Mask for Dust & Sun Protection',
       price: 15,
-      imageURL: 'https://picsum.photos/250',
       inventoryQTY: 25,
       bestSeller: false,
       departmentId: department1.id,
@@ -49,7 +48,6 @@ describe('Brand Routes', () => {
       description:
         'Reusable, Washable, Protection from Dust, Pollen, Pet Dander and other Airborne Irritants',
       price: 30,
-      imageURL: 'https://picsum.photos/250',
       inventoryQTY: 80,
       bestSeller: false,
       departmentId: department2.id,

@@ -14,7 +14,6 @@ class AdminProductCreate extends Component {
       unit: '',
       description: '',
       price: '',
-      imageURL: '',
       inventoryQTY: '',
       bestSeller: '',
       brandId: '',
@@ -28,7 +27,6 @@ class AdminProductCreate extends Component {
       unit,
       description,
       price,
-      imageURL,
       inventoryQTY,
       bestSeller,
       brandId,
@@ -39,7 +37,6 @@ class AdminProductCreate extends Component {
       unit,
       description,
       price,
-      imageURL,
       inventoryQTY,
       bestSeller,
       brandId: 1,
@@ -54,7 +51,6 @@ class AdminProductCreate extends Component {
       unit,
       description,
       price,
-      imageURL,
       inventoryQTY,
       bestSeller
     } = this.state
@@ -85,12 +81,6 @@ class AdminProductCreate extends Component {
             value={price}
             placeholder="price"
             onChange={ev => this.setState({price: ev.target.value})}
-          />
-          <input
-            type="text"
-            value={imageURL}
-            placeholder="imageURL"
-            onChange={ev => this.setState({imageURL: ev.target.value})}
           />
           <input
             type="text"

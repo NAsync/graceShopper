@@ -47,16 +47,19 @@ class ProductDetail extends Component {
           <div className="productDetailContainer">
             <div className="leftSection">
               <div className="imgListContainer">
-                <img src={product.imageURL} alt={product.name} />
-                {/* These hardcoded image links are temporary while we add more images to products on the backend */}
-                <img src="https://picsum.photos/160" />
-                <img src="https://picsum.photos/160" />
-                <img src="https://picsum.photos/160" />
+                {product.images.map(image => {
+                  return (
+                    <img
+                      src={image.url ? image.url : 'https://picsum.photos/160'}
+                      alt={product.name}
+                    />
+                  )
+                })}
               </div>
               <div className="bigImgContainer">
                 <img
                   className="prodDetailBigImg"
-                  src={product.imageURL}
+                  src={product.images[0].url}
                   alt={product.name}
                 />
                 <div

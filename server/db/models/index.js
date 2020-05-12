@@ -4,7 +4,7 @@ const Department = require('./department')
 const Product = require('./product')
 const Review = require('./review')
 const User = require('./user')
-const Image = require('./product-images')
+const Image = require('./image')
 
 CreditCard.belongsTo(User)
 CreditCard.belongsTo(Merchant)
