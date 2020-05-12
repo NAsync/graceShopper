@@ -454,18 +454,16 @@ async function seed() {
 
   const currentOrder = await Promise.all([
     OrderProduct.create({
-      productId: pd3.id,
+      productId: n95Mask.id,
       userOrderId: userOrders[0].id
     }),
     OrderProduct.create({
-      productId: pd4.id,
+      productId: salmon.id,
       userOrderId: userOrders[0].id
     })
   ])
 
   console.log(`seeded users`)
-  console.log(`seeded ${merchants.length} merchants`)
-  console.log(`seeded ${creditCards.length} credit cards`)
   console.log(`seeded successfully`)
 }
 
