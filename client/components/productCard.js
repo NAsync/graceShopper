@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {addItem} from '../store/cart/actions'
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, addToCart, cart}) => {
   let review = ''
   if (!product.reviewAvg) {
     review = 'First To Review'
@@ -33,9 +35,29 @@ const ProductCard = ({product}) => {
       <div className="cardItem productBrand">by {product.brand.name}</div>
       <div className="cardItem productReview">{review}</div>
       <div className="cardItem productPrice">${product.price}</div>
-      <button className="addToCartBtn">Add to Cart</button>
+      <button
+        className="addToCartBtn"
+        onClick={() => {
+          addToCart(product.id, cart.id)
+        }}
+      >
+        Add to Cart
+      </button>
     </div>
   )
 }
 
-export default ProductCard
+const mapStateToProps = ({cart}) => {
+  return {
+    cart
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: (productId, userOrderId) =>
+      dispatch(addItem(productId, userOrderId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)

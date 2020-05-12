@@ -1,5 +1,11 @@
 import axios from 'axios'
-import {ADD_ITEM, CREATE_CART, DELETE_ITEM, UPDATE_ITEM} from './action_types'
+import {
+  ADD_ITEM,
+  CREATE_CART,
+  DELETE_ITEM,
+  UPDATE_ITEM,
+  READ_CART
+} from './action_types'
 
 const _addItem = item => {
   return {
@@ -8,10 +14,10 @@ const _addItem = item => {
   }
 }
 
-const _deleteItem = item => {
+const _deleteItem = id => {
   return {
     type: DELETE_ITEM,
-    item
+    id
   }
 }
 
@@ -28,9 +34,19 @@ const _updateItem = item => {
   }
 }
 
-const addItem = item => {
+const _readCart = cart => {
+  return {
+    type: READ_CART,
+    cart
+  }
+}
+
+const addItem = (productId, userOrderId) => {
   return async dispatch => {
-    const addedItem = (await axios.post('/api/orderProducts', item)).data
+    const addedItem = (await axios.post('/api/orderProducts', {
+      productId,
+      userOrderId
+    })).data
     dispatch(_addItem(addedItem))
   }
 }
@@ -52,9 +68,15 @@ const deleteItem = id => {
 
 const createCart = userId => {
   return async dispatch => {
-    const createdCart = (await axios.post('/api/orderProducts', {userId})).data
+    const createdCart = (await axios.post('/api/userOrders', {userId})).data
     dispatch(_createCart(createdCart))
   }
 }
 
-export {addItem, updateItem, deleteItem, createCart}
+const readCart = () => {
+  return async dispatch => {
+    const cart = (await axios.get('/api/userOrders/cart/5')).data
+    dispatch(_readCart(cart[0]))
+  }
+}
+export {addItem, updateItem, deleteItem, createCart, readCart}

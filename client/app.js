@@ -7,6 +7,7 @@ import {readProducts} from './store/products/actions'
 import {readBrands} from './store/brands/actions'
 import {readDepartments} from './store/departments/actions'
 import {readReviews} from './store/reviews'
+import {readCart} from './store/cart/actions'
 
 class App extends Component {
   constructor() {
@@ -35,6 +36,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(readDepartments())
       dispatch(readProducts())
       dispatch(readReviews())
+      dispatch(readCart())
     }
   }
 }

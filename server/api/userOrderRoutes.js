@@ -1,5 +1,12 @@
 const router = require('express').Router()
-const {UserOrder, Product, OrderProduct} = require('../db/models')
+const {
+  UserOrder,
+  Product,
+  OrderProduct,
+  Brand,
+  Review
+} = require('../db/models')
+const Sequelize = require('sequelize')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -17,10 +24,76 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
-  const id = req.params.id
+router.get('/cart/:userId', async (req, res, next) => {
+  const userId = req.params.userId
   try {
-    const userOrder = await UserOrder.findByPk(id)
+    const userOrder = await UserOrder.findAll({
+      where: {userId, isCheckedOut: false},
+      include: [
+        {
+          model: OrderProduct,
+          include: [
+            {
+              model: Product,
+              attributes: {
+                include: [
+                  [Sequelize.fn('AVG', Sequelize.col('rating')), 'reviewAvg']
+                ]
+              },
+              include: [
+                {
+                  model: Brand,
+                  attributes: ['name']
+                },
+                {
+                  model: Review,
+                  attributes: []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      group: [
+        'userOrder.id',
+        'orderProducts.id',
+        'orderProducts->product.id',
+        'orderProducts->product->brand.id'
+      ]
+    })
+    res.status(200).send(userOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/ordered/:userId', async (req, res, next) => {
+  const userId = req.params.userId
+  try {
+    const userOrder = await UserOrder.findAll({
+      where: {userId, isCheckedOut: true},
+      include: [
+        {
+          model: OrderProduct,
+          include: [
+            {
+              model: Product,
+              attributes: {
+                include: [
+                  [Sequelize.fn('AVG', Sequelize.col('rating')), 'reviewAvg']
+                ]
+              },
+              include: [
+                {
+                  model: Brand,
+                  attributes: ['name']
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    })
     res.status(200).send(userOrder)
   } catch (err) {
     next(err)

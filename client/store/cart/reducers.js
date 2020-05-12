@@ -1,15 +1,23 @@
-import {ADD_ITEM, DELETE_ITEM, UPDATE_ITEM} from './action_types'
+import {ADD_ITEM, DELETE_ITEM, UPDATE_ITEM, READ_CART} from './action_types'
 
 export const cartItemReducer = (state = {}, action) => {
   switch (action.type) {
+    case READ_CART:
+      return action.cart
     case ADD_ITEM:
-      return [...state, action.item]
+      return {...state, orderProducts: [...state.orderProducts, action.item]}
     case DELETE_ITEM:
-      return state.filter(item => item.id !== action.item.id)
+      return {
+        ...state,
+        orderProducts: state.orderProducts.filter(item => item.id !== action.id)
+      }
     case UPDATE_ITEM:
-      return state.map(
-        item => (item.id === action.item.id ? action.item : item)
-      )
+      return {
+        ...state,
+        orderProducts: state.orderProducts.map(
+          item => (item.id === action.item.id ? action.item : item)
+        )
+      }
     default:
       return state
   }
