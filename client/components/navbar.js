@@ -16,7 +16,13 @@ const Navbar = ({handleClick, isAdmin, isLoggedIn, cart}) => {
               Logout
             </a>
             <Link to="/cart">
-              My cart ({cart.orderProducts && cart.orderProducts.length})
+              My cart (
+              {cart.orderProducts &&
+                cart.orderProducts.reduce(
+                  (accum, orderProduct) => accum + orderProduct.quantity,
+                  0
+                )}
+              )
             </Link>
             {isAdmin ? <Link to="/admin">Admin</Link> : ''}
           </div>
@@ -27,7 +33,13 @@ const Navbar = ({handleClick, isAdmin, isLoggedIn, cart}) => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/cart">
-              My cart ({cart.orderProducts && cart.orderProducts.length})
+              My cart (
+              {cart.orderProducts &&
+                cart.orderProducts.reduce(
+                  (accum, orderProduct) => accum + orderProduct.quantity,
+                  0
+                )}
+              )
             </Link>
           </div>
         )}

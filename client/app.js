@@ -18,6 +18,11 @@ class App extends Component {
     this.props.load()
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.user.id !== prevProps.user.id) {
+      this.props.loadCart(this.props.user.id)
+    }
+  }
   render() {
     return (
       <div>
@@ -29,6 +34,12 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = ({user}) => {
+  return {
+    user
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
@@ -36,9 +47,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(readDepartments())
       dispatch(readProducts())
       dispatch(readReviews())
-      dispatch(readCart())
-    }
+    },
+    loadCart: userId => dispatch(readCart(userId))
   }
 }
 
-export default connect(null, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

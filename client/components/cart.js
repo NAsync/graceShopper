@@ -4,12 +4,10 @@ import ProductCardCart from './productCardCart'
 import {readCart} from '../store/cart/actions'
 
 class Cart extends Component {
-  constructor(props) {
-    super()
-  }
   componentDidMount() {
-    this.props.loadCart()
+    this.props.user.id && this.props.loadCart(this.props.user.id)
   }
+
   render() {
     const {isLoggedIn, user, cart} = this.props
     return (
@@ -49,8 +47,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadCart: () => {
-      dispatch(readCart())
+    loadCart: userId => {
+      dispatch(readCart(userId))
     }
   }
 }

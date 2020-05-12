@@ -51,10 +51,11 @@ const addItem = (productId, userOrderId) => {
   }
 }
 
-const updateItem = item => {
+const updateItem = (id, quantity) => {
   return async dispatch => {
-    const updatedItem = (await axios.put(`/api/orderProducts/${item.id}`, item))
-      .data
+    const updatedItem = (await axios.put(`/api/orderProducts/${id}`, {
+      quantity
+    })).data
     dispatch(_updateItem(updatedItem))
   }
 }
@@ -73,9 +74,9 @@ const createCart = userId => {
   }
 }
 
-const readCart = () => {
+const readCart = userId => {
   return async dispatch => {
-    const cart = (await axios.get('/api/userOrders/cart/5')).data
+    const cart = (await axios.get(`/api/userOrders/cart/${userId}`)).data
     dispatch(_readCart(cart[0]))
   }
 }

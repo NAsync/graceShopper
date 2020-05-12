@@ -1,10 +1,9 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {deleteItem} from '../store/cart/actions'
-import products from './products'
+import {deleteItem, updateItem} from '../store/cart/actions'
 
-const ProductCardCart = ({orderProduct, deleteFromCart}) => {
+const ProductCardCart = ({orderProduct, deleteFromCart, updateCart}) => {
   const product = orderProduct.product
   if (product) {
     return (
@@ -35,10 +34,24 @@ const ProductCardCart = ({orderProduct, deleteFromCart}) => {
         <div className="cardItem productReview">
           {Number(product.reviewAvg).toFixed(1)}
         </div>
-        <div className="cardItem productPrice">${product.price}</div>
+        <div className="cardItem productPrice">
+          Total ${orderProduct.totalPrice}
+        </div>
+        <div className="cardItem productPrice">${product.price} per</div>
+
+        <div className="cardItem productReview">
+          quantity {orderProduct.quantity}
+        </div>
         <button
           className="addToCartBtn"
-          onClick={() => deleteFromCart(orderProduct.id)}
+          onClick={() => {
+            if (orderProduct.quantity > 1) {
+              const quantity = orderProduct.quantity - 1
+              updateCart(orderProduct.id, quantity)
+            } else {
+              deleteFromCart(orderProduct.id)
+            }
+          }}
         >
           Delete from cart
         </button>
@@ -58,7 +71,8 @@ const mapStateToProps = ({user}) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteFromCart: id => dispatch(deleteItem(id))
+    deleteFromCart: id => dispatch(deleteItem(id)),
+    updateCart: (id, quantity) => dispatch(updateItem(id, quantity))
   }
 }
 

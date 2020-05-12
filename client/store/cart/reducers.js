@@ -14,9 +14,15 @@ export const cartItemReducer = (state = {}, action) => {
     case UPDATE_ITEM:
       return {
         ...state,
-        orderProducts: state.orderProducts.map(
-          item => (item.id === action.item.id ? action.item : item)
-        )
+        orderProducts: state.orderProducts.map(item => {
+          if (item.id === action.item.id) {
+            item.quantity = action.item.quantity
+            if (item.product) {
+              item.totalPrice = item.product.price * item.quantity
+            }
+          }
+          return {...item}
+        })
       }
     default:
       return state

@@ -32,6 +32,12 @@ router.get('/cart/:userId', async (req, res, next) => {
       include: [
         {
           model: OrderProduct,
+          attributes: {
+            include: [
+              [Sequelize.literal('SUM(price * quantity)'), 'totalPrice']
+            ]
+          },
+
           include: [
             {
               model: Product,
