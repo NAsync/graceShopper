@@ -1,20 +1,20 @@
 'use strict'
 
 const db = require('../server/db')
-const fs = require('fs')
-const path = require('path')
+
+const S3_PATH = 'https://gs-jar.s3.us-east-2.amazonaws.com/'
 
 const {
-  User,
-  Department,
   Brand,
+  CreditCard,
+  Department,
+  Image,
+  Merchant,
+  UserOrder,
+  OrderProduct,
   Product,
   Review,
-  CreditCard,
-  Merchant,
-  Image,
-  UserOrder,
-  OrderProduct
+  User
 } = require('../server/db/models')
 
 async function seed() {
@@ -32,20 +32,19 @@ async function seed() {
     Department.create({name: 'attire'})
   ])
   const [
-    pd1,
-    pd2,
-    pd3,
-    pd4,
-    pd5,
-    pd6,
-    pd7,
-    pd8,
-    pd9,
-    pd10,
-    pd11,
-    pd12
+    n95Mask,
+    broccoli,
+    toiletPaper,
+    faceMask,
+    milk,
+    scarf,
+    clothFaceMask,
+    chickenBreast,
+    handSanitizer,
+    thermo,
+    salmon,
+    protectCloth
   ] = await Promise.all([
-    //pd1
     // TODO: DRY this out. Make an array of products, then we can do a foreach on the array to create multiple products
     Product.create({
       name: 'N95 Mask',
@@ -53,147 +52,124 @@ async function seed() {
       description:
         'Particulate Respirators;Medical Grade;Comfortable and Excellent Against Harmful Air Particle;Disposable',
       price: 15,
-      imageURL: '/assets/n95_1_use.jpg',
       inventoryQTY: 100,
       bestSeller: true,
       departmentId: health.id,
       brandId: fourM.id
     }),
-    //pd2
     Product.create({
       name: 'Organic Broccoli',
       unit: '1 LB',
       description:
         "Quality Guaranteed;It's nutritious, low in calories;Available year-round and hearty.",
       price: 3,
-      imageURL: '/assets/broccoli_use.jpg',
       inventoryQTY: 200,
       bestSeller: false,
       departmentId: grocery.id,
       brandId: wholeFoods.id
     }),
-    //pd3
     Product.create({
       name: 'Toilet Paper',
       unit: '5 Rolls',
       description:
         'Premium 3-Ply Toilet Paper;Soft, Strong and Highly Absorbent',
       price: 8,
-      imageURL: '/assets/toiletpaper_1_use.jpg',
       inventoryQTY: 50,
       bestSeller: true,
       departmentId: grocery.id,
       brandId: wholeFoods.id
     }),
-    //pd4
     Product.create({
       name: 'Surgical Face Mask',
       unit: '50 PC',
       description: 'Medical Grade;Disposable',
       price: 25,
-      imageURL: '/assets/facemask_3_use.jpg',
       inventoryQTY: 150,
       bestSeller: true,
       departmentId: health.id,
       brandId: fourM.id
     }),
-    //pd5
     Product.create({
       name: 'Organic Milk',
       unit: '1/2 Gallon',
       description:
         'Our milk comes from cows not given growth hormones or antibiotics;Raised on farms that follow sustainable organic practices.',
       price: 6,
-      imageURL: '/assets/milk_use.jpg',
       inventoryQTY: 80,
       bestSeller: true,
       departmentId: grocery.id,
       brandId: wholeFoods.id
     }),
-    //pd6
     Product.create({
       name: 'Nose Cover Scarf',
       unit: '1 PC',
       description: '100% Cotton;Face Cover for Dust & Sun Protection',
       price: 15,
-      imageURL: '/assets/scarf_use.jpg',
       inventoryQTY: 25,
       bestSeller: false,
       departmentId: attire.id,
       brandId: bahamaRepublic.id
     }),
-    //pd7
     Product.create({
       name: 'Cotton Face Mask',
       unit: '3 PC',
       description:
         'Protection from Dust, Pollen, Pet Dander and other Airborne Irritants;Reusable;Washable',
       price: 30,
-      imageURL: '/assets/cloth_facemask_use.jpg',
       inventoryQTY: 80,
       bestSeller: false,
       departmentId: health.id,
       brandId: fourM.id
     }),
-    //pd8
     Product.create({
       name: 'Organic Chicken Breasts',
       unit: '1 LB',
       description:
         'These perfectly tender fillets are deboned and trimmed by hand;Ready to cook however you like them',
       price: 13,
-      imageURL: '/assets/chickbreast_use.jpg',
       inventoryQTY: 120,
       bestSeller: false,
       departmentId: grocery.id,
       brandId: wholeFoods.id
     }),
-    //pd9
     Product.create({
       name: 'Hand Sanitizer',
       unit: '2 fl oz',
       description: 'Kills 99.99 percent of most common illness-causing germs',
       price: 5,
-      imageURL: '/assets/hand_sanitizer_2_use.jpg',
       inventoryQTY: 50,
       bestSeller: true,
       departmentId: health.id,
       brandId: fourM.id
     }),
-    //pd10
     Product.create({
       name: 'Rapid Read Thermometer',
       unit: '1 PC',
       description:
         'Accurate reading in 8 seconds;3 modes of use: oral, rectal, or underarm',
       price: 10,
-      imageURL: '/assets/thermo_use.jpg',
       inventoryQTY: 30,
       bestSeller: false,
       departmentId: health.id,
       brandId: fourM.id
     }),
-    //pd11
     Product.create({
       name: 'Organic Salmon Fillet',
       unit: '2 LB',
       description:
         'Fresh Guaranteed;The beautiful orange-red color;Closer to wild salmon than other farmed fish.',
       price: 30,
-      imageURL: '/assets/salmon_use.jpg',
       inventoryQTY: 40,
       bestSeller: false,
       departmentId: grocery.id,
       brandId: wholeFoods.id
     }),
-    //pd12
     Product.create({
       name: 'Coveralls Suit',
       unit: '1 PC',
       description:
         'Washable Isolation Gown;With Hood;Waterproof;Protective Overalls;Yellow',
       price: 20,
-      imageURL: '/assets/protect_cloth_use.jpg',
       inventoryQTY: 30,
       bestSeller: false,
       departmentId: attire.id,
@@ -201,22 +177,149 @@ async function seed() {
     })
   ])
 
-  const [img1, img2] = await Promise.all([
-    Image.create({
-      name: 'pic1',
-      picture: fs.readFileSync(
-        path.resolve(__dirname, '../public/assets/facemask_1.jpg')
-      ),
-      productId: pd1.id
-    }),
-    Image.create({
-      name: 'pic2',
-      picture: fs.readFileSync(
-        path.resolve(__dirname, '../public/assets/gloves_1.jpg')
-      ),
-      productId: pd1.id
+  const broccoliImages = ['broccoli1.jpg', 'broccoli2.jpg']
+  await Promise.all(
+    broccoliImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: broccoli.id
+      })
     })
-  ])
+  )
+  const chickenBreastImages = ['chickbreast1.jpg', 'chickbreast2.jpg']
+  await Promise.all(
+    chickenBreastImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: chickenBreast.id
+      })
+    })
+  )
+  const clothfacemaskImages = ['clothfacemask1.jpg', 'clothfacemask2.jpg']
+  await Promise.all(
+    clothfacemaskImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: clothFaceMask.id
+      })
+    })
+  )
+  const facemaskImages = [
+    'facemask1.jpg',
+    'facemask2.jpg',
+    'facemask3.jpg',
+    'facemask4.jpg'
+  ]
+  await Promise.all(
+    facemaskImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: faceMask.id
+      })
+    })
+  )
+  // const glovesImages = ['gloves1.jpg', 'gloves2.jpg']
+  // await Promise.all(glovesImages.map( image => {
+  //   return Image.create({
+  //     url: `${S3_PATH}${image}`,
+  //     productId: n95Mask.id
+  //   })
+  // }))
+  const handSanitizerImages = [
+    'handSanitizer1.jpg',
+    'handSanitizer2.jpg',
+    'handSanitizer3.jpg',
+    'handSanitizer4.jpg'
+  ]
+  await Promise.all(
+    handSanitizerImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: handSanitizer.id
+      })
+    })
+  )
+  // const handSoapImages = ['handSoap1.jpg', 'handSoap2.jpg']
+  // await Promise.all(handSoapImages.map( image => {
+  //   return Image.create({
+  //     url: `${S3_PATH}${image}`,
+  //     productId: soap.id
+  //   })
+  // }))
+  const milkImages = ['milk1.jpg', 'milk2.jpg']
+  await Promise.all(
+    milkImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: milk.id
+      })
+    })
+  )
+  const n95Images = ['n951.jpg', 'n952.jpg', 'n953.jpg', 'n954.jpg']
+  await Promise.all(
+    n95Images.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: n95Mask.id
+      })
+    })
+  )
+  const protectClothImages = ['protectcloth1.jpg', 'protectcloth2.jpg']
+  await Promise.all(
+    protectClothImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: protectCloth.id
+      })
+    })
+  )
+  // const protectHatImages = ['protecthat1.jpg']
+  // await Promise.all(protectHatImages.map( image => {
+  //   return Image.create({
+  //     url: `${S3_PATH}${image}`,
+  //     productId: protectHat.id
+  //   })
+  // }))
+  const salmonImages = ['salmon1.jpg', 'salmon2.jpg']
+  await Promise.all(
+    salmonImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: salmon.id
+      })
+    })
+  )
+  const scarfImages = ['scarf1.jpg', 'scarf2.jpg']
+  await Promise.all(
+    scarfImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: scarf.id
+      })
+    })
+  )
+  const thermoImages = ['thermo1.jpg', 'thermo2.jpg']
+  await Promise.all(
+    thermoImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: thermo.id
+      })
+    })
+  )
+  const toiletpaperImages = [
+    'toiletpaper1.jpg',
+    'toiletpaper2.jpg',
+    'toiletpaper3.jpg'
+  ]
+  await Promise.all(
+    toiletpaperImages.map(image => {
+      return Image.create({
+        url: `${S3_PATH}${image}`,
+        productId: toiletPaper.id
+      })
+    })
+  )
 
   const [user1, user2, user3, user4, user5] = await Promise.all([
     User.create({
@@ -244,124 +347,98 @@ async function seed() {
       rating: 5,
       description: 'I feel so good.',
       userId: user1.id,
-      productId: pd3.id
+      productId: toiletPaper.id
     }),
     //rw2
     Review.create({
       rating: 5,
       description: 'Nice! I can still breath.',
       userId: user2.id,
-      productId: pd1.id
+      productId: n95Mask.id
     }),
     //rw3
     Review.create({
       rating: 3,
       description: 'Fine! I can still eat.',
       userId: user3.id,
-      productId: pd2.id
+      productId: broccoli.id
     }),
     //rw4
     Review.create({
       rating: 4,
       description: 'Not Bad.',
       userId: user2.id,
-      productId: pd4.id
+      productId: faceMask.id
     }),
     //rw5
     Review.create({
       rating: 5,
       description: 'No complaints here.',
       userId: user1.id,
-      productId: pd5.id
+      productId: milk.id
     }),
     //rw6
     Review.create({
       rating: 3,
       description: "Can't breath.",
       userId: user3.id,
-      productId: pd1.id
+      productId: n95Mask.id
     }),
     //rw7
     Review.create({
       rating: 4,
       description: 'Comfortable.',
       userId: user1.id,
-      productId: pd7.id
+      productId: clothFaceMask.id
     }),
     //rw8
     Review.create({
       rating: 5,
       description: 'Yummy!',
       userId: user2.id,
-      productId: pd8.id
+      productId: chickenBreast.id
     }),
     //rw9
     Review.create({
       rating: 4,
       description: 'Kill them all!!',
       userId: user3.id,
-      productId: pd9.id
+      productId: handSanitizer.id
     }),
     //rw10
     Review.create({
       rating: 4,
       description: 'Does the job',
       userId: user1.id,
-      productId: pd10.id
+      productId: thermo.id
     }),
     //rw11
     Review.create({
       rating: 5,
       description: 'Very fresh.',
       userId: user3.id,
-      productId: pd11.id
+      productId: salmon.id
     }),
     //rw12
     Review.create({
       rating: 5,
       description: 'Worry free now!',
       userId: user2.id,
-      productId: pd12.id
+      productId: protectCloth.id
     }),
     //rw13
     Review.create({
       rating: 4,
       description: 'Does the job.',
       userId: user1.id,
-      productId: pd1.id
+      productId: n95Mask.id
     }),
     //rw14
     Review.create({
       rating: 5,
       description: 'Save my life!!',
       userId: user4.id,
-      productId: pd1.id
-    })
-  ])
-
-  const merchants = await Promise.all([
-    Merchant.create({
-      name: 'MasterCard',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg'
-    }),
-    Merchant.create({
-      name: 'Visa',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/5/53/Visa_2014_logo_detail.svg'
-    })
-  ])
-
-  const creditCards = await Promise.all([
-    CreditCard.create({
-      ccNumber: '5715121212151515',
-      userId: user1.id,
-      merchantId: merchants[0].id
-    }),
-    CreditCard.create({
-      ccNumber: '5215818121211512',
-      userId: user2.id,
-      merchantId: merchants[1].id
+      productId: n95Mask.id
     })
   ])
 

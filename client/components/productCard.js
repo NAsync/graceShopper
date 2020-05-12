@@ -12,6 +12,11 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
     review = parseFloat(product.reviewAvg).toFixed(1)
   }
 
+  let mainImage = ''
+  if (product.images && product.images[0]) {
+    mainImage = product.images[0].url
+  }
+
   return (
     <div className="productCardContainer">
       <div className="imgContainer">
@@ -24,11 +29,7 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
         >
           Best Seller
         </div>
-        <img
-          src={product.imageURL}
-          alt={product.name}
-          className="productCardImg"
-        />
+        <img src={mainImage} alt={product.name} className="productCardImg" />
       </div>
       <Link to={'/products/' + product.id} className="cardItem productNameUnit">
         {product.name} {product.unit}

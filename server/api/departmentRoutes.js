@@ -36,7 +36,7 @@ router.get('/:id', async (req, res, next) => {
             },
             {
               model: Image,
-              attributes: ['id']
+              attributes: ['url']
             }
           ]
         }
