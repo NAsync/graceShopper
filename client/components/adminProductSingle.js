@@ -42,7 +42,7 @@ class AdminProductSingle extends Component {
     if (bestSeller === 'true') {
       bestSeller = true
     } else if (bestSeller === 'false') {
-      bestSellet = false
+      bestSeller = false
     }
     let product = {
       name,
