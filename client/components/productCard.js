@@ -51,7 +51,7 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
             )
           if (orderProd) {
             const quantity = orderProd.quantity + 1
-            updateCart(orderProd.id, quantity)
+            updateCart(orderProd.id, quantity, cart.id)
           } else {
             addToCart(product, cart.id)
           }
@@ -73,7 +73,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addToCart: (product, userOrderId) =>
       dispatch(addItem(product, userOrderId)),
-    updateCart: (id, quantity) => dispatch(updateItem(id, quantity))
+    updateCart: (orderId, quantity, cartId) =>
+      dispatch(updateItem(orderId, quantity, cartId))
   }
 }
 

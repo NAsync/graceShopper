@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {deleteItem, updateItem} from '../store/cart/actions'
 
-const ProductCardCart = ({orderProduct, deleteFromCart, updateCart}) => {
+const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
   const product = orderProduct.product
   if (product) {
     return (
@@ -47,9 +47,9 @@ const ProductCardCart = ({orderProduct, deleteFromCart, updateCart}) => {
           onClick={() => {
             if (orderProduct.quantity > 1) {
               const quantity = orderProduct.quantity - 1
-              updateCart(orderProduct.id, quantity)
+              updateCart(orderProduct.id, quantity, cart.id)
             } else {
-              deleteFromCart(orderProduct.id)
+              deleteFromCart(orderProduct.id, cart.id)
             }
           }}
         >
@@ -61,18 +61,17 @@ const ProductCardCart = ({orderProduct, deleteFromCart, updateCart}) => {
   return null
 }
 
-const mapStateToProps = ({user}) => {
-  if (user) {
-    return {
-      user
-    }
+const mapStateToProps = ({cart}) => {
+  return {
+    cart
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteFromCart: id => dispatch(deleteItem(id)),
-    updateCart: (id, quantity) => dispatch(updateItem(id, quantity))
+    deleteFromCart: (orderId, cartId) => dispatch(deleteItem(orderId, cartId)),
+    updateCart: (orderId, quantity, cartId) =>
+      dispatch(updateItem(orderId, quantity, cartId))
   }
 }
 
