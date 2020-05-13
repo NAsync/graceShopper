@@ -93,11 +93,21 @@ router.get('/ordered/:userId', async (req, res, next) => {
                 {
                   model: Brand,
                   attributes: ['name']
+                },
+                {
+                  model: Review,
+                  attributes: []
                 }
               ]
             }
           ]
         }
+      ],
+      group: [
+        'userOrder.id',
+        'orderProducts.id',
+        'orderProducts->product.id',
+        'orderProducts->product->brand.id'
       ]
     })
     res.status(200).send(userOrder)
