@@ -5,7 +5,11 @@ import {readCart} from '../store/cart/actions'
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.user.id && this.props.loadCart(this.props.user.id)
+    if (this.props.user.id) {
+      this.props.loadCart(this.props.user.id)
+    } else {
+      this.props.loadCart()
+    }
   }
 
   render() {
@@ -47,7 +51,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadCart: userId => {
+    loadCart: (userId = false) => {
       dispatch(readCart(userId))
     }
   }

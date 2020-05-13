@@ -41,7 +41,12 @@ const _readCart = cart => {
   }
 }
 
-const addItem = (productId, userOrderId) => {
+const addItem = (product, userOrderId) => {
+  console.log(userOrderId)
+  const productId = product.id
+  if (userOrderId === 'offline' || !userOrderId) {
+    return dispatch => dispatch(_addItem(product))
+  }
   return async dispatch => {
     const addedItem = (await axios.post('/api/orderProducts', {
       productId,
@@ -76,8 +81,16 @@ const createCart = userId => {
 
 const readCart = userId => {
   return async dispatch => {
-    const cart = (await axios.get(`/api/userOrders/cart/${userId}`)).data
-    dispatch(_readCart(cart[0]))
+    if (!userId === 'offline' && userId) {
+      const cart = (await axios.get(`/api/userOrders/cart/${userId}`)).data
+      dispatch(_readCart(cart[0]))
+    } else {
+      if (!sessionStorage.getItem('cart')) {
+        sessionStorage.setItem('cart', JSON.stringify({id: 'offline'}))
+      }
+      const cart = sessionStorage.getItem('cart')
+      dispatch(_readCart(JSON.parse(cart)))
+    }
   }
 }
 export {addItem, updateItem, deleteItem, createCart, readCart}
