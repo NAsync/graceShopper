@@ -1,12 +1,34 @@
-import React, {Component} from 'react'
+import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
+//import axios from 'axios'
 
-const StripeCheckoutButton = ({price}) => {
-  const priceForStripe = price * 100
-  const publishablekey = 'pk_test_fuzmrsq8tsZrctgTeJmHxClb00cwD5jxSX'
+const StripeCheckoutButton = ({order}) => {
+  console.log('strip', order)
+  const priceForStripe = order.totalAmount * 100
+  const publishableKey = 'pk_test_fuzmrsq8tsZrctgTeJmHxClb00cwD5jxSX'
+
+  console.log('price', priceForStripe)
 
   const onToken = token => {
-    alert('Payment successful')
+    const body = {
+      token,
+      order
+    }
+    const headers = {
+      'Content-Type': 'application/json'
+    }
+    //only work when it's hosted as https
+    return fetch(`http://localhost:8080/checkout/payment`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        console.log('RESPONSE', response)
+        const {status} = response
+        console.log('STATUS', status)
+      })
+      .catch(error => console.log(error))
   }
 
   return (
@@ -15,12 +37,14 @@ const StripeCheckoutButton = ({price}) => {
       name="JAR Online Shopping"
       billingAddress
       shippingAddress
-      description={`Your total is $${price}`}
+      description={`Your total is $${order.totalAmount}`}
       amount={priceForStripe}
       panelLabel="Pay Now"
       token={onToken}
-      stripeKey={publishablekey}
-    />
+      stripeKey={publishableKey}
+    >
+      <button className="btn-large pink">Pay Card</button>
+    </StripeCheckout>
   )
 }
 
