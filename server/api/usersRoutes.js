@@ -81,7 +81,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 router.delete('/:id', async (req, res, next) => {
-  const id = Number(req.params.id)
+  const id = req.params.id
   try {
     const user = await User.findByPk(id)
     await user.destroy()
