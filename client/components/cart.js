@@ -1,28 +1,56 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import ProductCardCart from './productCardCart'
+import {readCart} from '../store/cart/actions'
 
-const Cart = ({isLoggedIn, user}) => (
-  <div>
-    {isLoggedIn ? (
+class Cart extends Component {
+  componentDidMount() {
+    this.props.user.id && this.props.loadCart(this.props.user.id)
+  }
+
+  render() {
+    const {isLoggedIn, user, cart} = this.props
+    return (
       <div>
-        {/* The cart will show this after you log in */}
-        <p>Cart for {user.email}</p>
+        {isLoggedIn ? (
+          <div>
+            {/* The cart will show this after you log in */}
+            <p>Cart for {user.email}</p>
+            <ul>
+              {cart.orderProducts &&
+                cart.orderProducts.map(orderProduct => (
+                  <li key={orderProduct.id}>
+                    <ProductCardCart orderProduct={orderProduct} />
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ) : (
+          <div>
+            {/* The cart will show this before you log in */}
+            <p>Anonymous cart</p>
+            <p>Please log in or sign up to keep your cart.</p>
+          </div>
+        )}
       </div>
-    ) : (
-      <div>
-        {/* The cart will show this before you log in */}
-        <p>Anonymous cart</p>
-        <p>Please log in or sign up to keep your cart.</p>
-      </div>
-    )}
-  </div>
-)
+    )
+  }
+}
 
 const mapStateToProps = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    cart: state.cart
   }
 }
 
-export default connect(mapStateToProps)(Cart)
+const mapDispatchToProps = dispatch => {
+  return {
+    loadCart: userId => {
+      dispatch(readCart(userId))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
