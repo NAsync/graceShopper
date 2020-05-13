@@ -34,7 +34,7 @@ router.put('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
     const orderProduct = await OrderProduct.findByPk(id)
-    orderProduct.update(req.body)
+    await orderProduct.update(req.body)
     res.status(200).send(orderProduct)
   } catch (err) {
     next(err)
@@ -45,7 +45,7 @@ router.delete('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
     const orderProduct = await OrderProduct.findByPk(id)
-    orderProduct.destroy()
+    await orderProduct.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)

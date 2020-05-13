@@ -119,7 +119,7 @@ router.put('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
     const userOrder = await UserOrder.findByPk(id)
-    userOrder.update(req.body)
+    await userOrder.update(req.body)
     res.status(200).send(userOrder)
   } catch (err) {
     next(err)
@@ -130,7 +130,7 @@ router.delete('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
     const userOrder = await UserOrder.findByPk(id)
-    userOrder.destroy()
+    await userOrder.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)
