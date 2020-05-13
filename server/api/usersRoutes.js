@@ -1,5 +1,12 @@
 const router = require('express').Router()
-const {Review, User} = require('../db/models')
+const {
+  Review,
+  User,
+  UserOrder,
+  OrderProduct,
+  Product,
+  Brand
+} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -20,6 +27,29 @@ router.get('/:id', async (req, res, next) => {
       include: [
         {
           model: Review
+        },
+        {
+          model: UserOrder,
+          include: [
+            {
+              model: OrderProduct,
+              include: [
+                {
+                  model: Product,
+
+                  include: [
+                    {
+                      model: Review
+                    },
+                    {
+                      model: Brand,
+                      attributes: ['name']
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ],
       attributes: ['id', 'email']
@@ -43,7 +73,7 @@ router.put('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
     const user = await User.findByPk(id)
-    user.update(req.body)
+    await user.update(req.body)
     res.status(200).send(user)
   } catch (err) {
     next(err)
@@ -54,7 +84,7 @@ router.delete('/:id', async (req, res, next) => {
   const id = req.params.id
   try {
     const user = await User.findByPk(id)
-    user.destroy()
+    await user.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)

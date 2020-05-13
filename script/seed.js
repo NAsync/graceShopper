@@ -1,8 +1,6 @@
 'use strict'
 
 const db = require('../server/db')
-const fs = require('fs')
-const path = require('path')
 
 const S3_PATH = 'https://gs-jar.s3.us-east-2.amazonaws.com/'
 
@@ -12,6 +10,8 @@ const {
   Department,
   Image,
   Merchant,
+  UserOrder,
+  OrderProduct,
   Product,
   Review,
   User
@@ -442,35 +442,28 @@ async function seed() {
     })
   ])
 
-  const merchants = await Promise.all([
-    Merchant.create({
-      name: 'MasterCard',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg'
+  const userOrders = await Promise.all([
+    UserOrder.create({
+      userId: user4.id
     }),
-    Merchant.create({
-      name: 'Visa',
-      imageUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/5/53/Visa_2014_logo_detail.svg'
+    UserOrder.create({
+      userId: user4.id,
+      isCheckedOut: true
     })
   ])
 
-  const creditCards = await Promise.all([
-    CreditCard.create({
-      ccNumber: '5715121212151515',
-      userId: user1.id,
-      merchantId: merchants[0].id
+  const currentOrder = await Promise.all([
+    OrderProduct.create({
+      productId: n95Mask.id,
+      userOrderId: userOrders[0].id
     }),
-    CreditCard.create({
-      ccNumber: '5215818121211512',
-      userId: user2.id,
-      merchantId: merchants[1].id
+    OrderProduct.create({
+      productId: salmon.id,
+      userOrderId: userOrders[0].id
     })
   ])
 
   console.log(`seeded users`)
-  console.log(`seeded ${merchants.length} merchants`)
-  console.log(`seeded ${creditCards.length} credit cards`)
   console.log(`seeded successfully`)
 }
 
