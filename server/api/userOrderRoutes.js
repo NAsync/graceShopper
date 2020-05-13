@@ -4,7 +4,8 @@ const {
   Product,
   OrderProduct,
   Brand,
-  Review
+  Review,
+  Image
 } = require('../db/models')
 const Sequelize = require('sequelize')
 module.exports = router
@@ -54,6 +55,10 @@ router.get('/cart/:userId', async (req, res, next) => {
                 {
                   model: Review,
                   attributes: []
+                },
+                {
+                  model: Image,
+                  attributes: ['url']
                 }
               ]
             }
@@ -64,7 +69,8 @@ router.get('/cart/:userId', async (req, res, next) => {
         'userOrder.id',
         'orderProducts.id',
         'orderProducts->product.id',
-        'orderProducts->product->brand.id'
+        'orderProducts->product->brand.id',
+        'orderProducts->product->images.id'
       ]
     })
     res.status(200).send(userOrder)
@@ -97,6 +103,10 @@ router.get('/ordered/:userId', async (req, res, next) => {
                 {
                   model: Review,
                   attributes: []
+                },
+                {
+                  model: Image,
+                  attributes: ['url']
                 }
               ]
             }
@@ -107,7 +117,8 @@ router.get('/ordered/:userId', async (req, res, next) => {
         'userOrder.id',
         'orderProducts.id',
         'orderProducts->product.id',
-        'orderProducts->product->brand.id'
+        'orderProducts->product->brand.id',
+        'orderProducts->product->images.id'
       ]
     })
     res.status(200).send(userOrder)

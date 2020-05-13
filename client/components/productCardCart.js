@@ -19,7 +19,7 @@ const ProductCardCart = ({orderProduct, deleteFromCart, updateCart}) => {
             Best Seller
           </div>
           <img
-            src={product.imageURL}
+            src={product.images[0].url}
             alt={product.name}
             className="productCardImg"
           />
