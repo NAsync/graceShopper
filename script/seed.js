@@ -6,10 +6,8 @@ const S3_PATH = 'https://gs-jar.s3.us-east-2.amazonaws.com/'
 
 const {
   Brand,
-  CreditCard,
   Department,
   Image,
-  Merchant,
   UserOrder,
   OrderProduct,
   Product,
@@ -467,7 +465,6 @@ async function seed() {
   console.log(`seeded successfully`)
 }
 
-//npm run seed and ensure merchants, users, and credit cards
 async function runSeed() {
   console.log('seeding...')
   try {

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Sequelize = require('sequelize')
-const {Image} = require('../db/models')
+const {Image} = require('../../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {

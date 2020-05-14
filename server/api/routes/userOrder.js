@@ -6,7 +6,7 @@ const {
   Brand,
   Review,
   Image
-} = require('../db/models')
+} = require('../../db/models')
 const Sequelize = require('sequelize')
 module.exports = router
 
