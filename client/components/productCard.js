@@ -13,8 +13,17 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
   }
 
   let mainImage = ''
-  if (product.images && product.images[0]) {
-    mainImage = product.images[0].url
+  if (product.images) {
+    // If the product has images, try to find the image ending in 1
+    mainImage = product.images.find(
+      image => image.url[image.url.length - 5] === '1'
+    )
+    // If no such image exists, default to the first image available
+    if (!mainImage) {
+      mainImage = product.images[0]
+    }
+    // Once we have a valid image, we can just store the image's url
+    mainImage = mainImage.url
   }
 
   return (
