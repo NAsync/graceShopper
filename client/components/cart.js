@@ -5,7 +5,11 @@ import {readCart} from '../store/cart/actions'
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.user.id && this.props.loadCart(this.props.user.id)
+    if (this.props.user.id) {
+      this.props.loadCart(this.props.user.id)
+    } else {
+      this.props.loadCart()
+    }
   }
 
   render() {
@@ -30,6 +34,14 @@ class Cart extends Component {
             {/* The cart will show this before you log in */}
             <p>Anonymous cart</p>
             <p>Please log in or sign up to keep your cart.</p>
+            <ul>
+              {cart.orderProducts &&
+                cart.orderProducts.map(orderProduct => (
+                  <li key={orderProduct.id}>
+                    <ProductCardCart orderProduct={orderProduct} />
+                  </li>
+                ))}
+            </ul>
           </div>
         )}
       </div>
@@ -47,7 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadCart: userId => {
+    loadCart: (userId = false) => {
       dispatch(readCart(userId))
     }
   }
