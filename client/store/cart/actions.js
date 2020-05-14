@@ -41,7 +41,29 @@ const _readCart = cart => {
   }
 }
 
-const addItem = (productId, userOrderId) => {
+const addItem = (product, userOrderId) => {
+  const productId = product.id
+  // handle logged out cart
+  if (userOrderId === 'offline') {
+    console.log('added item for logged out user')
+    const cart = JSON.parse(sessionStorage.cart)
+    const newItem = {
+      id: cart.orderProducts.reduce(
+        (accum, cur) => (accum <= cur.id ? cur.id + 1 : accum),
+        1
+      ),
+      quantity: 1,
+      userOrderId: 'offline',
+      productId: product.id,
+      product,
+      totalPrice: product.price
+    }
+    cart.orderProducts = [...cart.orderProducts, newItem]
+    const newCart = JSON.stringify(cart)
+    sessionStorage.cart = newCart
+    return dispatch => dispatch(_addItem(newItem))
+  }
+  //handle logged in cart
   return async dispatch => {
     const addedItem = (await axios.post('/api/orderProducts', {
       productId,
@@ -51,19 +73,53 @@ const addItem = (productId, userOrderId) => {
   }
 }
 
-const updateItem = (id, quantity) => {
+const updateItem = (orderId, quantity, cartId) => {
   return async dispatch => {
-    const updatedItem = (await axios.put(`/api/orderProducts/${id}`, {
-      quantity
-    })).data
-    dispatch(_updateItem(updatedItem))
+    if (cartId !== 'offline') {
+      //handle logged in uder
+      const updatedItem = (await axios.put(`/api/orderProducts/${orderId}`, {
+        quantity
+      })).data
+      dispatch(_updateItem(updatedItem))
+    } else {
+      // handle logged out user
+      console.log('updated item for logged out user')
+      const cart = JSON.parse(sessionStorage.cart)
+      const updatedOrderProducts = cart.orderProducts.map(orderProduct => {
+        if (orderProduct.id === orderId) {
+          orderProduct.quantity = quantity
+          orderProduct.totalPrice = orderProduct.product.price * quantity
+        }
+        return orderProduct
+      })
+      cart.orderProducts = updatedOrderProducts
+      sessionStorage.cart = JSON.stringify(cart)
+      dispatch(
+        _updateItem(
+          updatedOrderProducts.find(orderProduct => orderProduct.id === orderId)
+        )
+      )
+    }
   }
 }
 
-const deleteItem = id => {
+const deleteItem = (orderId, cartId) => {
   return async dispatch => {
-    await axios.delete(`/api/orderProducts/${id}`)
-    dispatch(_deleteItem(id))
+    //handle logged in user
+    if (cartId !== 'offline') {
+      await axios.delete(`/api/orderProducts/${orderId}`)
+      dispatch(_deleteItem(orderId))
+    } else {
+      //handle logged out user
+      console.log('deleted item for logged out user')
+      const cart = JSON.parse(sessionStorage.cart)
+      const deleteOrderProduct = cart.orderProducts.filter(
+        orderProduct => orderProduct.id !== orderId
+      )
+      cart.orderProducts = deleteOrderProduct
+      sessionStorage.cart = JSON.stringify(cart)
+      dispatch(_deleteItem(orderId))
+    }
   }
 }
 
@@ -74,10 +130,27 @@ const createCart = userId => {
   }
 }
 
-const readCart = userId => {
+const readCart = (userId = false) => {
   return async dispatch => {
-    const cart = (await axios.get(`/api/userOrders/cart/${userId}`)).data
-    dispatch(_readCart(cart[0]))
+    if (userId) {
+      const cart = (await axios.get(`/api/userOrders/cart/${userId}`)).data
+      dispatch(_readCart(cart[0]))
+    } else {
+      console.log('read item for logged out user')
+      if (!sessionStorage.getItem('cart')) {
+        sessionStorage.setItem(
+          'cart',
+          JSON.stringify({
+            id: 'offline',
+            isCheckedOut: false,
+            userId: false,
+            orderProducts: []
+          })
+        )
+      }
+      const cart = sessionStorage.getItem('cart')
+      dispatch(_readCart(JSON.parse(cart)))
+    }
   }
 }
 export {addItem, updateItem, deleteItem, createCart, readCart}

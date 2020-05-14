@@ -44,14 +44,16 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
       <button
         className="addToCartBtn"
         onClick={() => {
-          const orderProd = cart.orderProducts.find(
-            orderProduct => orderProduct.productId === product.id
-          )
+          const orderProd =
+            cart.orderProducts &&
+            cart.orderProducts.find(
+              orderProduct => orderProduct.productId === product.id
+            )
           if (orderProd) {
             const quantity = orderProd.quantity + 1
-            updateCart(orderProd.id, quantity)
+            updateCart(orderProd.id, quantity, cart.id)
           } else {
-            addToCart(product.id, cart.id)
+            addToCart(product, cart.id)
           }
         }}
       >
@@ -69,9 +71,10 @@ const mapStateToProps = ({cart}) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addToCart: (productId, userOrderId) =>
-      dispatch(addItem(productId, userOrderId)),
-    updateCart: (id, quantity) => dispatch(updateItem(id, quantity))
+    addToCart: (product, userOrderId) =>
+      dispatch(addItem(product, userOrderId)),
+    updateCart: (orderId, quantity, cartId) =>
+      dispatch(updateItem(orderId, quantity, cartId))
   }
 }
 

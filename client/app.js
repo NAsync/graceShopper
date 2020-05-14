@@ -16,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.load()
+    this.props.loadCart()
   }
 
   componentDidUpdate(prevProps) {
