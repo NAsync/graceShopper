@@ -1,6 +1,5 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
-//import axios from 'axios'
 
 const StripeCheckoutButton = ({order}) => {
   console.log('strip', order)
@@ -18,7 +17,7 @@ const StripeCheckoutButton = ({order}) => {
       'Content-Type': 'application/json'
     }
     //only work when it's hosted as https
-    return fetch(`http://localhost:8080/checkout/payment`, {
+    return fetch(`http://localhost:8080/api/checkout/payment`, {
       method: 'POST',
       headers,
       body: JSON.stringify(body)

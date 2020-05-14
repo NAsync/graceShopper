@@ -4,12 +4,9 @@ import {connect} from 'react-redux'
 import {readProduct} from '../store/products/actions'
 import ReviewStars from './reviewStars'
 //toDo list:
-//1. other images
-//2. bring users to get user name on review
-//3. review stars
-//4. scroll down review box
-//5. add to card function
-//6. change description in seed; make description list
+//1. bring users to get user name on review
+//2. add to card function
+//3. hover or click small images and show in the big image container
 
 class ProductDetail extends Component {
   constructor() {
@@ -41,17 +38,20 @@ class ProductDetail extends Component {
       const reviewAvg = averageReview(product.reviews)
         ? averageReview(product.reviews).toFixed(1)
         : 'First to Review'
-
+      const bigImageUrl = product.images.find(
+        image => image.url[image.url.length - 5] === '1'
+      ).url
       return (
         <div className="pageContainer">
           <div className="productDetailContainer">
             <div className="leftSection">
               <div className="imgListContainer">
-                {product.images.map(image => {
+                {product.images.map((image, id) => {
                   return (
                     <img
                       src={image.url ? image.url : 'https://picsum.photos/160'}
                       alt={product.name}
+                      key={id}
                     />
                   )
                 })}
@@ -59,7 +59,7 @@ class ProductDetail extends Component {
               <div className="bigImgContainer">
                 <img
                   className="prodDetailBigImg"
-                  src={product.images[0].url}
+                  src={bigImageUrl}
                   alt={product.name}
                 />
                 <div

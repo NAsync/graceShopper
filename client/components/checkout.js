@@ -8,7 +8,7 @@ class Checkout extends Component {
 
   render() {
     const order = {
-      totalAmount: 50
+      totalAmount: 150
     }
 
     return <StripeCheckoutButton order={order} />
