@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
@@ -47,6 +48,7 @@ const createApp = () => {
 
   // body parsing middleware
   app.use(express.json())
+  app.use(cors())
   app.use(express.urlencoded({extended: true}))
 
   // compression middleware
