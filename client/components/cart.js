@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ProductCardCart from './productCardCart'
 import {readCart} from '../store/cart/actions'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   componentDidMount() {
@@ -28,6 +29,9 @@ class Cart extends Component {
                   </li>
                 ))}
             </ul>
+            <Link to="/checkout">
+              <button>Checkout</button>
+            </Link>
           </div>
         ) : (
           <div>
