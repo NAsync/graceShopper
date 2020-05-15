@@ -20,6 +20,7 @@ Alternatively, you can view a deployed version on heroku [here](https://gs-jar.h
 ## Using JAR
 
 When browsing throughout the site, users can view goods altogether, separated by brands, or separated by departments by clicking the hamburger icon at the top left.
+
 ![dropdown](./readme_images/dropdown.png)
 
 ![4M](./readme_images/4M.png)
@@ -32,7 +33,7 @@ When logged in as an admin user, an Admin link appears in the nav bar on the top
 ## For Developers
 
 Instead of viewing the site through our beautiful user interface, one can also access certain parts of the site through our API.<br />
-For reference, we currently allow GET requests through our API endpoints for brands, credit cards, departments, images, merchants, products, reviews, and users.
+For reference, we currently allow GET requests through our API endpoints for brands, departments, images, products, reviews, and users.
 
 ```javascript
 // View all brands
@@ -40,9 +41,6 @@ For reference, we currently allow GET requests through our API endpoints for bra
 
 // View a single brand, including its products
 `/api/brands/:id`
-
-// View all credit cards
-`api/creditCards`
 
 // View all departments
 `/api/departments`
@@ -52,9 +50,6 @@ For reference, we currently allow GET requests through our API endpoints for bra
 
 // View all images
 `/api/images`
-
-// View all merchants
-`/api/merchants`
 
 // View all products
 `/api/products`
