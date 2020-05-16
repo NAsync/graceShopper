@@ -11,6 +11,7 @@ import {connect} from 'react-redux'
 //6.deduct inventory qty (also show out of stock in products)
 //7.response for failed charge - a message, redirect?
 //8.whatelse data to bring in stripe payment
+//9.consider using 3rd part css for buttons
 
 class Checkout extends Component {
   constructor() {
