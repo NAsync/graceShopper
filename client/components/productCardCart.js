@@ -6,55 +6,60 @@ import {deleteItem, updateItem} from '../store/cart/actions'
 const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
   const product = orderProduct.product
   if (product) {
+    const bigImageUrl = product.images.find(
+      image => image.url[image.url.length - 5] === '1'
+    ).url
+
     return (
-      <div className="productCardContainer">
-        <div className="imgContainer">
+      <div className="productCardContainerCart">
+        <div className="imgContainerCart cartLeft">
           <div
             className={
               product.bestSeller
-                ? 'bestSeller bestSellerShow'
-                : 'bestSeller bestSellerNotShow'
+                ? 'bestSellerCart bestSellerShow'
+                : 'bestSellerCart bestSellerNotShow'
             }
           >
             Best Seller
           </div>
           <img
-            src={product.images[0].url}
+            src={bigImageUrl}
             alt={product.name}
-            className="productCardImg"
+            className="productCardImgCart"
           />
         </div>
-        <Link
-          to={'/products/' + product.id}
-          className="cardItem productNameUnit"
-        >
-          {product.name} {product.unit}
-        </Link>
-        <div className="cardItem productBrand">by {product.brand.name}</div>
-        <div className="cardItem productReview">
-          {Number(product.reviewAvg).toFixed(1)}
-        </div>
-        <div className="cardItem productPrice">
-          Total ${orderProduct.totalPrice}
-        </div>
-        <div className="cardItem productPrice">${product.price} per</div>
+        <div className="cartRight">
+          <div className="rowCart">
+            <Link
+              to={'/products/' + product.id}
+              className="productNameUnitCart"
+            >
+              {product.name} {product.unit}
+            </Link>
+            <div className="productBrandCart">by {product.brand.name}</div>
+          </div>
+          <div className="rowCart">
+            <div className="productPriceCart">${product.price}/Item</div>
+            <div className="orderQuantityCart">Qty {orderProduct.quantity}</div>
 
-        <div className="cardItem productReview">
-          quantity {orderProduct.quantity}
+            <div className="totalItemAmtCart">
+              Item Total ${orderProduct.totalPrice}
+            </div>
+          </div>
+          <button
+            className="deleteCartBtnCart rowCart"
+            onClick={() => {
+              if (orderProduct.quantity > 1) {
+                const quantity = orderProduct.quantity - 1
+                updateCart(orderProduct.id, quantity, cart.id)
+              } else {
+                deleteFromCart(orderProduct.id, cart.id)
+              }
+            }}
+          >
+            Remove from Cart
+          </button>
         </div>
-        <button
-          className="addToCartBtn"
-          onClick={() => {
-            if (orderProduct.quantity > 1) {
-              const quantity = orderProduct.quantity - 1
-              updateCart(orderProduct.id, quantity, cart.id)
-            } else {
-              deleteFromCart(orderProduct.id, cart.id)
-            }
-          }}
-        >
-          Delete from cart
-        </button>
       </div>
     )
   }
