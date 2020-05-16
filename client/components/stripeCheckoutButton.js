@@ -42,7 +42,7 @@ const StripeCheckoutButton = ({order}) => {
       token={onToken}
       stripeKey={publishableKey}
     >
-      <button className="btn-large pink">Pay Card</button>
+      <button className="payNowStripeBtn">Pay Now</button>
     </StripeCheckout>
   )
 }

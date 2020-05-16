@@ -2,6 +2,16 @@ import React, {Component} from 'react'
 import StripeCheckoutButton from './stripeCheckoutButton'
 import {connect} from 'react-redux'
 
+//todo list:
+//1.input shipping address and bring it to stripe payment
+//2.add tax depends on NY or NJ?
+//3.show product items or not?
+//4.remove chart items when successfully paid, put request
+//5.response for successfully charge - a successful route/redirect or just a message?
+//6.deduct inventory qty (also show out of stock in products)
+//7.response for failed charge - a message, redirect?
+//8.whatelse data to bring in stripe payment
+
 class Checkout extends Component {
   constructor() {
     super()
@@ -21,16 +31,14 @@ class Checkout extends Component {
 
   render() {
     const {sumAmount} = this
-    console.log(this.props.cart)
     const totalAmount = sumAmount(this.props.cart.orderProducts)
-    console.log(totalAmount)
     const order = {
       totalAmount: totalAmount
     }
 
     return (
-      <div>
-        <div>{`Your Order $${totalAmount}`}</div>
+      <div className="containerCheckout">
+        <div className="totalAmtCheckout">{`Your Order Total $${totalAmount}`}</div>
         <StripeCheckoutButton order={order} />
       </div>
     )

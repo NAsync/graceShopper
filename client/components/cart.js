@@ -4,7 +4,17 @@ import ProductCardCart from './productCardCart'
 import {readCart} from '../store/cart/actions'
 import {Link} from 'react-router-dom'
 
+//todo list:
+//1.check wrong item total
+//2.not logged in situation
+//3.add/reduce item qty
+
 class Cart extends Component {
+  constructor() {
+    super()
+    this.sumAmount = this.sumAmount.bind()
+  }
+
   componentDidMount() {
     if (this.props.user.id) {
       this.props.loadCart(this.props.user.id)
@@ -13,14 +23,27 @@ class Cart extends Component {
     }
   }
 
+  sumAmount(orderProducts) {
+    if (!orderProducts) {
+      return 0
+    }
+    if (Object.keys(orderProducts).length === 1) {
+      return orderProducts[0].totalPrice
+    } else {
+      return orderProducts.reduce((accum, cur) => accum + cur.totalPrice, 0)
+    }
+  }
+
   render() {
     const {isLoggedIn, user, cart} = this.props
+    const {sumAmount} = this
+    const totalAmount = sumAmount(this.props.cart.orderProducts)
     return (
       <div>
         {isLoggedIn ? (
-          <div>
+          <div className="containerCart">
             {/* The cart will show this after you log in */}
-            <p>Cart for {user.email}</p>
+            <p className="userEmailCart">Cart for {user.email}</p>
             <ul>
               {cart.orderProducts &&
                 cart.orderProducts.map(orderProduct => (
@@ -29,9 +52,12 @@ class Cart extends Component {
                   </li>
                 ))}
             </ul>
-            <Link to="/checkout">
-              <button>Checkout</button>
-            </Link>
+            <div className="checkoutDivCart">
+              <span className="totalAmtCart">{`Cart Total $${totalAmount}`}</span>
+              <Link to="/checkout" className="checkoutLink">
+                <button className="checkoutBtnCart">Proceed to Checkout</button>
+              </Link>
+            </div>
           </div>
         ) : (
           <div>
