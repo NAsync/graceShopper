@@ -17,7 +17,7 @@ const StripeCheckoutButton = ({order}) => {
       'Content-Type': 'application/json'
     }
     //only work when it's hosted as https
-    return fetch(`http://localhost:8080/api/checkout/payment`, {
+    return fetch(`/api/checkout/payment`, {
       method: 'POST',
       headers,
       body: JSON.stringify(body)
