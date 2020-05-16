@@ -73,6 +73,11 @@ router.get('/cart/:userId', async (req, res, next) => {
         'orderProducts->product->images.id'
       ]
     })
+    if (!userOrder.length) {
+      const newOrder = await UserOrder.create({userId})
+      newOrder.dataValues.orderProducts = []
+      return res.status(200).send([newOrder])
+    }
     res.status(200).send(userOrder)
   } catch (err) {
     next(err)
@@ -131,6 +136,27 @@ router.post('/', async (req, res, next) => {
   try {
     const userOrder = await UserOrder.create(req.body)
     res.status(201).send(userOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/cart/:userId', async (req, res, next) => {
+  const userId = req.params.userId
+  try {
+    const userOrder = await UserOrder.findAll({
+      where: {userId, isCheckedOut: false}
+    })
+    await userOrder[0].update(req.body)
+    const cartFound = await UserOrder.findAll({
+      where: {userId, isCheckedOut: false}
+    })
+    if (!cartFound.length) {
+      const newOrder = await UserOrder.create({userId})
+      newOrder.dataValues.orderProducts = []
+      return res.status(200).send([newOrder])
+    }
+    res.status(200).send(userOrder)
   } catch (err) {
     next(err)
   }
