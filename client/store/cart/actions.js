@@ -153,4 +153,13 @@ const readCart = (userId = false) => {
     }
   }
 }
-export {addItem, updateItem, deleteItem, createCart, readCart}
+
+const checkoutCart = userId => {
+  return async dispatch => {
+    const cart = (await axios.put(`/api/userOrders/cart/${userId}`, {
+      isCheckedOut: true
+    })).data
+    dispatch(_readCart(cart[0]))
+  }
+}
+export {addItem, updateItem, deleteItem, createCart, readCart, checkoutCart}
