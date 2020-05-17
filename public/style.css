@@ -210,28 +210,50 @@ form div {
 /* below are for component ProductDetail */
 
 .productDetailContainer {
-  margin: 2rem auto;
-  width: 80%;
-  height: 55vh;
+  margin: 2em auto;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
 }
 
 .leftSection {
   display: flex;
-  width: 48%;
+  flex: 1;
+  width: 40%;
+  margin-right: 2em;
 }
-
+@media (max-width: 700px) {
+  .leftSection {
+    display: flex;
+    flex: none;
+    width: 100%;
+    margin-right: 2em;
+    padding-bottom: 2em;
+  }
+}
 .rightSection {
   display: flex;
   flex-wrap: wrap;
+  flex: 1;
   flex-direction: column;
-  width: 52%;
+  float: right;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
+@media (max-width: 700px) {
+  .rightSection {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex: none;
+    flex-direction: column;
+    float: right;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
 /* below are for component productDetail -- images box on the left half of the page */
 
 .bigImgContainer {
@@ -249,13 +271,15 @@ form div {
 }
 
 .imgListContainer img {
-  width: 150px;
+  width: 75%;
+  height: auto;
   cursor: pointer;
 }
 
 .prodDetailBigImg {
-  max-width: 100%;
-  width: 630px;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
 }
 
 /* below are for component productDetail -- details box on the right half of the page */
@@ -269,6 +293,17 @@ form div {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+@media (max-width: 700px) {
+  .addToCartBtnDetail {
+    width: 40%;
+    height: 2rem;
+    font-size: 1.2rem;
+    background-color: green;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+}
 
 .backToShopBtn {
   width: 40%;
@@ -278,6 +313,17 @@ form div {
   color: white;
   border-radius: 0.5rem;
   cursor: pointer;
+}
+@media (max-width: 700px) {
+  .backToShopBtn {
+    width: 40%;
+    height: 2rem;
+    font-size: 1.2rem;
+    background-color: orange;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
 }
 
 .bestSellerInDetail {
@@ -289,6 +335,18 @@ form div {
   position: absolute;
   top: 0px;
   left: 0px;
+}
+@media (max-width: 1260px) {
+  .bestSellerInDetail {
+    height: 2rem;
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
 }
 
 .btnInLink {
@@ -317,7 +375,13 @@ form div {
   font-size: 1.8rem;
   margin: 0.2rem auto;
 }
-
+@media (max-width: 700px) {
+  .detailItem {
+    height: 1.5rem;
+    font-size: 1rem;
+    margin: 0.2rem auto;
+  }
+}
 .detailDescrip {
   width: 80%;
   color: black;
@@ -345,17 +409,17 @@ form div {
 
 .listRow {
   list-style: none;
-  height: 5rem;
+  height: 5em;
   width: 80%;
   display: flex;
   flex-direction: column;
-  font-size: 1.5rem;
+  font-size: 1.5em;
+  padding: 1em;
 }
 
 .reviewContainer {
-  margin: 2rem auto;
-  width: 80%;
-  height: 25vh;
+  margin: 1em auto;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -372,7 +436,7 @@ form div {
 .reviewList {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
   justify-content: space-evenly;
   align-items: center;
@@ -383,10 +447,6 @@ form div {
   display: flex;
   font-size: 1.2rem;
   justify-content: center;
-}
-
-.reviewRow2 {
-  padding-left: 20px;
 }
 
 /* below are for side-nav-container */

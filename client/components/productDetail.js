@@ -97,7 +97,7 @@ class ProductDetail extends Component {
               <div className="detailButtom">
                 <button className="addToCartBtnDetail">Add to Cart</button>
                 <Link to="/products" className="backToShopBtn">
-                  <button className="btnInLink">Back to Shop</button>
+                  Back to Shop
                 </Link>
               </div>
             </div>
@@ -107,14 +107,13 @@ class ProductDetail extends Component {
               <li className="reviewBoxTitle">Customer Reviews</li>
               {product.reviews.map((review, id) => (
                 <li className="listRow" key={id}>
-                  <div className="listItem reviewRow1">
-                    <span>Customer {review.userId}'s Review: &nbsp;</span>
+                  <div className="reviewRow1">
+                    Customer {review.userId}'s Review: &nbsp;
                     <ReviewStars rating={review.rating} />
                   </div>
                   {/* TODO: need to update user model before we use names */}
-                  <span className="listItem reviewRow2">
-                    {review.description}
-                  </span>
+                  <div>{review.description}</div>
+                  <hr />
                 </li>
               ))}
             </ul>
