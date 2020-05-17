@@ -35,7 +35,7 @@ class Checkout extends Component {
     const {sumAmount} = this
     const totalAmount = sumAmount(this.props.cart.orderProducts)
     const userId = this.props.cart.userId
-    const checkoutCart = this.props.checkoutCart
+    const cartCheckout = this.props.cartCheckout
     const order = {
       totalAmount: totalAmount
     }
@@ -45,7 +45,7 @@ class Checkout extends Component {
         <div className="totalAmtCheckout">{`Your Order Total $${totalAmount}`}</div>
         <StripeCheckoutButton
           order={order}
-          checkoutCart={checkoutCart}
+          cartCheckout={cartCheckout}
           userId={userId}
         />
       </div>
@@ -63,7 +63,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkoutCart: (userId = false) => {
+    cartCheckout: (userId = false) => {
       dispatch(checkoutCart(userId))
     }
   }
