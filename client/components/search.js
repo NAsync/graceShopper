@@ -1,24 +1,50 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {readProduct} from '../store/products/actions'
-import ReviewStars from './reviewStars'
-//toDo list:
-//1. bring users to get user name on review
-//2. add to card function
-//3. hover or click small images and show in the big image container
+import productSearchStore from '../store/searchStore'
 
 class Search extends Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      text: '',
+      productList: []
+    }
   }
 
   render() {
+    const {text, productList} = this.state
+    const {products} = this.props
+    console.log(productList)
     return (
       <form onSubmit={ev => ev.preventDefault()}>
-        <input type="text" />
-        <button>search</button>
+        <input
+          type="text"
+          onChange={ev => {
+            this.setState({text: ev.target.value})
+            const list = products.filter(product => {
+              if (
+                product.name.toLowerCase().includes(text.toLocaleLowerCase()) ||
+                product.description
+                  .toLowerCase()
+                  .includes(text.toLocaleLowerCase())
+              ) {
+                return product
+              }
+            })
+            list.length !== 0 && this.setState({productList: list})
+          }}
+          value={text}
+        />
+        <Link to="/search">
+          <button
+            onClick={() => {
+              this.props.searchResults(productList)
+            }}
+          >
+            search
+          </button>
+        </Link>
       </form>
     )
   }
@@ -28,4 +54,8 @@ const mapStateToProps = ({products}) => ({
   products
 })
 
-export default connect(mapStateToProps)(Search)
+const mapDispatchToProps = dispatch => ({
+  searchResults: productList => dispatch(productSearchStore(productList))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
