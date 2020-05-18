@@ -22,6 +22,7 @@ import {readBrand} from '../client/store/brands/actions'
 import {readDepartment} from '../client/store/departments/actions'
 import {readProduct} from './store/products/actions'
 import Checkout from './components/checkout'
+import Success from './components/success'
 import ProductSearch from './components/searchPage'
 
 /**
@@ -45,6 +46,7 @@ class Routes extends Component {
         <Route path="/products/:id" component={ProductDetail} />
         <Route path="/products" component={Products} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/success" component={Success} />
         <Route
           exact
           path="/brand/:id"

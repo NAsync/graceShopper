@@ -1,7 +1,12 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 
-const StripeCheckoutButton = ({order, cartCheckout, userId}) => {
+const StripeCheckoutButton = ({
+  order,
+  cartCheckout,
+  userId,
+  redirectSuccess
+}) => {
   const priceForStripe = order.totalAmount * 100
   const publishableKey = 'pk_test_fuzmrsq8tsZrctgTeJmHxClb00cwD5jxSX'
 
@@ -26,6 +31,7 @@ const StripeCheckoutButton = ({order, cartCheckout, userId}) => {
         const {status} = response
         console.log('STATUS', status)
         cartCheckout(userId)
+        redirectSuccess()
       })
       .catch(error => console.log(error))
   }
