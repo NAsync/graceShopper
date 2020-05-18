@@ -22,6 +22,7 @@ nav {
   display: flex;
   justify-content: space-around;
   margin: 0;
+  width: 100%;
 }
 
 nav a:hover {
@@ -33,6 +34,10 @@ nav a {
   display: inline-block;
   margin: 1em;
   padding: 1rem;
+}
+
+#jar {
+  align-items: flex-start;
 }
 
 form div {
