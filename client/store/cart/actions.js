@@ -41,7 +41,7 @@ const _readCart = cart => {
   }
 }
 
-const addItem = (product, userOrderId) => {
+const addItem = (product, userOrderId, quantity = 1) => {
   const productId = product.id
   // handle logged out cart
   if (userOrderId === 'offline') {
@@ -67,7 +67,8 @@ const addItem = (product, userOrderId) => {
   return async dispatch => {
     const addedItem = (await axios.post('/api/orderProducts', {
       productId,
-      userOrderId
+      userOrderId,
+      quantity
     })).data
     dispatch(_addItem(addedItem))
   }
