@@ -4,6 +4,7 @@ import {createLogger} from 'redux-logger'
 import {departmentReducer, departmentsReducer} from './departments/reducers'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import {ordersReducer} from './orders/reducers'
 import {productReducer, productsReducer} from './products/reducers'
 import user from './user'
 import {reviewReducer, reviewsReducer} from './reviews'
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   brands: brandsReducer,
   department: departmentReducer,
   departments: departmentsReducer,
+  orders: ordersReducer,
   product: productReducer,
   products: productsReducer,
   review: reviewReducer,

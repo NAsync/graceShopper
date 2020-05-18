@@ -10,10 +10,7 @@ const Admin = ({location}) => {
         <Link to={`${pathname}/products`}>Products Admin</Link>
       </p>
       <p>
-        <Link to="#">Departments Admin</Link>
-      </p>
-      <p>
-        <Link to="#">Brand Admin</Link>
+        <Link to={`${pathname}/orders`}>Orders</Link>
       </p>
     </div>
   )

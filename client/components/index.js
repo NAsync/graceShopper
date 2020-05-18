@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as Admin} from './admin'
+export {default as AdminOrders} from './adminOrders'
 export {default as AdminProducts} from './adminProducts'
 export {default as AdminProductCreate} from './adminProductCreate'
 export {default as AdminProductSingle} from './adminProductSingle'
