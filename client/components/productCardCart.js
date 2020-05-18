@@ -47,6 +47,15 @@ const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
             </div>
           </div>
           <button
+            className="addToCartBtn"
+            onClick={() => {
+              const quantity = orderProduct.quantity + 1
+              updateCart(orderProduct.id, quantity, cart.id)
+            }}
+          >
+            Add to Cart
+          </button>
+          <button
             className="deleteCartBtnCart rowCart"
             onClick={() => {
               if (orderProduct.quantity > 1) {
