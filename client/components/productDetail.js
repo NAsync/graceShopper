@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {readProduct} from '../store/products/actions'
 import ReviewStars from './reviewStars'
+import {addItem, updateItem} from '../store/cart/actions'
+
 //toDo list:
 //1. bring users to get user name on review
 //2. add to card function
@@ -31,6 +33,7 @@ class ProductDetail extends Component {
 
   render() {
     const {averageReview} = this
+    const {cart, updateCart, addToCart} = this.props
     if (Object.keys(this.props.product).length === 0) {
       return <h1>loading...</h1>
     } else {
@@ -95,9 +98,26 @@ class ProductDetail extends Component {
                 </ul>
               </div>
               <div className="detailButtom">
-                <button className="addToCartBtnDetail">Add to Cart</button>
+                <button
+                  className="addToCartBtnDetail"
+                  onClick={() => {
+                    const orderProd =
+                      cart.orderProducts &&
+                      cart.orderProducts.find(
+                        orderProduct => orderProduct.productId === product.id
+                      )
+                    if (orderProd) {
+                      const quantity = orderProd.quantity + 1
+                      updateCart(orderProd.id, quantity, cart.id)
+                    } else {
+                      addToCart(product, cart.id)
+                    }
+                  }}
+                >
+                  Add to Cart
+                </button>
                 <Link to="/products" className="backToShopBtn">
-                  <button className="btnInLink">Back to Shop</button>
+                  Back to Shop
                 </Link>
               </div>
             </div>
@@ -107,14 +127,13 @@ class ProductDetail extends Component {
               <li className="reviewBoxTitle">Customer Reviews</li>
               {product.reviews.map((review, id) => (
                 <li className="listRow" key={id}>
-                  <div className="listItem reviewRow1">
-                    <span>Customer {review.userId}'s Review: &nbsp;</span>
+                  <div className="reviewRow1">
+                    Customer {review.userId}'s Review: &nbsp;
                     <ReviewStars rating={review.rating} />
                   </div>
                   {/* TODO: need to update user model before we use names */}
-                  <span className="listItem reviewRow2">
-                    {review.description}
-                  </span>
+                  <div>{review.description}</div>
+                  <hr />
                 </li>
               ))}
             </ul>
@@ -125,13 +144,18 @@ class ProductDetail extends Component {
   }
 }
 
-const mapStateToProps = ({product}) => ({
-  product
+const mapStateToProps = ({product, cart}) => ({
+  product,
+  cart
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    readProduct: id => dispatch(readProduct(id))
+    readProduct: id => dispatch(readProduct(id)),
+    addToCart: (product, userOrderId) =>
+      dispatch(addItem(product, userOrderId)),
+    updateCart: (orderId, quantity, cartId) =>
+      dispatch(updateItem(orderId, quantity, cartId))
   }
 }
 

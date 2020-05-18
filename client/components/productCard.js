@@ -40,7 +40,7 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
         </div>
         <img src={mainImage} alt={product.name} className="productCardImg" />
       </div>
-      <Link to={'/products/' + product.id} className="cardItem productNameUnit">
+      <Link to={`/products/${product.id}`} className="cardItem productNameUnit">
         {product.name} {product.unit}
       </Link>
       <div className="cardItem productBrand">by {product.brand.name}</div>
