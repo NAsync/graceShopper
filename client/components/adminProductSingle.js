@@ -19,7 +19,6 @@ class AdminProductSingle extends Component {
       unit: product.unit,
       description: product.description,
       price: product.price,
-      imageURL: product.imageURL,
       inventoryQTY: product.inventoryQTY,
       bestSeller: product.bestSeller,
       brandId: product.brandId,
@@ -28,15 +27,7 @@ class AdminProductSingle extends Component {
     this.update = this.update.bind(this)
   }
   update() {
-    const {
-      name,
-      unit,
-      description,
-      price,
-      imageURL,
-      brandId,
-      departmentId
-    } = this.state
+    const {name, unit, description, price, brandId, departmentId} = this.state
     let {inventoryQTY, bestSeller} = this.state
     inventoryQTY = +inventoryQTY
     if (bestSeller === 'true') {
@@ -49,7 +40,6 @@ class AdminProductSingle extends Component {
       unit,
       description,
       price,
-      imageURL,
       inventoryQTY,
       bestSeller,
       brandId,
@@ -76,7 +66,6 @@ class AdminProductSingle extends Component {
       unit,
       description,
       price,
-      imageURL,
       inventoryQTY,
       bestSeller,
       brandId,
@@ -125,14 +114,6 @@ class AdminProductSingle extends Component {
                 type="text"
                 value={price}
                 onChange={ev => this.setState({price: ev.target.value})}
-              />
-            </div>
-            <div>
-              <label>Image URL:</label>
-              <input
-                type="text"
-                value={imageURL}
-                onChange={ev => this.setState({imageURL: ev.target.value})}
               />
             </div>
             <div>
