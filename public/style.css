@@ -532,3 +532,34 @@ form div {
   cursor: pointer;
   margin: 1rem auto;
 }
+
+/* below are for success component */
+.successBox {
+  width: 100%;
+  text-align: center;
+}
+
+.paymentSuccess {
+  margin: 1rem auto;
+}
+
+.thankyou {
+  margin-top: 3rem;
+  font-weight: 600;
+  color: green;
+}
+
+.shoppingWithUs {
+  margin-bottom: 3rem;
+}
+
+.backToShopBtnSuccess {
+  margin-top: 1rem;
+  width: 15rem;
+  height: 3rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: white;
+  background: orange;
+}
