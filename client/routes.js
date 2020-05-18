@@ -22,6 +22,7 @@ import {readBrand} from '../client/store/brands/actions'
 import {readDepartment} from '../client/store/departments/actions'
 import {readProduct} from './store/products/actions'
 import Checkout from './components/checkout'
+import ProductSearch from './components/searchPage'
 
 /**
  * COMPONENT
@@ -60,6 +61,7 @@ class Routes extends Component {
             return <Department />
           }}
         />
+        <Route exact path="/search" component={ProductSearch} />
 
         {isLoggedIn && (
           <Switch>
