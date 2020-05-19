@@ -19,27 +19,32 @@ class Search extends Component {
 
     return (
       <form onSubmit={ev => ev.preventDefault()}>
-        <input
-          type="text"
-          id="searchInput"
-          onFocus={() => this.setState({inputFocus: true})} //tells react that form is selcted
-          onBlur={() => this.setState({inputFocus: false})} //tells react form is not selected
-          onChange={ev => {
-            this.setState({text: ev.target.value})
-            const list = filterProducts(products, text)
-            list.length !== 0 && this.setState({productList: list})
-          }}
-          value={text}
-        />
-        <Link to="/search">
-          <button
-            onClick={() => {
-              this.props.searchResults(productList)
+        <div>
+          <input
+            type="text"
+            id="searchInput"
+            onFocus={() => this.setState({inputFocus: true})} //tells react that form is selcted
+            onBlur={() => this.setState({inputFocus: false})} //tells react form is not selected
+            onChange={ev => {
+              this.setState({text: ev.target.value})
+              const list = filterProducts(products, text)
+              list.length !== 0 && this.setState({productList: list})
             }}
-          >
-            search
-          </button>
-        </Link>
+            value={text}
+          />
+          <Link to="/search">
+            <button
+              onClick={() => {
+                this.props.searchResults(productList)
+              }}
+            >
+              <img
+                src="https://flyclipart.com/thumb2/search-button-png-images-transparent-free-download-164724.png"
+                id="search"
+              />
+            </button>
+          </Link>
+        </div>
         {text.length && inputFocus ? (
           <ul id="searchOptions">
             {productList.map(item => (
