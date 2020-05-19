@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom'
 //todo list:
 //1.check wrong item total
 //2.not logged in situation
-//3.add/reduce item qty
 
 class Cart extends Component {
   constructor() {
