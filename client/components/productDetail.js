@@ -41,9 +41,14 @@ class ProductDetail extends Component {
       const reviewAvg = averageReview(product.reviews)
         ? averageReview(product.reviews).toFixed(1)
         : 'First to Review'
-      const bigImageUrl = product.images.find(
+      let bigImageUrl = product.images.find(
         image => image.url[image.url.length - 5] === '1'
-      ).url
+      )
+      if (!bigImageUrl) {
+        bigImageUrl = {url: 'https://picsum.photos/250'}
+      }
+      bigImageUrl = bigImageUrl.url
+
       return (
         <div className="pageContainer">
           <div className="productDetailContainer">

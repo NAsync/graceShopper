@@ -6,9 +6,13 @@ import {deleteItem, updateItem} from '../store/cart/actions'
 const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
   const product = orderProduct.product
   if (product) {
-    const bigImageUrl = product.images.find(
+    let bigImageUrl = product.images.find(
       image => image.url[image.url.length - 5] === '1'
-    ).url
+    )
+    if (!bigImageUrl) {
+      bigImageUrl = {url: 'https://picsum.photos/250'}
+    }
+    bigImageUrl = bigImageUrl.url
 
     return (
       <div className="productCardContainerCart">
