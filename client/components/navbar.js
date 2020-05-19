@@ -16,17 +16,21 @@ const Navbar = ({handleClick, isAdmin, isLoggedIn, cart}) => {
               JAR
             </Link>
             <Search />
-            <a href="#" onClick={handleClick}>
+            <a href="#" id="Log" onClick={handleClick}>
               Logout
             </a>
-            <Link to="/cart">
-              My cart (
-              {cart.orderProducts &&
-                cart.orderProducts.reduce(
-                  (accum, orderProduct) => accum + orderProduct.quantity,
-                  0
-                )}
-              )
+            <Link to="/cart" id="cart">
+              <img
+                src="http://getdrawings.com/free-icon/checkout-icon-56.png"
+                id="cartImg"
+              />
+              <div id="cartnum">
+                {cart.orderProducts &&
+                  cart.orderProducts.reduce(
+                    (accum, orderProduct) => accum + orderProduct.quantity,
+                    0
+                  )}
+              </div>
             </Link>
             {isAdmin ? <Link to="/admin">Admin</Link> : ''}
           </div>
@@ -35,16 +39,22 @@ const Navbar = ({handleClick, isAdmin, isLoggedIn, cart}) => {
             {/* The navbar will show these links before you log in */}
             <Link to="/home">JAR</Link>
             <Search />
-            <Link to="/login">Login</Link>
+            <Link to="/login" id="Log">
+              Login
+            </Link>
             <Link to="/signup">Sign Up</Link>
-            <Link to="/cart">
-              My cart (
-              {cart.orderProducts &&
-                cart.orderProducts.reduce(
-                  (accum, orderProduct) => accum + orderProduct.quantity,
-                  0
-                )}
-              )
+            <Link to="/cart" id="cart">
+              <img
+                src="http://getdrawings.com/free-icon/checkout-icon-56.png"
+                id="cartImg"
+              />
+              <div id="cartnum">
+                {cart.orderProducts &&
+                  cart.orderProducts.reduce(
+                    (accum, orderProduct) => accum + orderProduct.quantity,
+                    0
+                  )}
+              </div>
             </Link>
           </div>
         )}
