@@ -9,9 +9,6 @@ const Admin = ({location}) => {
       <p>
         <Link to={`${pathname}/products`}>Products Admin</Link>
       </p>
-      <p>
-        <Link to={`${pathname}/orders`}>Orders</Link>
-      </p>
     </div>
   )
 }
