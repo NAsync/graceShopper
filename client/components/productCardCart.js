@@ -2,8 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {deleteItem, updateItem} from '../store/cart/actions'
-//import {Button, Glyphicon} from 'react-bootstrap'
-//import AddRoundedIcon from '@material-ui/icons/AddRounded'
 
 const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
   const product = orderProduct.product
