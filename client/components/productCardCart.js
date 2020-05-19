@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {deleteItem, updateItem} from '../store/cart/actions'
+//import {Button, Glyphicon} from 'react-bootstrap'
+//import AddRoundedIcon from '@material-ui/icons/AddRounded'
 
 const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
   const product = orderProduct.product
@@ -39,35 +41,36 @@ const ProductCardCart = ({orderProduct, deleteFromCart, updateCart, cart}) => {
             <div className="productBrandCart">by {product.brand.name}</div>
           </div>
           <div className="rowCart">
-            <div className="productPriceCart">${product.price}/Item</div>
+            <button
+              className="btnCart"
+              onClick={() => {
+                if (orderProduct.quantity > 1) {
+                  const quantity = orderProduct.quantity - 1
+                  updateCart(orderProduct.id, quantity, cart.id)
+                } else {
+                  deleteFromCart(orderProduct.id, cart.id)
+                }
+              }}
+            >
+              &minus;
+            </button>
             <div className="orderQuantityCart">Qty {orderProduct.quantity}</div>
-
+            <button
+              className="btnCart"
+              onClick={() => {
+                const quantity = orderProduct.quantity + 1
+                updateCart(orderProduct.id, quantity, cart.id)
+              }}
+            >
+              &#43;
+            </button>
+          </div>
+          <div className="rowCart">
+            <div className="productPriceCart">${product.price}/Item</div>
             <div className="totalItemAmtCart">
               Item Total ${orderProduct.totalPrice}
             </div>
           </div>
-          <button
-            className="addToCartBtn"
-            onClick={() => {
-              const quantity = orderProduct.quantity + 1
-              updateCart(orderProduct.id, quantity, cart.id)
-            }}
-          >
-            Add to Cart
-          </button>
-          <button
-            className="deleteCartBtnCart rowCart"
-            onClick={() => {
-              if (orderProduct.quantity > 1) {
-                const quantity = orderProduct.quantity - 1
-                updateCart(orderProduct.id, quantity, cart.id)
-              } else {
-                deleteFromCart(orderProduct.id, cart.id)
-              }
-            }}
-          >
-            Remove from Cart
-          </button>
         </div>
       </div>
     )

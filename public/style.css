@@ -578,23 +578,23 @@ form div {
 .orderQuantityCart {
   display: inline;
   margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .totalItemAmtCart {
   display: inline;
   margin-left: 1rem;
   font-weight: 600;
+  margin-left: 1rem;
 }
 
-.deleteCartBtnCart {
-  width: 50%;
-  height: 2rem;
-  font-size: 1.5rem;
-  background-color: green;
+.btnCart {
+  width: 2.5rem;
   color: white;
   border-radius: 0.5rem;
   cursor: pointer;
-  margin-bottom: 1rem;
+  font-weight: 900;
+  background-color: green;
 }
 
 /* below are in cart component */
