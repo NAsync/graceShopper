@@ -4,13 +4,14 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Admin,
+  AdminOrders,
   AdminProductCreate,
   AdminProducts,
   AdminProductSingle,
   Cart,
   Login,
   Signup,
-  UserHome
+  UserHome,
 } from './components'
 import {me} from './store'
 import Products from './components/products'
@@ -82,11 +83,11 @@ class Routes extends Component {
                   exact
                   path="/admin/products/:id"
                   render={({match}) => {
-                    const id = match.params.id
-                    this.props.loadProduct(id)
+                    this.props.loadProduct(match.params.id)
                     return <AdminProductSingle />
                   }}
                 />
+                <Route exact path="/admin/orders" component={AdminOrders} />
               </Switch>
             )}
           </Switch>

@@ -20,7 +20,7 @@ const ProductCard = ({product, addToCart, cart, updateCart}) => {
     )
     // If no such image exists, default to the first image available
     if (!mainImage) {
-      mainImage = product.images[0]
+      mainImage = product.images[0] || {url: 'https://picsum.photos/250'}
     }
     // Once we have a valid image, we can just store the image's url
     mainImage = mainImage.url

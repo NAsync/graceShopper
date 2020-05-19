@@ -15,7 +15,11 @@ router.get('/', async (req, res, next) => {
     const userOrder = await UserOrder.findAll({
       include: [
         {
-          model: OrderProduct
+          model: OrderProduct,
+          include: {
+            model: Product,
+            attributes: ['name']
+          }
         }
       ]
     })
